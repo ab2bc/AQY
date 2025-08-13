@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::{path::PathBuf, time::Duration};
@@ -24,7 +24,7 @@ use sui_types::{
 };
 use tokio_util::sync::CancellationToken;
 
-/// 5 SUI gas budget
+/// 5 AQY gas budget
 const DEFAULT_GAS_BUDGET: u64 = 5_000_000_000;
 
 /// Tests happy path for SuiNS resolution.

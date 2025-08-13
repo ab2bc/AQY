@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};
@@ -412,7 +412,7 @@ async fn test_get_all_balances() {
         .unwrap();
     // Only check that FN can return a valid response and not check the contents;
     // the contents is FN logic and thus should be tested on the FN side.
-    assert_eq!(response["result"][0]["coinType"], "0x2::sui::SUI");
+    assert_eq!(response["result"][0]["coinType"], "0x2::sui::AQY");
     test_cluster.stopped().await;
 }
 
@@ -596,7 +596,7 @@ async fn test_get_balance() {
         .await
         .unwrap();
 
-    assert_eq!(response["result"]["coinType"], "0x2::sui::SUI");
+    assert_eq!(response["result"]["coinType"], "0x2::sui::AQY");
 
     // Test out the invalid coin type.
     let response = test_cluster

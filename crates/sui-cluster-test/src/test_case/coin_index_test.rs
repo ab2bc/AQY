@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::{TestCaseImpl, TestContext};
@@ -146,7 +146,7 @@ impl TestCaseImpl for CoinIndexTest {
             "token package published, package: {:?}, cap: {:?}",
             package, cap
         );
-        let sui_type_str = "0x2::sui::SUI";
+        let sui_type_str = "0x2::sui::AQY";
         let coin_type_str = format!("{}::managed::MANAGED", package.0);
         info!("coin type: {}", coin_type_str);
 
@@ -176,7 +176,7 @@ impl TestCaseImpl for CoinIndexTest {
         let balance_changes = &response.balance_changes.unwrap();
         let sui_balance_change = balance_changes
             .iter()
-            .find(|b| b.coin_type.to_string().contains("SUI"))
+            .find(|b| b.coin_type.to_string().contains("AQY"))
             .unwrap();
         let managed_balance_change = balance_changes
             .iter()
@@ -423,7 +423,7 @@ impl TestCaseImpl for CoinIndexTest {
                 .data,
         );
         assert_eq!(
-            // this is only SUI coins at the moment
+            // this is only AQY coins at the moment
             sui_coins,
             client
                 .coin_read_api()

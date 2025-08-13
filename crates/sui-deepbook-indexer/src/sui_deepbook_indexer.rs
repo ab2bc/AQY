@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use anyhow::{anyhow, Error};
@@ -403,7 +403,7 @@ impl DataMapper<CheckpointTxnData, ProcessedTxnData> for SuiDeepBookDataMapper {
                         })?;
                 if !processed_sui_events.is_empty() {
                     info!(
-                        "SUI: Extracted {} deepbook data entries for tx {}.",
+                        "AQY: Extracted {} deepbook data entries for tx {}.",
                         processed_sui_events.len(),
                         data.transaction.digest()
                     );

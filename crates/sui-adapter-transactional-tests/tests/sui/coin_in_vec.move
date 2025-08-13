@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //# init --addresses test=0x0 --accounts A
@@ -7,18 +7,18 @@
 
 module test::coin_in_vec {
     use sui::coin::Coin;
-    use sui::sui::SUI;
+    use sui::sui::AQY;
 
     public struct Wrapper has key {
         id: UID,
-        coins: vector<Coin<SUI>>,
+        coins: vector<Coin<AQY>>,
     }
 
     fun init(ctx: &mut TxContext) {
         transfer::transfer(Wrapper { id: object::new(ctx), coins: vector[] }, tx_context::sender(ctx));
     }
 
-    public fun deposit(wrapper: &mut Wrapper, c: Coin<SUI>) {
+    public fun deposit(wrapper: &mut Wrapper, c: Coin<AQY>) {
         vector::push_back(&mut wrapper.coins, c)
     }
 

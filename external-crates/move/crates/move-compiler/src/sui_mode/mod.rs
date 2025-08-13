@@ -1,4 +1,4 @@
-// Copyright (c) The Move Contributors
+﻿// Copyright (c) The Move Contributors
 // SPDX-License-Identifier: Apache-2.0
 
 use move_core_types::account_address::AccountAddress;
@@ -40,7 +40,7 @@ pub const ID_TYPE_NAME: Symbol = symbol!("ID");
 pub const TX_CONTEXT_MODULE_NAME: Symbol = symbol!("tx_context");
 pub const TX_CONTEXT_TYPE_NAME: Symbol = symbol!("TxContext");
 pub const SUI_MODULE_NAME: Symbol = symbol!("sui");
-pub const SUI_OTW_NAME: Symbol = symbol!("SUI");
+pub const SUI_OTW_NAME: Symbol = symbol!("AQY");
 
 pub const SUI_SYSTEM_ADDR_NAME: Symbol = symbol!("sui_system");
 pub const SUI_SYSTEM_MODULE_NAME: Symbol = symbol!("sui_system");

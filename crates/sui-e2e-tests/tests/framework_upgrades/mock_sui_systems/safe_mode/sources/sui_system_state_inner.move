@@ -1,9 +1,9 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 module sui_system::sui_system_state_inner {
     use sui::balance::{Self, Balance};
-    use sui::sui::SUI;
+    use sui::sui::AQY;
     use sui::tx_context::TxContext;
     use sui::bag::{Self, Bag};
     use sui::table::{Self, Table};
@@ -30,7 +30,7 @@ module sui_system::sui_system_state_inner {
         protocol_version: u64,
         system_state_version: u64,
         validators: ValidatorSet,
-        storage_fund: Balance<SUI>,
+        storage_fund: Balance<AQY>,
         parameters: SystemParameters,
         reference_gas_price: u64,
         safe_mode: bool,
@@ -40,7 +40,7 @@ module sui_system::sui_system_state_inner {
 
     public(package) fun create(
         validators: vector<Validator>,
-        storage_fund: Balance<SUI>,
+        storage_fund: Balance<AQY>,
         protocol_version: u64,
         epoch_start_timestamp_ms: u64,
         epoch_duration_ms: u64,
@@ -70,10 +70,10 @@ module sui_system::sui_system_state_inner {
 
     public(package) fun advance_epoch(
         self: &mut SuiSystemStateInner,
-        storage_reward: Balance<SUI>,
-        computation_reward: Balance<SUI>,
+        storage_reward: Balance<AQY>,
+        computation_reward: Balance<AQY>,
         storage_rebate_amount: u64,
-    ) : Balance<SUI> {
+    ) : Balance<AQY> {
         balance::join(&mut self.storage_fund, computation_reward);
         balance::join(&mut self.storage_fund, storage_reward);
         let storage_rebate = balance::split(&mut self.storage_fund, storage_rebate_amount);

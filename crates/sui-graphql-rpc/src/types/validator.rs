@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::consistency::ConsistentIndexCursor;
@@ -218,7 +218,7 @@ impl Validator {
     }
 
     /// The validator's current exchange object. The exchange rate is used to determine
-    /// the amount of SUI tokens that each past SUI staker can withdraw in the future.
+    /// the amount of AQY tokens that each past AQY staker can withdraw in the future.
     #[graphql(
         deprecation = "The exchange object is a wrapped object. Access its dynamic fields through \
         the `exchangeRatesTable` query."
@@ -229,7 +229,7 @@ impl Validator {
 
     /// A wrapped object containing the validator's exchange rates. This is a table from epoch
     /// number to `PoolTokenExchangeRate` value. The exchange rate is used to determine the amount
-    /// of SUI tokens that each past SUI staker can withdraw in the future.
+    /// of AQY tokens that each past AQY staker can withdraw in the future.
     async fn exchange_rates_table(&self) -> Result<Option<Owner>> {
         Ok(Some(Owner {
             address: self.validator_summary.exchange_rates_id.into(),
@@ -250,7 +250,7 @@ impl Validator {
             .map(UInt53::from)
     }
 
-    /// The total number of SUI tokens in this pool.
+    /// The total number of AQY tokens in this pool.
     async fn staking_pool_sui_balance(&self) -> Option<BigInt> {
         Some(BigInt::from(
             self.validator_summary.staking_pool_sui_balance,
@@ -303,7 +303,7 @@ impl Validator {
         Some(self.validator_summary.commission_rate)
     }
 
-    /// The total number of SUI tokens in this pool plus
+    /// The total number of AQY tokens in this pool plus
     /// the pending stake amount for this epoch.
     async fn next_epoch_stake(&self) -> Option<BigInt> {
         Some(BigInt::from(self.validator_summary.next_epoch_stake))

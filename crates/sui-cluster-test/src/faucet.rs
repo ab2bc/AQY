@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use super::cluster::{new_wallet_context_from_cluster, Cluster};
@@ -61,7 +61,7 @@ impl RemoteFaucetClient {
 
 #[async_trait]
 impl FaucetClient for RemoteFaucetClient {
-    /// Request test SUI coins from faucet.
+    /// Request test AQY coins from faucet.
     /// It also verifies the effects are observed by fullnode.
     async fn request_sui_coins(&self, request_address: SuiAddress) -> FaucetResponse {
         let gas_url = format!("{}/v2/gas", self.remote_url);

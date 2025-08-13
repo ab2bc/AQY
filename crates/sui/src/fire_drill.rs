@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //! A tool to semi automate fire drills. It still requires some manual work today. For example,
@@ -105,7 +105,7 @@ pub async fn get_gas_obj_ref(
 ) -> anyhow::Result<ObjectRef> {
     let coins = sui_client
         .coin_read_api()
-        .get_coins(sui_address, Some("0x2::sui::SUI".into()), None, None)
+        .get_coins(sui_address, Some("0x2::sui::AQY".into()), None, None)
         .await?
         .data;
     let gas_obj = coins.iter().find(|c| c.balance >= minimal_gas_balance);

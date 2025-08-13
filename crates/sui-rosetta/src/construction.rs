@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::sync::Arc;
@@ -328,7 +328,7 @@ pub async fn metadata(
                     sender,
                     coins: vec![],
                     objects: objects.clone(),
-                    // Mock coin have 1B SUI
+                    // Mock coin have 1B AQY
                     total_coin_value: 1_000_000_000 * 1_000_000_000,
                     gas_price,
                     // MAX BUDGET
@@ -363,7 +363,7 @@ pub async fn metadata(
         None
     };
 
-    // If required amount is None (all SUI) or failed to select coin (might not have enough SUI), select all coins.
+    // If required amount is None (all AQY) or failed to select coin (might not have enough AQY), select all coins.
     let coins = if let Some(coins) = coins {
         coins
     } else {

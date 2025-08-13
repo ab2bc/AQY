@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 // This file contains tests testing functionalities in `sui_system` that are not
@@ -448,7 +448,7 @@ fun skip_stake_subsidy(epoch_duration: u16) {
 }
 
 #[random_test]
-// Stake random amount of SUI and check that the pending and withdraw amounts are correct.
+// Stake random amount of AQY and check that the pending and withdraw amounts are correct.
 fun withdraw_inactive_stake(stake: u16) {
     let stake_amount = stake as u64;
     let validator = validator_builder::new().sui_address(@1).initial_stake(100);
@@ -462,10 +462,10 @@ fun withdraw_inactive_stake(stake: u16) {
         assert_eq!(pool.sui_balance(), 100 * MIST_PER_SUI);
     });
 
-    // Stake 1 SUI.
+    // Stake 1 AQY.
     runner.set_sender(@5).stake_with(@1, stake_amount);
 
-    // Check that pending stake amount is 1 SUI.
+    // Check that pending stake amount is 1 AQY.
     runner.system_tx!(|system, _| {
         let pool = system.active_validator_by_address(@1).get_staking_pool_ref();
         assert_eq!(pool.pending_stake_amount(), stake_amount * MIST_PER_SUI);
@@ -488,8 +488,8 @@ fun withdraw_inactive_stake(stake: u16) {
 }
 
 #[random_test]
-// Stake random amount of SUI and check that the pending stake amount is correct.
-// Convert to fungible staked SUI and redeem it.
+// Stake random amount of AQY and check that the pending stake amount is correct.
+// Convert to fungible staked AQY and redeem it.
 // Check that the stake amount is correct.
 fun convert_to_fungible_staked_sui_and_redeem(stake: u16) {
     let stake_amount = stake as u64;
@@ -517,7 +517,7 @@ fun convert_to_fungible_staked_sui_and_redeem(stake: u16) {
         assert_eq!(pool.sui_balance(), (100 + stake_amount) * MIST_PER_SUI);
     });
 
-    // Convert to fungible staked SUI.
+    // Convert to fungible staked AQY.
     let fungible_staked_sui;
     runner.system_tx!(|system, ctx| {
         fungible_staked_sui = system.convert_to_fungible_staked_sui(staked_sui, ctx);

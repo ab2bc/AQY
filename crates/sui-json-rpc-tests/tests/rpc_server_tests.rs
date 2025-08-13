@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use shared_crypto::intent::{Intent, IntentMessage};
@@ -376,14 +376,14 @@ async fn test_get_coins() -> Result<(), anyhow::Error> {
     assert_eq!(0, result.data.len());
 
     let result: CoinPage = http_client
-        .get_coins(address, Some("0x2::sui::SUI".into()), None, None)
+        .get_coins(address, Some("0x2::sui::AQY".into()), None, None)
         .await?;
     assert_eq!(5, result.data.len());
     assert!(!result.has_next_page);
 
     // Test paging
     let result: CoinPage = http_client
-        .get_coins(address, Some("0x2::sui::SUI".into()), None, Some(3))
+        .get_coins(address, Some("0x2::sui::AQY".into()), None, Some(3))
         .await?;
     assert_eq!(3, result.data.len());
     assert!(result.has_next_page);
@@ -391,7 +391,7 @@ async fn test_get_coins() -> Result<(), anyhow::Error> {
     let result: CoinPage = http_client
         .get_coins(
             address,
-            Some("0x2::sui::SUI".into()),
+            Some("0x2::sui::AQY".into()),
             result.next_cursor,
             Some(3),
         )
@@ -449,7 +449,7 @@ async fn test_get_balance() -> Result<(), anyhow::Error> {
     let address = cluster.get_address_0();
 
     let result: Balance = http_client.get_balance(address, None).await?;
-    assert_eq!("0x2::sui::SUI", result.coin_type);
+    assert_eq!("0x2::sui::AQY", result.coin_type);
     assert_eq!(
         (DEFAULT_NUMBER_OF_OBJECT_PER_ACCOUNT as u64 * DEFAULT_GAS_AMOUNT) as u128,
         result.total_balance
@@ -721,7 +721,7 @@ async fn test_staking() -> Result<(), anyhow::Error> {
         .sui_address;
 
     let coin = objects.data[0].object()?.object_id;
-    // Delegate some SUI
+    // Delegate some AQY
     let transaction_bytes: TransactionBlockBytes = http_client
         .request_add_stake(
             address,
@@ -790,7 +790,7 @@ async fn test_unstaking() -> Result<(), anyhow::Error> {
         .active_validators[0]
         .sui_address;
 
-    // Delegate some SUI
+    // Delegate some AQY
     for i in 0..3 {
         let transaction_bytes: TransactionBlockBytes = http_client
             .request_add_stake(
@@ -926,7 +926,7 @@ async fn test_staking_multiple_coins() -> Result<(), anyhow::Error> {
         .await?
         .active_validators[0]
         .sui_address;
-    // Delegate some SUI
+    // Delegate some AQY
     let transaction_bytes: TransactionBlockBytes = http_client
         .request_add_stake(
             address,

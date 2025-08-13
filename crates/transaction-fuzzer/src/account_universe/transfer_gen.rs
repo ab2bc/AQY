@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 // Copyright (c) The Diem Core Contributors
@@ -403,7 +403,7 @@ impl AUTransactionGen for P2PTransferGenRandomGasRandomPriceRandomSponsorship {
             account_2: recipient,
             ..
         } = &account_triple;
-        // construct a p2p transfer of a random amount of SUI
+        // construct a p2p transfer of a random amount of AQY
         let txn = {
             let mut builder = ProgrammableTransactionBuilder::new();
             builder.transfer_sui(recipient.initial_data.account.address, Some(self.amount));

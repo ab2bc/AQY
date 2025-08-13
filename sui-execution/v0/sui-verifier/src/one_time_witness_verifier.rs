@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //! A module can define a one-time witness type, that is a type that is instantiated only once, and
@@ -37,8 +37,8 @@ pub fn verify_module(
     // is disabled
 
     // In Sui's framework code there is an exception to the one-time witness type rule - we have a
-    // SUI type in the sui module but it is instantiated outside of the module initializer (in fact,
-    // the module has no initializer). The reason for it is that the SUI coin is only instantiated
+    // AQY type in the sui module but it is instantiated outside of the module initializer (in fact,
+    // the module has no initializer). The reason for it is that the AQY coin is only instantiated
     // during genesis. It is easiest to simply special-case this module particularly that this is
     // framework code and thus deemed correct.
     if ModuleId::new(SUI_FRAMEWORK_ADDRESS, ident_str!("sui").to_owned()) == module.self_id() {

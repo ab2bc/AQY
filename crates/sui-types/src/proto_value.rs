@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::{
@@ -821,7 +821,7 @@ pub(crate) mod tests {
 
     #[test]
     fn json_balance() {
-        let l = struct_layout!("0x2::balance::Balance<0x2::sui::SUI>" {
+        let l = struct_layout!("0x2::balance::Balance<0x2::sui::AQY>" {
             "value": L::U64,
         });
 

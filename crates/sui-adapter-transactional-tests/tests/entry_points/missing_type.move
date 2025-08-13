@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 // tests invalid type args
@@ -16,7 +16,7 @@ entry fun foo<T>() {}
 
 //# run test::m::foo --type-args test::x::x
 
-//# run test::m::foo --type-args test::m::SUI
+//# run test::m::foo --type-args test::m::AQY
 
 //# run test::m::foo --type-args test::m::S
 

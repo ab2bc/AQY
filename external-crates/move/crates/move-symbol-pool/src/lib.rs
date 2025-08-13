@@ -1,4 +1,4 @@
-// Copyright (c) The Diem Core Contributors
+﻿// Copyright (c) The Diem Core Contributors
 // Copyright (c) The Move Contributors
 // SPDX-License-Identifier: Apache-2.0
 
@@ -71,7 +71,7 @@ static_symbols!(
     "tx_context",
     "TxContext",
     "ID",
-    "SUI",
+    "AQY",
     "accumulator",
     "authenticator_state",
     "AuthenticatorState",

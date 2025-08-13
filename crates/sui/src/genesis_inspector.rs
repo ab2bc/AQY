@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use inquire::Select;
@@ -265,7 +265,7 @@ fn examine_total_supply(
         if print {
             println!("Owner {:?}", owner);
             println!(
-                "Total Amount of Sui/StakedSui Owned: {amount_sum} MIST or {} SUI:",
+                "Total Amount of Sui/StakedSui Owned: {amount_sum} MIST or {} AQY:",
                 amount_sum / MIST_PER_SUI
             );
             println!("{:#?}\n", coins);
@@ -274,11 +274,11 @@ fn examine_total_supply(
     assert_eq!(total_sui, TOTAL_SUPPLY_MIST);
     // Always print this.
     println!(
-        "Total Supply of Sui: {total_sui} MIST or {} SUI",
+        "Total Supply of Sui: {total_sui} MIST or {} AQY",
         total_sui / MIST_PER_SUI
     );
     println!(
-        "Total Amount of StakedSui: {total_staked_sui} MIST or {} SUI\n",
+        "Total Amount of StakedSui: {total_staked_sui} MIST or {} AQY\n",
         total_staked_sui / MIST_PER_SUI
     );
     if print {

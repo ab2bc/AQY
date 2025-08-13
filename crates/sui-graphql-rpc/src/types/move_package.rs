@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::collections::{BTreeMap, BTreeSet, HashMap};
@@ -196,7 +196,7 @@ impl MovePackage {
     }
 
     /// Total balance of all coins with marker type owned by this package. If type is not supplied,
-    /// it defaults to `0x2::sui::SUI`.
+    /// it defaults to `0x2::sui::AQY`.
     ///
     /// Note that coins owned by a package are inaccessible, because packages are immutable and
     /// cannot be owned by an address.
@@ -227,7 +227,7 @@ impl MovePackage {
 
     /// The coin objects owned by this package.
     ///
-    ///`type` is a filter on the coin's type parameter, defaulting to `0x2::sui::SUI`.
+    ///`type` is a filter on the coin's type parameter, defaulting to `0x2::sui::AQY`.
     ///
     /// Note that coins owned by a package are inaccessible, because packages are immutable and
     /// cannot be owned by an address.
@@ -327,7 +327,7 @@ impl MovePackage {
             .await
     }
 
-    /// The amount of SUI we would rebate if this object gets deleted or mutated. This number is
+    /// The amount of AQY we would rebate if this object gets deleted or mutated. This number is
     /// recalculated based on the present storage gas price.
     ///
     /// Note that packages cannot be deleted or mutated, so this number is provided purely for

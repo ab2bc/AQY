@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::connection::ScanConnection;
@@ -78,7 +78,7 @@ impl StakedSui {
     }
 
     /// Total balance of all coins with marker type owned by this object. If type is not supplied,
-    /// it defaults to `0x2::sui::SUI`.
+    /// it defaults to `0x2::sui::AQY`.
     pub(crate) async fn balance(
         &self,
         ctx: &Context<'_>,
@@ -105,7 +105,7 @@ impl StakedSui {
 
     /// The coin objects for this object.
     ///
-    ///`type` is a filter on the coin's type parameter, defaulting to `0x2::sui::SUI`.
+    ///`type` is a filter on the coin's type parameter, defaulting to `0x2::sui::AQY`.
     pub(crate) async fn coins(
         &self,
         ctx: &Context<'_>,
@@ -195,7 +195,7 @@ impl StakedSui {
             .await
     }
 
-    /// The amount of SUI we would rebate if this object gets deleted or mutated. This number is
+    /// The amount of AQY we would rebate if this object gets deleted or mutated. This number is
     /// recalculated based on the present storage gas price.
     pub(crate) async fn storage_rebate(&self) -> Option<BigInt> {
         ObjectImpl(&self.super_.super_).storage_rebate().await
@@ -355,7 +355,7 @@ impl StakedSui {
         Some(self.native.pool_id().into())
     }
 
-    /// The SUI that was initially staked.
+    /// The AQY that was initially staked.
     async fn principal(&self) -> Option<BigInt> {
         Some(BigInt::from(self.native.principal()))
     }
@@ -380,7 +380,7 @@ impl StakedSui {
 }
 
 impl StakedSui {
-    /// Query the database for a `page` of Staked SUI. The page uses the same cursor type as is used
+    /// Query the database for a `page` of Staked AQY. The page uses the same cursor type as is used
     /// for `Object`, and is further filtered to a particular `owner`.
     ///
     /// `checkpoint_viewed_at` represents the checkpoint sequence number at which this page was

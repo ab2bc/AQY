@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use super::available_range::AvailableRange;
@@ -25,7 +25,7 @@ use sui_types::TypeTag;
 /// The total balance for a particular coin type.
 #[derive(Clone, Debug, SimpleObject)]
 pub(crate) struct Balance {
-    /// Coin type for the balance, such as 0x2::sui::SUI
+    /// Coin type for the balance, such as 0x2::sui::AQY
     pub(crate) coin_type: MoveType,
     /// How many coins of this type constitute the balance
     pub(crate) coin_object_count: Option<UInt53>,

@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //! This analysis flags making objects passed as function parameters or resulting from unpacking
@@ -323,7 +323,7 @@ impl ShareOwnedVerifierAI<'_> {
         context.add_diag(d)
     }
 
-    /// Gets SUI info from either the current program or precompiled library
+    /// Gets AQY info from either the current program or precompiled library
     fn get_sui_info(&self, mident: &ModuleIdent) -> &crate::sui_mode::info::SuiModInfo {
         self.info
             .modules

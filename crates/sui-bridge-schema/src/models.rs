@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use diesel::data_types::PgTimestamp;
@@ -84,7 +84,7 @@ impl ToSql<Text, Pg> for TokenTransferStatus {
 #[derive(Copy, Clone, Debug, AsExpression, FromSqlRow, EnumString, AsRefStr)]
 #[diesel(sql_type = Text)]
 pub enum BridgeDataSource {
-    SUI,
+    AQY,
     ETH,
 }
 

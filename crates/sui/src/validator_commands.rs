@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use anyhow::{anyhow, bail, Result};
@@ -65,7 +65,7 @@ use sui_types::transaction::{CallArg, ObjectArg, Transaction, TransactionData};
 #[cfg(test)]
 mod validator_tests;
 
-const DEFAULT_GAS_BUDGET: u64 = 200_000_000; // 0.2 SUI
+const DEFAULT_GAS_BUDGET: u64 = 200_000_000; // 0.2 AQY
 
 #[derive(Parser)]
 #[clap(rename_all = "kebab-case")]

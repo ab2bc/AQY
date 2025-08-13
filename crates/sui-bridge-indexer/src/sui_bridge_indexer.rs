@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use anyhow::Error;
@@ -56,7 +56,7 @@ impl DataMapper<CheckpointTxnData, ProcessedTxnData> for SuiBridgeDataMapper {
 
                 if !token_transfers.is_empty() {
                     info!(
-                        "SUI: Extracted {} bridge token transfer data entries for tx {}.",
+                        "AQY: Extracted {} bridge token transfer data entries for tx {}.",
                         token_transfers.len(),
                         data.transaction.digest()
                     );
@@ -101,7 +101,7 @@ fn process_sui_event(
                     txn_sender: ev.sender.to_vec(),
                     status: TokenTransferStatus::Deposited,
                     gas_usage: tx.effects.gas_cost_summary().net_gas_usage(),
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     is_finalized: true,
                     data: Some(TokenTransferData {
                         destination_chain: move_event.target_chain,
@@ -126,7 +126,7 @@ fn process_sui_event(
                     txn_sender: ev.sender.to_vec(),
                     status: TokenTransferStatus::Approved,
                     gas_usage: tx.effects.gas_cost_summary().net_gas_usage(),
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     data: None,
                     is_finalized: true,
                 }))
@@ -144,7 +144,7 @@ fn process_sui_event(
                     txn_sender: ev.sender.to_vec(),
                     status: TokenTransferStatus::Claimed,
                     gas_usage: tx.effects.gas_cost_summary().net_gas_usage(),
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     data: None,
                     is_finalized: true,
                 }))
@@ -155,7 +155,7 @@ fn process_sui_event(
 
                 Some(ProcessedTxnData::GovernanceAction(GovernanceAction {
                     nonce: None,
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     tx_digest: tx.transaction.digest().inner().to_vec(),
                     sender: ev.sender.to_vec(),
                     timestamp_ms,
@@ -169,7 +169,7 @@ fn process_sui_event(
 
                 Some(ProcessedTxnData::GovernanceAction(GovernanceAction {
                     nonce: None,
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     tx_digest: tx.transaction.digest().inner().to_vec(),
                     sender: ev.sender.to_vec(),
                     timestamp_ms,
@@ -183,7 +183,7 @@ fn process_sui_event(
 
                 Some(ProcessedTxnData::GovernanceAction(GovernanceAction {
                     nonce: None,
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     tx_digest: tx.transaction.digest().inner().to_vec(),
                     sender: ev.sender.to_vec(),
                     timestamp_ms,
@@ -197,7 +197,7 @@ fn process_sui_event(
 
                 Some(ProcessedTxnData::GovernanceAction(GovernanceAction {
                     nonce: None,
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     tx_digest: tx.transaction.digest().inner().to_vec(),
                     sender: ev.sender.to_vec(),
                     timestamp_ms,
@@ -211,7 +211,7 @@ fn process_sui_event(
 
                 Some(ProcessedTxnData::GovernanceAction(GovernanceAction {
                     nonce: None,
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     tx_digest: tx.transaction.digest().inner().to_vec(),
                     sender: ev.sender.to_vec(),
                     timestamp_ms,
@@ -225,7 +225,7 @@ fn process_sui_event(
 
                 Some(ProcessedTxnData::GovernanceAction(GovernanceAction {
                     nonce: None,
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     tx_digest: tx.transaction.digest().inner().to_vec(),
                     sender: ev.sender.to_vec(),
                     timestamp_ms,

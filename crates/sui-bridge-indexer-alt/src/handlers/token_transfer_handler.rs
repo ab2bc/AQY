@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 use crate::handlers::{
     is_bridge_txn, BRIDGE, TOKEN_DEPOSITED_EVENT, TOKEN_TRANSFER_APPROVED, TOKEN_TRANSFER_CLAIMED,
@@ -84,7 +84,7 @@ impl Processor for TokenTransferHandler {
                     block_height,
                     timestamp_ms,
                     status: TokenTransferStatus::Deposited,
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     is_finalized: true,
                     txn_hash: tx.transaction.digest().inner().to_vec(),
                     txn_sender: tx.transaction.sender_address().to_vec(),

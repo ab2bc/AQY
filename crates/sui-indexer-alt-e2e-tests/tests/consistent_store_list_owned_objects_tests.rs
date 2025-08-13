@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::{collections::BTreeMap, iter};
@@ -21,7 +21,7 @@ use sui_types::{
     TypeTag, SUI_FRAMEWORK_PACKAGE_ID,
 };
 
-/// 5 SUI gas budget
+/// 5 AQY gas budget
 const DEFAULT_GAS_BUDGET: u64 = 5_000_000_000;
 
 #[tokio::test]

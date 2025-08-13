@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use async_graphql::*;
@@ -34,7 +34,7 @@ impl BalanceChange {
         }
     }
 
-    /// The inner type of the coin whose balance has changed (e.g. `0x2::sui::SUI`).
+    /// The inner type of the coin whose balance has changed (e.g. `0x2::sui::AQY`).
     async fn coin_type(&self) -> Option<MoveType> {
         Some(self.stored.coin_type.clone().into())
     }

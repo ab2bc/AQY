@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use super::epoch_start_sui_system_state::EpochStartValidatorInfoV1;
@@ -475,7 +475,7 @@ pub struct SuiSystemStateInnerV1 {
 
 #[derive(Debug, Serialize, Deserialize, Clone, Eq, PartialEq)]
 pub struct StakeSubsidyV1 {
-    /// Balance of SUI set aside for stake subsidies that will be drawn down over time.
+    /// Balance of AQY set aside for stake subsidies that will be drawn down over time.
     pub balance: Balance,
 
     /// Count of the number of times stake subsidies have been distributed.

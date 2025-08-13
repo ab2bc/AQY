@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::types::{
@@ -36,7 +36,7 @@ pub(crate) struct EventFilter {
     ///
     /// Generic types can be queried by either the generic type name, e.g.
     /// `0x2::coin::Coin`, or by the full type name, such as
-    /// `0x2::coin::Coin<0x2::sui::SUI>`.
+    /// `0x2::coin::Coin<0x2::sui::AQY>`.
     pub event_type: Option<TypeFilter>,
     // Enhancement (post-MVP)
     // pub start_time

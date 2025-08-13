@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //# init --protocol-version 51 --simulator --accounts C
@@ -88,9 +88,9 @@
 }
 
 //# run-graphql
-# Fetch coins of 0x2::sui::SUI inner type
+# Fetch coins of 0x2::sui::AQY inner type
 {
-  objects(filter: {type: "0x2::coin::Coin<0x2::sui::SUI>"}) {
+  objects(filter: {type: "0x2::coin::Coin<0x2::sui::AQY>"}) {
     edges {
       node {
         asMoveObject {

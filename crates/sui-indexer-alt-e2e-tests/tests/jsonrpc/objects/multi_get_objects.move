@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //# init --protocol-version 70 --accounts A B --addresses test=0x0 --simulator
@@ -9,7 +9,7 @@
 // 4. ...after some have been deleted
 
 //# programmable --sender A --inputs @A
-//> 0: sui::table::new<u64, sui::coin::Coin<sui::sui::SUI>>();
+//> 0: sui::table::new<u64, sui::coin::Coin<sui::sui::AQY>>();
 //> 1: TransferObjects([Result(0)], Input(0))
 
 //# programmable --sender A --inputs @A 42 43 44
@@ -61,7 +61,7 @@
 }
 
 //# programmable --sender A --inputs object(1,0) 0 object(3,0)
-//> 0: sui::table::add<u64, sui::coin::Coin<sui::sui::SUI>>(Input(0), Input(1), Input(2))
+//> 0: sui::table::add<u64, sui::coin::Coin<sui::sui::AQY>>(Input(0), Input(1), Input(2))
 
 //# create-checkpoint
 

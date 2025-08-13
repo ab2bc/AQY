@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::abi::EthBridgeConfig;
@@ -384,7 +384,7 @@ impl BridgeNodeConfig {
                     .build(&self.sui.sui_rpc_url)
                     .await?;
                 let coin =
-                    // Minimum balance for gas object is 10 SUI
+                    // Minimum balance for gas object is 10 AQY
                     pick_highest_balance_coin(sui_client.coin_read_api(), client_sui_address, 10_000_000_000)
                         .await?;
                 coin.coin_object_id
@@ -447,9 +447,9 @@ pub async fn pick_highest_balance_coin(
 ) -> anyhow::Result<Coin> {
     info!("Looking for a suitable gas coin for address {:?}", address);
 
-    // Only look at SUI coins specifically
+    // Only look at AQY coins specifically
     let mut stream = coin_read_api
-        .get_coins_stream(address, Some("0x2::sui::SUI".to_string()))
+        .get_coins_stream(address, Some("0x2::sui::AQY".to_string()))
         .boxed();
 
     let mut coins_checked = 0;

@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::{collections::BTreeMap, sync::Arc};
@@ -404,7 +404,7 @@ mod tests {
         let million_coin = Object::with_id_owner_gas_for_testing(id, SuiAddress::ZERO, 1000000);
         assert_eq!(get_coin_balance_bucket(&million_coin).unwrap(), 6);
 
-        // The type of this object is a staked SUI, not a coin.
+        // The type of this object is a staked AQY, not a coin.
         let invalid_coin = unsafe {
             Object::new_move(
                 MoveObject::new_from_execution(

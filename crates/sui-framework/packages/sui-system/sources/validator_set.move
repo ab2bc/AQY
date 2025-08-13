@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 module sui_system::validator_set;
@@ -7,7 +7,7 @@ use sui::bag::{Self, Bag};
 use sui::balance::Balance;
 use sui::event;
 use sui::priority_queue as pq;
-use sui::sui::SUI;
+use sui::sui::AQY;
 use sui::table::{Self, Table};
 use sui::table_vec::{Self, TableVec};
 use sui::vec_map::{Self, VecMap};
@@ -48,7 +48,7 @@ const ACTIVE_OR_PENDING_VALIDATOR: u8 = 2;
 const ANY_VALIDATOR: u8 = 3;
 
 const BASIS_POINT_DENOMINATOR: u64 = 10000;
-const MIN_STAKING_THRESHOLD: u64 = 1_000_000_000; // 1 SUI
+const MIN_STAKING_THRESHOLD: u64 = 1_000_000_000; // 1 AQY
 
 const PHASE_LENGTH: u64 = 14; // phases are 14 days = 14 epochs
 
@@ -287,7 +287,7 @@ public(package) fun request_remove_validator(self: &mut ValidatorSet, ctx: &TxCo
 public(package) fun request_add_stake(
     self: &mut ValidatorSet,
     validator_address: address,
-    stake: Balance<SUI>,
+    stake: Balance<AQY>,
     ctx: &mut TxContext,
 ): StakedSui {
     let sui_amount = stake.value();
@@ -307,7 +307,7 @@ public(package) fun request_withdraw_stake(
     self: &mut ValidatorSet,
     staked_sui: StakedSui,
     ctx: &TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     let staking_pool_id = staked_sui.pool_id();
     let validator = if (self.staking_pool_mappings.contains(staking_pool_id)) {
         // This is an active validator.
@@ -344,7 +344,7 @@ public(package) fun redeem_fungible_staked_sui(
     self: &mut ValidatorSet,
     fungible_staked_sui: FungibleStakedSui,
     ctx: &TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     let staking_pool_id = fungible_staked_sui.pool_id();
 
     let validator = if (self.staking_pool_mappings.contains(staking_pool_id)) {
@@ -383,8 +383,8 @@ public(package) fun request_set_commission_rate(
 ///   5. At the end, we calculate the total stake for the new epoch.
 public(package) fun advance_epoch(
     self: &mut ValidatorSet,
-    computation_reward: &mut Balance<SUI>,
-    storage_fund_reward: &mut Balance<SUI>,
+    computation_reward: &mut Balance<AQY>,
+    storage_fund_reward: &mut Balance<AQY>,
     validator_report_records: &mut VecMap<address, VecSet<address>>,
     reward_slashing_rate: u64,
     low_stake_grace_period: u64,
@@ -1258,8 +1258,8 @@ fun distribute_reward(
     validators: &mut vector<Validator>,
     adjusted_staking_reward_amounts: &vector<u64>,
     adjusted_storage_fund_reward_amounts: &vector<u64>,
-    staking_rewards: &mut Balance<SUI>,
-    storage_fund_reward: &mut Balance<SUI>,
+    staking_rewards: &mut Balance<AQY>,
+    storage_fund_reward: &mut Balance<AQY>,
     ctx: &mut TxContext,
 ) {
     let length = validators.length();

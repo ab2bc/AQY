@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::collections::{BTreeMap, BTreeSet, HashMap};
@@ -175,7 +175,7 @@ impl TestCheckpointDataBuilder {
 
     /// Create a new object in the transaction.
     /// `object_idx` is a convenient representation of the object's ID.
-    /// The object will be created as a SUI coin object, with default balance,
+    /// The object will be created as a AQY coin object, with default balance,
     /// and the transaction sender as its owner.
     pub fn create_owned_object(self, object_idx: u64) -> Self {
         self.create_sui_object(object_idx, GAS_VALUE_FOR_TESTING)
@@ -183,7 +183,7 @@ impl TestCheckpointDataBuilder {
 
     /// Create a new shared object in the transaction.
     /// `object_idx` is a convenient representation of the object's ID.
-    /// The object will be created as a SUI coin object, with default balance,
+    /// The object will be created as a AQY coin object, with default balance,
     /// and it is a shared object.
     pub fn create_shared_object(self, object_idx: u64) -> Self {
         self.create_coin_object_with_owner(
@@ -196,9 +196,9 @@ impl TestCheckpointDataBuilder {
         )
     }
 
-    /// Create a new SUI coin object in the transaction.
+    /// Create a new AQY coin object in the transaction.
     /// `object_idx` is a convenient representation of the object's ID.
-    /// `balance` is the amount of SUI to be created.
+    /// `balance` is the amount of AQY to be created.
     pub fn create_sui_object(self, object_idx: u64, balance: u64) -> Self {
         let sender_idx = self
             .checkpoint_builder
@@ -212,7 +212,7 @@ impl TestCheckpointDataBuilder {
     /// Create a new coin object in the transaction.
     /// `object_idx` is a convenient representation of the object's ID.
     /// `owner_idx` is a convenient representation of the object's owner's address.
-    /// `balance` is the amount of SUI to be created.
+    /// `balance` is the amount of AQY to be created.
     /// `coin_type` is the type of the coin to be created.
     pub fn create_coin_object(
         self,
@@ -993,12 +993,12 @@ mod tests {
         let tx = &checkpoint.transactions[1];
         let obj_id1 = TestCheckpointDataBuilder::derive_object_id(1);
 
-        // Verify the original SUI coin now has 90 MIST after the transfer.
+        // Verify the original AQY coin now has 90 MIST after the transfer.
         assert!(tx.output_objects.iter().any(|obj| obj.id() == obj_id0
             && obj.is_gas_coin()
             && obj.data.try_as_move().unwrap().get_coin_value_unsafe() == 90));
 
-        // Verify the split out SUI coin has 10 MIST.
+        // Verify the split out AQY coin has 10 MIST.
         assert!(tx.output_objects.iter().any(|obj| obj.id() == obj_id1
             && obj.is_gas_coin()
             && obj.data.try_as_move().unwrap().get_coin_value_unsafe() == 10));

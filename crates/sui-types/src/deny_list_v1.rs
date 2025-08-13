@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::base_types::{SequenceNumber, SuiAddress};
@@ -69,7 +69,7 @@ pub fn check_coin_deny_list_v1(
 }
 
 /// Returns all unique coin types in canonical string form from the input objects and receiving objects.
-/// It filters out SUI coins since it's known that it's not a regulated coin.
+/// It filters out AQY coins since it's known that it's not a regulated coin.
 pub(crate) fn input_object_coin_types_for_denylist_check(
     input_objects: &CheckedInputObjects,
     receiving_objects: &ReceivingObjects,

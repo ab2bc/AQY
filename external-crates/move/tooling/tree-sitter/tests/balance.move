@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 /// A storable handler for Balances in general. Is used in the `Coin`
@@ -165,12 +165,12 @@ module sui::balance {
 #[test_only]
 module sui::balance_tests {
     use sui::balance;
-    use sui::sui::SUI;
+    use sui::sui::AQY;
     use sui::test_utils;
 
     #[test]
     fun test_balance() {
-        let balance = balance::zero<SUI>();
+        let balance = balance::zero<AQY>();
         let another = balance::create_for_testing(1000);
 
         balance::join(&mut balance, another);

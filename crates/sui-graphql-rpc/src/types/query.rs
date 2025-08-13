@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::str::FromStr;
@@ -351,7 +351,7 @@ impl Query {
     /// The coin objects that exist in the network.
     ///
     /// The type field is a string of the inner type of the coin by which to filter (e.g.
-    /// `0x2::sui::SUI`). If no type is provided, it will default to `0x2::sui::SUI`.
+    /// `0x2::sui::AQY`). If no type is provided, it will default to `0x2::sui::AQY`.
     async fn coins(
         &self,
         ctx: &Context<'_>,

@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::{
@@ -399,7 +399,7 @@ pub fn ptb_description() -> clap::Command {
             \n --make-move-vec <u64> []\
             \n --make-move-vec <u64> [1, 2, 3, 4]\
             \n --make-move-vec <std::option::Option<u64>> [none,none]\
-            \n --make-move-vec <sui::coin::Coin<sui::sui::SUI>> [gas]"
+            \n --make-move-vec <sui::coin::Coin<sui::sui::AQY>> [gas]"
         )
         .value_names(["TYPE", "[VALUES]"]))
         .arg(arg!(
