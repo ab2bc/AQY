@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::operations::Operations;
@@ -621,7 +621,7 @@ async fn test_delegation_parsing() -> Result<(), anyhow::Error> {
             "operation_identifier":{"index":0},
             "type":"Stake",
             "account": { "address" : sender.to_string() },
-            "amount" : { "value": "-100000" , "currency": { "symbol": "SUI", "decimals": 9}},
+            "amount" : { "value": "-100000" , "currency": { "symbol": "AQY", "decimals": 9}},
             "metadata": { "Stake" : {"validator": validator.to_string()} }
         }]
     ))

@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use move_core_types::account_address::AccountAddress;
@@ -76,7 +76,7 @@ impl TestEvent {
     fn type_() -> StructTag {
         StructTag {
             address: SUI_FRAMEWORK_ADDRESS,
-            module: ident_str!("SUI").to_owned(),
+            module: ident_str!("AQY").to_owned(),
             name: ident_str!("new_foobar").to_owned(),
             type_params: vec![],
         }

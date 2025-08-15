@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::time::Duration;
@@ -25,7 +25,7 @@ pub async fn start_sui_tx_polling_task(
         Option<TransactionDigest>,
     )>,
 ) {
-    info!("Starting SUI transaction polling task from {:?}", cursor);
+    info!("Starting AQY transaction polling task from {:?}", cursor);
     loop {
         let Ok(Ok(results)) = retry_with_max_elapsed_time!(
             sui_client.read_api().query_transaction_blocks(

@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //# init --protocol-version 70 --accounts A --addresses P=0x0 --simulator
@@ -6,18 +6,18 @@
 //# publish
 module P::M {
   use sui::coin::Coin;
-  use sui::sui::SUI;
+  use sui::sui::AQY;
 
   public struct Wrapper has key, store {
     id: UID,
-    coin: Coin<SUI>,
+    coin: Coin<AQY>,
   }
 
-  public fun wrap(coin: Coin<SUI>, ctx: &mut TxContext): Wrapper {
+  public fun wrap(coin: Coin<AQY>, ctx: &mut TxContext): Wrapper {
     Wrapper { id: object::new(ctx), coin }
   }
 
-  public fun unwrap(wrapper: Wrapper): Coin<SUI> {
+  public fun unwrap(wrapper: Wrapper): Coin<AQY> {
     let Wrapper { id, coin } = wrapper;
     id.delete();
     coin

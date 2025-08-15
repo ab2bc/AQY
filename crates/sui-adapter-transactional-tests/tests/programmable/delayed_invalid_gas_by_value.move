@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 // tests that gas-by-value rules come after taken/borrow rules
@@ -14,10 +14,10 @@ module test::m1 {
 
 //# programmable --sender A --inputs @A
 //> TransferObjects([Gas], Input(0));
-//> test::m1::take<sui::coin::Coin<sui::sui::SUI>>(Gas)
+//> test::m1::take<sui::coin::Coin<sui::sui::AQY>>(Gas)
 
 //# programmable
-//> test::m1::imm<sui::coin::Coin<sui::sui::SUI>>(Gas, Gas)
+//> test::m1::imm<sui::coin::Coin<sui::sui::AQY>>(Gas, Gas)
 
 //# programmable
-//> test::m1::mut_<sui::coin::Coin<sui::sui::SUI>>(Gas, Gas)
+//> test::m1::mut_<sui::coin::Coin<sui::sui::AQY>>(Gas, Gas)

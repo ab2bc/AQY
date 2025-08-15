@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use prost_types::FieldMask;
@@ -268,7 +268,7 @@ async fn test_indexing_with_tto() {
 async fn test_filter_by_type() {
     let cluster = TestClusterBuilder::new().build().await;
 
-    let sui = "0x2::coin::Coin<0x2::sui::SUI>"
+    let sui = "0x2::coin::Coin<0x2::sui::AQY>"
         .parse::<TypeTag>()
         .unwrap()
         .to_string();
@@ -292,7 +292,7 @@ async fn test_filter_by_type() {
         .into_inner()
         .objects;
 
-    // We start with some SUI coins
+    // We start with some AQY coins
     assert!(!objects.is_empty());
     assert!(objects.iter().all(|o| o.object_type() == sui));
 

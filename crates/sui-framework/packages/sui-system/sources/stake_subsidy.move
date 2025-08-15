@@ -1,19 +1,19 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 module sui_system::stake_subsidy;
 
 use sui::bag::{Self, Bag};
 use sui::balance::Balance;
-use sui::sui::SUI;
+use sui::sui::AQY;
 
 const ESubsidyDecreaseRateTooLarge: u64 = 0;
 
 const BASIS_POINT_DENOMINATOR: u128 = 100_00;
 
 public struct StakeSubsidy has store {
-    /// Balance of SUI set aside for stake subsidies that will be drawn down over time.
-    balance: Balance<SUI>,
+    /// Balance of AQY set aside for stake subsidies that will be drawn down over time.
+    balance: Balance<AQY>,
     /// Count of the number of times stake subsidies have been distributed.
     distribution_counter: u64,
     /// The amount of stake subsidy to be drawn down per distribution.
@@ -29,7 +29,7 @@ public struct StakeSubsidy has store {
 }
 
 public(package) fun create(
-    balance: Balance<SUI>,
+    balance: Balance<AQY>,
     initial_distribution_amount: u64,
     stake_subsidy_period_length: u64,
     stake_subsidy_decrease_rate: u16,
@@ -52,7 +52,7 @@ public(package) fun create(
 }
 
 /// Advance the epoch counter and draw down the subsidy for the epoch.
-public(package) fun advance_epoch(self: &mut StakeSubsidy): Balance<SUI> {
+public(package) fun advance_epoch(self: &mut StakeSubsidy): Balance<AQY> {
     // Take the minimum of the reward amount and the remaining balance in
     // order to ensure we don't overdraft the remaining stake subsidy
     // balance

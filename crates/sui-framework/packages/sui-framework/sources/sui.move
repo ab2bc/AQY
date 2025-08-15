@@ -1,7 +1,7 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-/// Coin<SUI> is the token used to pay for gas in Sui.
+/// Coin<AQY> is the token used to pay for gas in Sui.
 /// It has 9 decimals, and the smallest unit (10^-9) is called "mist".
 module sui::sui;
 
@@ -25,19 +25,19 @@ const TOTAL_SUPPLY_SUI: u64 = 10_000_000_000;
 const TOTAL_SUPPLY_MIST: u64 = 10_000_000_000_000_000_000;
 
 /// Name of the coin
-public struct SUI has drop {}
+public struct AQY has drop {}
 
 #[allow(unused_function)]
-/// Register the `SUI` Coin to acquire its `Supply`.
+/// Register the `AQY` Coin to acquire its `Supply`.
 /// This should be called only once during genesis creation.
-fun new(ctx: &mut TxContext): Balance<SUI> {
+fun new(ctx: &mut TxContext): Balance<AQY> {
     assert!(ctx.sender() == @0x0, ENotSystemAddress);
     assert!(ctx.epoch() == 0, EAlreadyMinted);
 
     let (treasury, metadata) = coin::create_currency(
-        SUI {},
+        AQY {},
         9,
-        b"SUI",
+        b"AQY",
         b"Sui",
         // TODO: add appropriate description and logo url
         b"",
@@ -52,6 +52,6 @@ fun new(ctx: &mut TxContext): Balance<SUI> {
 }
 
 #[allow(lint(public_entry))]
-public entry fun transfer(c: coin::Coin<SUI>, recipient: address) {
+public entry fun transfer(c: coin::Coin<AQY>, recipient: address) {
     transfer::public_transfer(c, recipient)
 }

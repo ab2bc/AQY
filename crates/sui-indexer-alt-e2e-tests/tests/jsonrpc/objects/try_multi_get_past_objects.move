@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //# init --protocol-version 70 --accounts A B --addresses test=0x0 --simulator
@@ -16,11 +16,11 @@
 
 //# programmable --sender A --inputs 44
 //> 0: SplitCoins(Gas, [Input(0)]);
-//> 1: sui::transfer::public_share_object<sui::coin::Coin<sui::sui::SUI>>(Result(0))
+//> 1: sui::transfer::public_share_object<sui::coin::Coin<sui::sui::AQY>>(Result(0))
 
 //# programmable --sender A --inputs 45
 //> 0: SplitCoins(Gas, [Input(0)]);
-//> 1: sui::transfer::public_freeze_object<sui::coin::Coin<sui::sui::SUI>>(Result(0))
+//> 1: sui::transfer::public_freeze_object<sui::coin::Coin<sui::sui::AQY>>(Result(0))
 
 //# programmable --sender A --inputs @A
 //> 0: sui::table::new<u64, u64>();

@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 /// A storable handler for Balances in general. Is used in the `Coin`
@@ -17,7 +17,7 @@ const EOverflow: u64 = 1;
 const ENotEnough: u64 = 2;
 /// Sender is not @0x0 the system address.
 const ENotSystemAddress: u64 = 3;
-/// System operation performed for a coin other than SUI
+/// System operation performed for a coin other than AQY
 const ENotSUI: u64 = 4;
 
 /// A Supply of T. Used for minting and burning.
@@ -94,7 +94,7 @@ public fun destroy_zero<T>(balance: Balance<T>) {
 }
 
 const SUI_TYPE_NAME: vector<u8> =
-    b"0000000000000000000000000000000000000000000000000000000000000002::sui::SUI";
+    b"0000000000000000000000000000000000000000000000000000000000000002::sui::AQY";
 
 #[allow(unused_function)]
 /// CAUTION: this function creates a `Balance` without increasing the supply.

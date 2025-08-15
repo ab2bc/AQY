@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::{helper::ObjectChecker, TestCaseImpl, TestContext};
@@ -19,7 +19,7 @@ impl TestCaseImpl for CoinMergeSplitTest {
     }
 
     fn description(&self) -> &'static str {
-        "Test merge and split SUI coins"
+        "Test merge and split AQY coins"
     }
 
     async fn run(&self, ctx: &mut TestContext) -> Result<(), anyhow::Error> {

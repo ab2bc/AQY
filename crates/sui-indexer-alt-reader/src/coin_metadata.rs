@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::{collections::HashMap, sync::Arc};
@@ -15,7 +15,7 @@ use sui_types::{
 use crate::{error::Error, pg_reader::PgReader};
 
 /// Key for fetching the  of a CoinMetadata object, based on its coin marker type, e.g.
-/// `0x2::sui::SUI`.
+/// `0x2::sui::AQY`.
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct CoinMetadataKey(pub StructTag);
 

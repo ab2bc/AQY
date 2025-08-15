@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use enum_dispatch::enum_dispatch;
@@ -361,12 +361,12 @@ mod test {
             assert_eq!(
                 consensus_authority.authority_key.to_bytes(),
                 sui_authority_name.0,
-                "Mysten & SUI committee member of same index correspond to different public key"
+                "Mysten & AQY committee member of same index correspond to different public key"
             );
             assert_eq!(
                 consensus_authority.stake,
                 sui_committee.weight(sui_authority_name),
-                "Mysten & SUI committee member stake differs"
+                "Mysten & AQY committee member stake differs"
             );
         }
     }

@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 // test valid usages of shared coin
@@ -8,11 +8,11 @@
 //# publish
 
 module test::m1 {
-    use sui::sui::SUI;
+    use sui::sui::AQY;
     use sui::coin;
 
     public fun mint_shared(ctx: &mut TxContext) {
-        transfer::public_share_object(coin::zero<SUI>(ctx))
+        transfer::public_share_object(coin::zero<AQY>(ctx))
     }
 }
 

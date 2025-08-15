@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 use crate::handlers::{is_bridge_txn, BRIDGE, COMMITTEE, LIMITER, TREASURY};
 use crate::struct_tag;
@@ -111,7 +111,7 @@ impl Processor for GovernanceActionHandler {
 
                 results.push(GovernanceAction {
                     nonce: None,
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     txn_digest: txn_digest.to_vec(),
                     sender_address: sender_address.to_vec(),
                     timestamp_ms,

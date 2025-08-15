@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use move_core_types::ident_str;
@@ -60,13 +60,13 @@ impl AccumulatorEvent {
 
         debug_assert_eq!(
             *ty,
-            "0x2::balance::Balance<0x2::sui::SUI>"
+            "0x2::balance::Balance<0x2::sui::AQY>"
                 .parse::<TypeTag>()
                 .unwrap()
         );
 
         let AccumulatorValue::Integer(value) = value else {
-            fatal!("Balance<SUI> accumulator value is not an integer");
+            fatal!("Balance<AQY> accumulator value is not an integer");
         };
 
         match operation {

@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::base_types::SuiAddress;
@@ -45,7 +45,7 @@ pub enum ExecutionFailureStatus {
     //
     #[error("Insufficient Gas.")]
     InsufficientGas,
-    #[error("Invalid Gas Object. Possibly not address-owned or possibly not a SUI coin.")]
+    #[error("Invalid Gas Object. Possibly not address-owned or possibly not a AQY coin.")]
     InvalidGasObject,
     #[error("INVARIANT VIOLATION.")]
     InvariantViolation,

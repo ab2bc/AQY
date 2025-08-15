@@ -1,4 +1,4 @@
-// Copyright (c) 2021, Facebook, Inc. and its affiliates
+﻿// Copyright (c) 2021, Facebook, Inc. and its affiliates
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
@@ -193,7 +193,7 @@ pub enum UserInputError {
     #[error("Empty input coins for Pay related transaction")]
     EmptyInputCoins,
 
-    #[error("SUI payment transactions use first input coin for gas payment, but found a different gas object")]
+    #[error("AQY payment transactions use first input coin for gas payment, but found a different gas object")]
     UnexpectedGasPaymentObject,
 
     #[error("Wrong initial version given for shared object")]

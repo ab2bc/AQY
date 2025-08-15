@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 /// Implementation a cross-chain messaging system for Axelar.
@@ -44,14 +44,14 @@ module axelar::gateway {
     /// For when number of commands does not match number of command ids.
     const EInvalidCommands: u64 = 4;
 
-    /// For when approval chainId is not SUI.
+    /// For when approval chainId is not AQY.
     const EInvalidChain: u64 = 3;
 
     // These are currently supported
     const SELECTOR_APPROVE_CONTRACT_CALL: vector<u8> = b"approveContractCall";
     const SELECTOR_TRANSFER_OPERATORSHIP: vector<u8> = b"transferOperatorship";
 
-    /// Emitted when a new message is sent from the SUI network.
+    /// Emitted when a new message is sent from the AQY network.
     public struct ContractCall has copy, drop {
         source: vector<u8>,
         destination: vector<u8>,

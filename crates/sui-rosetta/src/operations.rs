@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::collections::HashMap;
@@ -33,7 +33,7 @@ use crate::types::{
     AccountIdentifier, Amount, CoinAction, CoinChange, CoinID, CoinIdentifier, Currency,
     InternalOperation, OperationIdentifier, OperationStatus, OperationType,
 };
-use crate::{CoinMetadataCache, Error, SUI};
+use crate::{CoinMetadataCache, Error, AQY};
 
 #[cfg(test)]
 #[path = "unit_tests/operations_tests.rs"]
@@ -293,7 +293,7 @@ impl Operations {
                     let KnownValue::GasCoin(_) = resolve_result(known_results, i, j)?;
                 }
                 SuiArgument::GasCoin => (),
-                // Might not be a SUI coin
+                // Might not be a AQY coin
                 SuiArgument::Input(_) => (),
             };
             let amounts = amounts
@@ -542,7 +542,7 @@ impl Operations {
                     balances
                 });
         // separate gas from balances
-        *balances.entry((gas_owner, SUI.clone())).or_default() -= gas_used;
+        *balances.entry((gas_owner, AQY.clone())).or_default() -= gas_used;
 
         let balance_change = balances.into_iter().filter(|(_, amount)| *amount != 0).map(
             move |((addr, currency), amount)| {
@@ -638,8 +638,8 @@ impl Operations {
             }
         }
         let staking_balance = if principal_amounts != 0 {
-            *accounted_balances.entry((sender, SUI.clone())).or_default() -= principal_amounts;
-            *accounted_balances.entry((sender, SUI.clone())).or_default() -= reward_amounts;
+            *accounted_balances.entry((sender, AQY.clone())).or_default() -= principal_amounts;
+            *accounted_balances.entry((sender, AQY.clone())).or_default() -= reward_amounts;
             vec![
                 Operation::stake_principle(status, sender, principal_amounts),
                 Operation::stake_reward(status, sender, reward_amounts),
@@ -677,7 +677,7 @@ impl Operations {
             .collect();
 
         // This is a workaround for the payCoin cases that are mistakenly considered to be paySui operations
-        // In this case we remove any irrelevant, SUI specific operation entries that sum up to 0 balance changes per address
+        // In this case we remove any irrelevant, AQY specific operation entries that sum up to 0 balance changes per address
         // and keep only the actual entries for the right coin type transfers, as they have been extracted from the transaction's
         // balance changes section.
         let mutually_cancelling_balances: HashMap<_, _> = ops

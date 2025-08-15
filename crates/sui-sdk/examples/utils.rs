@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::{str::FromStr, time::Duration};
@@ -50,7 +50,7 @@ pub const SUI_FAUCET: &str = "https://faucet.testnet.sui.io/v2/gas"; // testnet 
 /// e.g., transferring objects from one address to another.
 pub async fn setup_for_write() -> Result<(SuiClient, SuiAddress, SuiAddress), anyhow::Error> {
     let (client, active_address) = setup_for_read().await?;
-    // make sure we have some SUI (5_000_000 MIST) on this address
+    // make sure we have some AQY (5_000_000 MIST) on this address
     let coin = fetch_coin(&client, &active_address).await?;
     if coin.is_none() {
         request_tokens_from_faucet(active_address, &client).await?;
@@ -71,9 +71,9 @@ pub async fn setup_for_write() -> Result<(SuiClient, SuiAddress, SuiAddress), an
 /// Return a sui client to interact with the APIs and an active address from the local wallet.
 ///
 /// This function sets up a wallet in case there is no wallet locally,
-/// and ensures that the active address of the wallet has SUI on it.
-/// If there is no SUI owned by the active address, then it will request
-/// SUI from the faucet.
+/// and ensures that the active address of the wallet has AQY on it.
+/// If there is no AQY owned by the active address, then it will request
+/// AQY from the faucet.
 pub async fn setup_for_read() -> Result<(SuiClient, SuiAddress), anyhow::Error> {
     let client = SuiClientBuilder::default().build_testnet().await?;
     println!("Sui testnet version is: {}", client.api_version());
@@ -183,7 +183,7 @@ pub async fn fetch_coin(
     sui: &SuiClient,
     sender: &SuiAddress,
 ) -> Result<Option<Coin>, anyhow::Error> {
-    let coin_type = "0x2::sui::SUI".to_string();
+    let coin_type = "0x2::sui::AQY".to_string();
     let coins_stream = sui
         .coin_read_api()
         .get_coins_stream(*sender, Some(coin_type));
@@ -205,7 +205,7 @@ pub async fn split_coin_digest(
             request_tokens_from_faucet(*sender, sui).await?;
             fetch_coin(sui, sender)
                 .await?
-                .expect("Supposed to get a coin with SUI, but didn't. Aborting")
+                .expect("Supposed to get a coin with AQY, but didn't. Aborting")
         }
         Some(c) => c,
     };
@@ -223,7 +223,7 @@ pub async fn split_coin_digest(
 
     // now we programmatically build the transaction through several commands
     let mut ptb = ProgrammableTransactionBuilder::new();
-    // first, we want to split the coin, and we specify how much SUI (in MIST) we want
+    // first, we want to split the coin, and we specify how much AQY (in MIST) we want
     // for the new coin
     let split_coin_amount = ptb.pure(1000u64)?; // note that we need to specify the u64 type here
     ptb.command(Command::SplitCoins(

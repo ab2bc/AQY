@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 // conservation checks enabled for dry run
@@ -8,10 +8,10 @@
 //# publish
 
 module test::m {
-    use sui::sui::SUI;
+    use sui::sui::AQY;
     use sui::coin::Coin;
 
-    public fun transfer_back(c: Coin<SUI>, ctx: &mut TxContext) {
+    public fun transfer_back(c: Coin<AQY>, ctx: &mut TxContext) {
         sui::transfer::public_transfer(c, tx_context::sender(ctx))
     }
 }

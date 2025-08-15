@@ -1,11 +1,11 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //# init --addresses p=0x0 q=0x0 q_2=0x0 r=0x0 s=0x0 --accounts A
 
 //# publish
 module p::m {
-    use sui::sui::SUI;
+    use sui::sui::AQY;
     use sui::coin;
 
     public fun sharer<T: key + store>(x: T) {
@@ -13,17 +13,17 @@ module p::m {
     }
 
     public fun mint_shared(ctx: &mut TxContext) {
-        transfer::public_share_object(coin::zero<SUI>(ctx))
+        transfer::public_share_object(coin::zero<AQY>(ctx))
     }
 }
 
 //# programmable --sender A --inputs 10
 //> 0: SplitCoins(Gas, [Input(0)]);
-//> 1: sui::transfer::public_share_object<sui::coin::Coin<sui::sui::SUI>>(Result(0));
+//> 1: sui::transfer::public_share_object<sui::coin::Coin<sui::sui::AQY>>(Result(0));
 
 //# programmable --sender A --inputs 10
 //> 0: SplitCoins(Gas, [Input(0)]);
-//> 1: p::m::sharer<sui::coin::Coin<sui::sui::SUI>>(Result(0));
+//> 1: p::m::sharer<sui::coin::Coin<sui::sui::AQY>>(Result(0));
 
 //# run p::m::mint_shared
 

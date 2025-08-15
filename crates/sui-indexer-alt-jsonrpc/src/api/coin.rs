@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::str::FromStr;
@@ -37,7 +37,7 @@ use super::rpc_module::RpcModule;
 #[rpc(server, namespace = "suix")]
 trait CoinsApi {
     /// Return Coin objects owned by an address with a specified coin type.
-    /// If no coin type is specified, SUI coins are returned.
+    /// If no coin type is specified, AQY coins are returned.
     #[method(name = "getCoins")]
     async fn get_coins(
         &self,
@@ -75,13 +75,13 @@ trait DelegationCoinsApi {
     ) -> RpcResult<Vec<Balance>>;
 
     /// Return the total coin balance for one coin type, owned by the address.
-    /// If no coin type is specified, SUI coin balance is returned.
+    /// If no coin type is specified, AQY coin balance is returned.
     #[method(name = "getBalance")]
     async fn get_balance(
         &self,
         /// the owner's Sui address
         owner: SuiAddress,
-        /// optional type names for the coin (e.g., 0x168da5bf1f48dafc111b0a488fa454aca95e0b5e::usdc::USDC), default to 0x2::sui::SUI if not specified.
+        /// optional type names for the coin (e.g., 0x168da5bf1f48dafc111b0a488fa454aca95e0b5e::usdc::USDC), default to 0x2::sui::AQY if not specified.
         coin_type: Option<String>,
     ) -> RpcResult<Balance>;
 }

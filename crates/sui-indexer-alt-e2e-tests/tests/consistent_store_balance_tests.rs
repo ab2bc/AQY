@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use std::path::PathBuf;
@@ -19,7 +19,7 @@ use sui_types::{
     transaction::{Transaction, TransactionData},
 };
 
-/// 5 SUI gas budget
+/// 5 AQY gas budget
 const DEFAULT_GAS_BUDGET: u64 = 5_000_000_000;
 
 #[tokio::test]
@@ -28,12 +28,12 @@ async fn test_aggregation() {
     let (a, _) = get_account_key_pair();
     let (b, _) = get_account_key_pair();
 
-    // Create multiple SUI coins for address A with different amounts
+    // Create multiple AQY coins for address A with different amounts
     create_coin(&mut cluster, a, 1);
     create_coin(&mut cluster, a, 2);
     create_coin(&mut cluster, a, 3);
 
-    // Create SUI coins for address B
+    // Create AQY coins for address B
     create_coin(&mut cluster, b, 4);
     create_coin(&mut cluster, b, 5);
 
@@ -120,7 +120,7 @@ async fn test_multiple_coin_types() {
     let gas_type = GAS::type_().to_canonical_string(has_prefix);
     let my_coin_type = format!("{}::my_coin::MY_COIN", pkg.to_canonical_display(has_prefix));
 
-    // P's balances should include SUI (left over from the gas coin) and MY_COIN (1000 + 200 + 30)
+    // P's balances should include AQY (left over from the gas coin) and MY_COIN (1000 + 200 + 30)
     // = 1230 from minting during publish and init.
     let mut balances = vec![
         (gas_type.clone(), sui_balance as u64),

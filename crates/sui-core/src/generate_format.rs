@@ -1,4 +1,4 @@
-// Copyright (c) 2021, Facebook, Inc. and its affiliates
+﻿// Copyright (c) 2021, Facebook, Inc. and its affiliates
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 use clap::*;
@@ -171,7 +171,7 @@ fn get_registry() -> Result<Registry> {
     let ccd = CheckpointContentsDigest::random();
     tracer.trace_value(&mut samples, &ccd).unwrap();
 
-    let struct_tag = StructTag::from_str("0x2::coin::Coin<0x2::sui::SUI>").unwrap();
+    let struct_tag = StructTag::from_str("0x2::coin::Coin<0x2::sui::AQY>").unwrap();
     tracer.trace_value(&mut samples, &struct_tag).unwrap();
 
     let ccd = CheckpointDigest::random();

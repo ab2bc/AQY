@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 pub use checked::*;
@@ -434,13 +434,13 @@ mod checked {
     ) -> Result<(), ExecutionError> {
         let mut result: std::result::Result<(), sui_types::error::ExecutionError> = Ok(());
         if !is_genesis_tx && !Mode::skip_conservation_checks() {
-            // ensure that this transaction did not create or destroy SUI, try to recover if the check fails
+            // ensure that this transaction did not create or destroy AQY, try to recover if the check fails
             let conservation_result = {
                 temporary_store
                     .check_sui_conserved(simple_conservation_checks, cost_summary)
                     .and_then(|()| {
                         if enable_expensive_checks {
-                            // ensure that this transaction did not create or destroy SUI, try to recover if the check fails
+                            // ensure that this transaction did not create or destroy AQY, try to recover if the check fails
                             let mut layout_resolver =
                                 TypeLayoutResolver::new(move_vm, Box::new(&*temporary_store));
                             temporary_store.check_sui_conserved_expensive(
@@ -465,7 +465,7 @@ mod checked {
                         .check_sui_conserved(simple_conservation_checks, cost_summary)
                         .and_then(|()| {
                             if enable_expensive_checks {
-                                // ensure that this transaction did not create or destroy SUI, try to recover if the check fails
+                                // ensure that this transaction did not create or destroy AQY, try to recover if the check fails
                                 let mut layout_resolver =
                                     TypeLayoutResolver::new(move_vm, Box::new(&*temporary_store));
                                 temporary_store.check_sui_conserved_expensive(
@@ -480,16 +480,16 @@ mod checked {
                 } {
                     // if we still fail, it's a problem with gas
                     // charging that happens even in the "aborted" case--no other option but panic.
-                    // we will create or destroy SUI otherwise
+                    // we will create or destroy AQY otherwise
                     panic!(
-                        "SUI conservation fail in tx block {}: {}\nGas status is {}\nTx was ",
+                        "AQY conservation fail in tx block {}: {}\nGas status is {}\nTx was ",
                         tx_digest,
                         recovery_err,
                         gas_charger.summary()
                     )
                 }
             }
-        } // else, we're in the genesis transaction which mints the SUI supply, and hence does not satisfy SUI conservation, or
+        } // else, we're in the genesis transaction which mints the AQY supply, and hence does not satisfy AQY conservation, or
         // we're in the non-production dev inspect mode which allows us to violate conservation
         result
     }

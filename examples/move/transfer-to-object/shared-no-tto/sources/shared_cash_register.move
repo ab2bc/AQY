@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 module shared_no_tto::shared_cash_register;
@@ -7,7 +7,7 @@ use common::identified_payment::{Self, IdentifiedPayment};
 use std::string::String;
 use sui::coin::Coin;
 use sui::dynamic_field;
-use sui::sui::SUI;
+use sui::sui::AQY;
 use sui::vec_set::{Self, VecSet};
 
 const EInvalidOwner: u64 = 0;
@@ -84,7 +84,7 @@ public fun process_payment(
     register: &mut CashRegister,
     payment_id: u64,
     ctx: &TxContext,
-): Coin<SUI> {
+): Coin<AQY> {
     let sender = tx_context::sender(ctx);
     assert!(
         vec_set::contains(&register.authorized_individuals, &sender) || sender == register.register_owner,
@@ -98,6 +98,6 @@ public fun process_payment(
 
 /// Make a payment to the cash register -- this is the function that the
 /// customer will use to make a payment to the cash register.
-public fun pay(register: &mut CashRegister, payment_id: u64, coin: Coin<SUI>, ctx: &mut TxContext) {
+public fun pay(register: &mut CashRegister, payment_id: u64, coin: Coin<AQY>, ctx: &mut TxContext) {
     identified_payment::make_shared_payment(&mut register.id, payment_id, coin, ctx);
 }

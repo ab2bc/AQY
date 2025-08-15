@@ -1,4 +1,4 @@
-// options:
+﻿// options:
 // printWidth: 40
 // useModuleLabel: true
 // autoGroupImports: package
@@ -21,7 +21,7 @@ use sui::{
     coin::Coin,
     dynamic_field as df,
     dynamic_object_field as dof,
-    sui::SUI,
+    sui::AQY,
     table::{Self, Table},
     table_vec::{Self, TableVec as TV}
 };

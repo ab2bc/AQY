@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //# init --protocol-version 70 --accounts A B --addresses test=0x0 --simulator
@@ -9,7 +9,7 @@
 // 4. Structured transaction and effects
 // 5. Events
 // 6a. Balance Changes (gas only)
-// 6b. Balance Changes (transfer SUI)
+// 6b. Balance Changes (transfer AQY)
 
 //# publish
 module test::counter {
@@ -50,7 +50,7 @@ module test::counter {
 //# programmable --sender A --inputs object(1,0) 42 @A
 //> 0: test::counter::inc(Input(0));
 //> 1: test::counter::inc_by(Input(0), Input(1));
-//> 2: sui::coin::value<sui::sui::SUI>(Gas);
+//> 2: sui::coin::value<sui::sui::AQY>(Gas);
 //> 3: test::counter::inc_by(Input(0), Result(2));
 //> 4: test::counter::take(Input(0), Input(1));
 //> 5: TransferObjects([Result(4)], Input(2))

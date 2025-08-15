@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //# init --addresses t1=0x0 t2=0x0 --shared-object-deletion true --protocol-version 90
@@ -8,7 +8,7 @@
 module t2::o2 {
     use sui::dynamic_field as df;
     use sui::dynamic_object_field as dof;
-    use sui::sui::SUI;
+    use sui::sui::AQY;
     use sui::coin::{Self, Coin};
 
     public struct Obj2 has key, store {
@@ -16,10 +16,10 @@ module t2::o2 {
     }
 
     public fun mint_shared_coin(ctx: &mut TxContext) {
-        transfer::public_share_object(coin::zero<SUI>(ctx))
+        transfer::public_share_object(coin::zero<AQY>(ctx))
     }
 
-    public fun pop_coin(mut o2: vector<Coin<SUI>>): Coin<SUI> {
+    public fun pop_coin(mut o2: vector<Coin<AQY>>): Coin<AQY> {
         let o = vector::pop_back(&mut o2);
         vector::destroy_empty(o2);
         o
@@ -91,7 +91,7 @@ module t2::o2 {
         transfer::share_object(o2);
     }
 
-    public fun share_coin(o2: Coin<SUI>) {
+    public fun share_coin(o2: Coin<AQY>) {
         transfer::public_share_object(o2);
     }
 }

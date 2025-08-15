@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 #[test_only]
@@ -7,7 +7,7 @@ module sui::coin_balance_tests;
 use sui::balance;
 use sui::coin;
 use sui::pay;
-use sui::sui::SUI;
+use sui::sui::AQY;
 use sui::test_scenario;
 use sui::test_utils;
 
@@ -15,13 +15,13 @@ use sui::test_utils;
 fun type_morphing() {
     let mut scenario = test_scenario::begin(@0x1);
 
-    let balance = balance::zero<SUI>();
+    let balance = balance::zero<AQY>();
     let coin = balance.into_coin(scenario.ctx());
     let balance = coin.into_balance();
 
     balance.destroy_zero();
 
-    let mut coin = coin::mint_for_testing<SUI>(100, scenario.ctx());
+    let mut coin = coin::mint_for_testing<AQY>(100, scenario.ctx());
     let balance_mut = coin::balance_mut(&mut coin);
     let sub_balance = balance_mut.split(50);
 
@@ -40,7 +40,7 @@ fun type_morphing() {
 
 #[test]
 fun test_balance() {
-    let mut balance = balance::zero<SUI>();
+    let mut balance = balance::zero<AQY>();
     let another = balance::create_for_testing(1000);
 
     balance.join(another);

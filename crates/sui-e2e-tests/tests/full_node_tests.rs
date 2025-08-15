@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use futures::future;
@@ -359,19 +359,19 @@ async fn test_full_node_indexes() -> Result<(), anyhow::Error> {
     let sender_balance_change = BalanceChange {
         change_type: BalanceChangeType::Pay,
         owner: sender,
-        coin_type: parse_struct_tag("0x2::sui::SUI").unwrap(),
+        coin_type: parse_struct_tag("0x2::sui::AQY").unwrap(),
         amount: -100000000000000,
     };
     let recipient_balance_change = BalanceChange {
         change_type: BalanceChangeType::Receive,
         owner: receiver,
-        coin_type: parse_struct_tag("0x2::sui::SUI").unwrap(),
+        coin_type: parse_struct_tag("0x2::sui::AQY").unwrap(),
         amount: 100000000000000,
     };
     let gas_balance_change = BalanceChange {
         change_type: BalanceChangeType::Gas,
         owner: sender,
-        coin_type: parse_struct_tag("0x2::sui::SUI").unwrap(),
+        coin_type: parse_struct_tag("0x2::sui::AQY").unwrap(),
         amount: (gas_used as i128).neg(),
     };
 
@@ -1025,7 +1025,7 @@ async fn test_get_objects_read() -> Result<(), anyhow::Error> {
     let (object_ref_v2, object_v2, _) = get_obj_read_from_node(node, object_id).await?;
     assert_ne!(object_ref_v2, object_ref_v1);
 
-    // Transfer some SUI to recipient
+    // Transfer some AQY to recipient
     transfer_coin(&test_cluster.wallet)
         .await
         .expect("Failed to transfer coins to recipient");

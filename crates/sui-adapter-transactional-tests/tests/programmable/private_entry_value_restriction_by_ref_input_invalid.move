@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 // tests that object values cannot be used private entry functions if they have been
@@ -9,7 +9,7 @@
 //# publish
 module test::m1 {
     use sui::coin::Coin;
-    use sui::sui::SUI;
+    use sui::sui::AQY;
 
     public struct R has key, store { id: UID }
     public fun r(ctx: &mut TxContext): R { R { id: object::new(ctx) } }
@@ -20,7 +20,7 @@ module test::m1 {
     public fun dirty(_: &mut R) {}
 
     entry fun priv(_: R) { abort 0 }
-    entry fun coin(_: &mut Coin<SUI>) {}
+    entry fun coin(_: &mut Coin<AQY>) {}
 }
 
 //# programmable --sender A --inputs @A

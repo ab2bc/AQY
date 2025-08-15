@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //# init --protocol-version 51 --simulator --accounts C
@@ -41,7 +41,7 @@
 //# advance-epoch
 
 //# run-graphql
-{ # This query should pick up the recently Staked SUI as well.
+{ # This query should pick up the recently Staked AQY as well.
   objects(filter: { type: "0x3::staking_pool::StakedSui" }) {
     edges {
       cursor

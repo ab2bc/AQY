@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use bincode::{Decode, Encode};
@@ -12,7 +12,7 @@ pub(crate) struct Key {
     #[bincode(with_serde)]
     pub(crate) owner: SuiAddress,
 
-    /// The coin type e.g. for `0x2::coin::Coin<0x2::sui::SUI>` this would be `0x2::sui::SUI`.
+    /// The coin type e.g. for `0x2::coin::Coin<0x2::sui::AQY>` this would be `0x2::sui::AQY`.
     #[bincode(with_serde)]
     pub(crate) type_: TypeTag,
 }

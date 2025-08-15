@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use move_core_types::annotated_value::MoveTypeLayout;
@@ -9,7 +9,7 @@ use sui_types::transaction::{CallArg, TransactionData, TEST_ONLY_GAS_UNIT_FOR_TR
 
 use crate::operations::Operations;
 use crate::types::{ConstructionMetadata, OperationType};
-use crate::SUI;
+use crate::AQY;
 
 #[tokio::test]
 async fn test_operation_data_parsing_pay_sui() -> Result<(), anyhow::Error> {
@@ -81,7 +81,7 @@ async fn test_operation_data_parsing_pay_coin() -> Result<(), anyhow::Error> {
             )
             .unwrap();
         // the following is important in order to be able to transfer the coin type info between the various flow steps
-        builder.pure(serde_json::to_string(&SUI.clone())?)?;
+        builder.pure(serde_json::to_string(&AQY.clone())?)?;
         builder.finish()
     };
     let gas_price = 10;
@@ -104,7 +104,7 @@ async fn test_operation_data_parsing_pay_coin() -> Result<(), anyhow::Error> {
         total_coin_value: 0,
         gas_price,
         budget: TEST_ONLY_GAS_UNIT_FOR_TRANSFER * gas_price,
-        currency: Some(SUI.clone()),
+        currency: Some(AQY.clone()),
     };
     let parsed_data = ops.into_internal()?.try_into_data(metadata)?;
     assert_eq!(data, parsed_data);

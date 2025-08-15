@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 /// Basic raffle game that depends on Sui randomness.
@@ -14,7 +14,7 @@ use sui::balance::{Self, Balance};
 use sui::clock::Clock;
 use sui::coin::{Self, Coin};
 use sui::random::{Random, new_generator};
-use sui::sui::SUI;
+use sui::sui::AQY;
 
 /// Error codes
 const EGameInProgress: u64 = 0;
@@ -31,7 +31,7 @@ public struct Game has key {
     participants: u32,
     end_time: u64,
     winner: Option<u32>,
-    balance: Balance<SUI>,
+    balance: Balance<AQY>,
 }
 
 /// Ticket represents a participant in a single game.
@@ -71,7 +71,7 @@ entry fun determine_winner(game: &mut Game, r: &Random, clock: &Clock, ctx: &mut
 /// Anyone can play and receive a ticket.
 public fun buy_ticket(
     game: &mut Game,
-    coin: Coin<SUI>,
+    coin: Coin<AQY>,
     clock: &Clock,
     ctx: &mut TxContext,
 ): Ticket {
@@ -89,7 +89,7 @@ public fun buy_ticket(
 }
 
 /// The winner can take the prize.
-public fun redeem(ticket: Ticket, game: Game, ctx: &mut TxContext): Coin<SUI> {
+public fun redeem(ticket: Ticket, game: Game, ctx: &mut TxContext): Coin<AQY> {
     assert!(object::id(&game) == ticket.game_id, EGameMismatch);
     assert!(game.winner.contains(&ticket.participant_index), ENotWinner);
     destroy_ticket(ticket);

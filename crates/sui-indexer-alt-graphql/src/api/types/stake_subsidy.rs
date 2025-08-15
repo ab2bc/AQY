@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::api::scalars::big_int::BigInt;
@@ -8,7 +8,7 @@ use sui_types::sui_system_state::sui_system_state_inner_v1::StakeSubsidyV1;
 /// Parameters that control the distribution of the stake subsidy.
 #[derive(Clone, Debug, PartialEq, Eq, SimpleObject)]
 pub(crate) struct StakeSubsidy {
-    /// SUI set aside for stake subsidies -- reduces over time as stake subsidies are paid out over time.
+    /// AQY set aside for stake subsidies -- reduces over time as stake subsidies are paid out over time.
     pub balance: Option<BigInt>,
 
     /// Number of times stake subsidies have been distributed.

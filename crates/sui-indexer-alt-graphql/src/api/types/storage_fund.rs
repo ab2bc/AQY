@@ -1,11 +1,11 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use crate::api::scalars::big_int::BigInt;
 use async_graphql::SimpleObject;
 use sui_types::sui_system_state::sui_system_state_inner_v1::StorageFundV1;
 
-/// SUI set aside to account for objects stored on-chain.
+/// AQY set aside to account for objects stored on-chain.
 #[derive(Clone, Debug, PartialEq, Eq, SimpleObject)]
 pub(crate) struct StorageFund {
     /// Sum of storage rebates of live objects on chain.

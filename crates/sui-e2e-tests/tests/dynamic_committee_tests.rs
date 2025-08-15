@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 use anyhow::Result;
@@ -33,8 +33,8 @@ use sui_types::{
 use test_cluster::{TestCluster, TestClusterBuilder};
 use tracing::info;
 
-const MAX_DELEGATION_AMOUNT: u64 = 1_000_000_000_000_000; // 1M SUI
-const MIN_DELEGATION_AMOUNT: u64 = 500_000_000_000_000; // 0.5M SUI
+const MAX_DELEGATION_AMOUNT: u64 = 1_000_000_000_000_000; // 1M AQY
+const MIN_DELEGATION_AMOUNT: u64 = 500_000_000_000_000; // 0.5M AQY
 
 macro_rules! move_call {
     {$builder:expr, ($addr:expr)::$module_name:ident::$func:ident($($args:expr),* $(,)?)} => {

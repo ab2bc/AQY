@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 //! This module contains the logic to use transaction data and effects for loading
@@ -285,7 +285,7 @@ fn get_packages(txn_data: &TransactionData) -> Result<BTreeSet<ObjectID>, anyhow
 
 // Load the given objects. Objects are loaded and returned as a map from ObjectID to a map of
 // version to Object.
-// Returns also the packages of the type parameters instantiated (e.g. `SUI` in `Coin<SUI>`).
+// Returns also the packages of the type parameters instantiated (e.g. `AQY` in `Coin<AQY>`).
 #[allow(clippy::type_complexity)]
 fn load_objects(
     object_keys: &[ObjectKey],

@@ -1,4 +1,4 @@
-// Copyright (c) Mysten Labs, Inc.
+﻿// Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
 #[allow(unused_const)]
@@ -9,7 +9,7 @@ use std::string::String;
 use sui::bag::{Self, Bag};
 use sui::balance::Balance;
 use sui::event;
-use sui::sui::SUI;
+use sui::sui::AQY;
 use sui::url::{Self, Url};
 use sui_system::staking_pool::{
     Self,
@@ -149,7 +149,7 @@ public struct UnstakingRequestEvent has copy, drop {
     reward_amount: u64,
 }
 
-/// Event emitted when a staked SUI is converted to a fungible staked SUI.
+/// Event emitted when a staked AQY is converted to a fungible staked AQY.
 public struct ConvertingToFungibleStakedSuiEvent has copy, drop {
     pool_id: ID,
     stake_activation_epoch: u64,
@@ -157,7 +157,7 @@ public struct ConvertingToFungibleStakedSuiEvent has copy, drop {
     fungible_staked_sui_amount: u64,
 }
 
-/// Event emitted when a fungible staked SUI is redeemed.
+/// Event emitted when a fungible staked AQY is redeemed.
 public struct RedeemingFungibleStakedSuiEvent has copy, drop {
     pool_id: ID,
     fungible_staked_sui_amount: u64,
@@ -279,7 +279,7 @@ public(package) fun adjust_stake_and_gas_price(self: &mut Validator) {
 /// Request to add stake to the validator's staking pool, processed at the end of the epoch.
 public(package) fun request_add_stake(
     self: &mut Validator,
-    stake: Balance<SUI>,
+    stake: Balance<AQY>,
     staker_address: address,
     ctx: &mut TxContext,
 ): StakedSui {
@@ -325,7 +325,7 @@ public(package) fun redeem_fungible_staked_sui(
     self: &mut Validator,
     fungible_staked_sui: FungibleStakedSui,
     ctx: &TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     let fungible_staked_sui_amount = fungible_staked_sui.value();
     let sui = self.staking_pool.redeem_fungible_staked_sui(fungible_staked_sui, ctx);
 
@@ -343,7 +343,7 @@ public(package) fun redeem_fungible_staked_sui(
 /// Request to add stake to the validator's staking pool at genesis
 public(package) fun request_add_stake_at_genesis(
     self: &mut Validator,
-    stake: Balance<SUI>,
+    stake: Balance<AQY>,
     staker_address: address,
     ctx: &mut TxContext,
 ) {
@@ -366,7 +366,7 @@ public(package) fun request_withdraw_stake(
     self: &mut Validator,
     staked_sui: StakedSui,
     ctx: &TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     let principal_amount = staked_sui.amount();
     let stake_activation_epoch = staked_sui.activation_epoch();
     let withdrawn_stake = self.staking_pool.request_withdraw_stake(staked_sui, ctx);
@@ -426,7 +426,7 @@ public(package) fun set_candidate_commission_rate(self: &mut Validator, new_comm
 }
 
 /// Deposit stakes rewards into the validator's staking pool, called at the end of the epoch.
-public(package) fun deposit_stake_rewards(self: &mut Validator, reward: Balance<SUI>) {
+public(package) fun deposit_stake_rewards(self: &mut Validator, reward: Balance<AQY>) {
     self.next_epoch_stake = self.next_epoch_stake + reward.value();
     self.staking_pool.deposit_rewards(reward);
 }
@@ -951,7 +951,7 @@ public(package) fun new_for_testing(
     p2p_address: vector<u8>,
     primary_address: vector<u8>,
     worker_address: vector<u8>,
-    initial_stake_option: Option<Balance<SUI>>,
+    initial_stake_option: Option<Balance<AQY>>,
     gas_price: u64,
     commission_rate: u64,
     is_active_at_genesis: bool,
