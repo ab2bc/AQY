@@ -1,0 +1,12 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+    {
+      "label": "cargo build sui",
+      "type": "shell",
+      "command": "cargo build -p sui",
+      "group": "build",
+      "problemMatcher": ["$rustc"]
+    }
+  ]
+}

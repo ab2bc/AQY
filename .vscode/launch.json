@@ -1,0 +1,84 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    {
+      "name": "sui: genesis (from yaml)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/target/debug/sui",
+      "args": [
+        "genesis",
+        "-f",
+        //"--from-config", "/home/apollo/Apollo/genesis/genesis-AQY.yaml",
+        //"--working-dir", "/home/apollo/Apollo/genesis/AQY"
+        "--from-config", "/home/ser/Apollo/genesis/genesis-1699.yaml",
+        "--working-dir", "/home/ser/Apollo/genesis/AQY"
+      ],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "RUST_BACKTRACE": "full",
+        // Turn on module-level tracing. Tweak as needed.
+        "RUST_LOG": "info,sui=debug,consensus=debug,execution_driver=trace,telemetry_subscribers=debug,sui_config=debug",
+        // Always show colors in VS Code terminal:
+        "RUST_LOG_STYLE": "always"
+      },
+      "initCommands": [
+        // Stop on Rust panic immediately (good for your current genesis issues)
+        //"break set -r panic",
+        //"break set -n core::panicking::panic_fmt",
+        //"break set -n rust_begin_unwind"
+      ]
+    },
+    {
+      "name": "sui: start node",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/target/debug/sui",
+      "args": [
+        "start",
+        "--config-path", "${workspaceFolder}/config.yaml"
+      ],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "RUST_BACKTRACE": "full",
+        "RUST_LOG": "info,sui=debug,consensus=debug,network=debug,telemetry_subscribers=debug,execution_driver=trace",
+        "RUST_LOG_STYLE": "always"
+      },
+      "stdio": ["inherit", "inherit", "inherit"],
+      "initCommands": [
+        //"break set -r panic",
+        //"break set -n core::panicking::panic_fmt",
+        //"break set -n rust_begin_unwind"
+      ]
+    },
+    {
+      "name": "Attach to running sui",
+      "type": "lldb",
+      "request": "attach",
+      "pid": "${command:pickProcess}",
+      "initCommands": [
+        //"break set -r panic",
+        //"break set -n core::panicking::panic_fmt",
+        //"break set -n rust_begin_unwind"
+      ]
+    },
+    {
+      "name": "cargo test (current package)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/target/debug/deps/<auto-filled-by-cargo>",
+      "cargo": {
+        "args": ["test", "--no-run", "--package", "sui"],
+        "filter": {
+          "name": "sui",
+          "kind": "lib"
+        }
+      },
+      "args": ["--", "--nocapture"],
+      "env": {
+        "RUST_BACKTRACE": "full",
+        "RUST_LOG": "info,sui=debug,execution_driver=trace"
+      }
+    }
+  ]
+}
