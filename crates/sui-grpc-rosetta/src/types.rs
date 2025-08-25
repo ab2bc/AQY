@@ -28,7 +28,7 @@ use sui_types::SUI_SYSTEM_PACKAGE_ID;
 
 use crate::errors::{Error, ErrorType};
 use crate::operations::Operations;
-use crate::SUI;
+use crate::AQY;
 
 #[cfg(test)]
 #[path = "unit_tests/types_tests.rs"]
@@ -115,13 +115,13 @@ pub struct CurrencyMetadata {
 
 impl Default for CurrencyMetadata {
     fn default() -> Self {
-        SUI.metadata.clone()
+        AQY.metadata.clone()
     }
 }
 
 impl Default for Currency {
     fn default() -> Self {
-        SUI.clone()
+        AQY.clone()
     }
 }
 
@@ -274,7 +274,7 @@ impl From<sui_sdk::rpc_types::Coin> for Coin {
             },
             amount: Amount {
                 value: coin.balance as i128,
-                currency: SUI.clone(),
+                currency: AQY.clone(),
                 metadata: None,
             },
         }

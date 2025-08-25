@@ -37,7 +37,7 @@ which has time based token unlocks, we want it to compare against a lower bound 
     "timed_upper_limits": {},
     "timed_lower_limits": {
       // user balance should not drop below these numbers on those dates
-      // i.e. balance should not drop below 50 SUI before 1/1/2024,
+      // i.e. balance should not drop below 50 AQY before 1/1/2024,
       // balance should not drop below 100SUI before 2/1/2024
       // and it should not drop below 150SUI before 3/1/2024
       "2024-01-01T15:00:00Z": 50.0,

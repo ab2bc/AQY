@@ -213,7 +213,7 @@ This function will be called only once in genesis.
 <pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_create">create</a>(
     id: UID,
     validators: vector&lt;Validator&gt;,
-    <a href="../sui_system/storage_fund.md#sui_system_storage_fund">storage_fund</a>: Balance&lt;SUI&gt;,
+    <a href="../sui_system/storage_fund.md#sui_system_storage_fund">storage_fund</a>: Balance&lt;AQY&gt;,
     protocol_version: u64,
     epoch_start_timestamp_ms: u64,
     parameters: SystemParameters,
@@ -521,7 +521,7 @@ This entry function is used to set new commission rate for candidate validators
 Add stake to a validator's staking pool.
 
 
-<pre><code><b>public</b> <b>entry</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake">request_add_stake</a>(wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, stake: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, validator_address: <b>address</b>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>)
+<pre><code><b>public</b> <b>entry</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake">request_add_stake</a>(wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, stake: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;, validator_address: <b>address</b>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>)
 </code></pre>
 
 
@@ -532,7 +532,7 @@ Add stake to a validator's staking pool.
 
 <pre><code><b>public</b> <b>entry</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake">request_add_stake</a>(
     wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">SuiSystemState</a>,
-    stake: Coin&lt;SUI&gt;,
+    stake: Coin&lt;AQY&gt;,
     validator_address: <b>address</b>,
     ctx: &<b>mut</b> TxContext,
 ) {
@@ -549,10 +549,10 @@ Add stake to a validator's staking pool.
 
 ## Function `request_add_stake_non_entry`
 
-The non-entry version of <code><a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake">request_add_stake</a></code>, which returns the staked SUI instead of transferring it to the sender.
+The non-entry version of <code><a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake">request_add_stake</a></code>, which returns the staked AQY instead of transferring it to the sender.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake_non_entry">request_add_stake_non_entry</a>(wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, stake: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, validator_address: <b>address</b>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>
+<pre><code><b>public</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake_non_entry">request_add_stake_non_entry</a>(wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, stake: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;, validator_address: <b>address</b>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>
 </code></pre>
 
 
@@ -563,7 +563,7 @@ The non-entry version of <code><a href="../sui_system/sui_system.md#sui_system_s
 
 <pre><code><b>public</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake_non_entry">request_add_stake_non_entry</a>(
     wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">SuiSystemState</a>,
-    stake: Coin&lt;SUI&gt;,
+    stake: Coin&lt;AQY&gt;,
     validator_address: <b>address</b>,
     ctx: &<b>mut</b> TxContext,
 ): StakedSui {
@@ -582,7 +582,7 @@ The non-entry version of <code><a href="../sui_system/sui_system.md#sui_system_s
 Add stake to a validator's staking pool using multiple coins.
 
 
-<pre><code><b>public</b> <b>entry</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake_mul_coin">request_add_stake_mul_coin</a>(wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, stakes: vector&lt;<a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;&gt;, stake_amount: <a href="../std/option.md#std_option_Option">std::option::Option</a>&lt;u64&gt;, validator_address: <b>address</b>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>)
+<pre><code><b>public</b> <b>entry</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake_mul_coin">request_add_stake_mul_coin</a>(wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, stakes: vector&lt;<a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;&gt;, stake_amount: <a href="../std/option.md#std_option_Option">std::option::Option</a>&lt;u64&gt;, validator_address: <b>address</b>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>)
 </code></pre>
 
 
@@ -593,7 +593,7 @@ Add stake to a validator's staking pool using multiple coins.
 
 <pre><code><b>public</b> <b>entry</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_add_stake_mul_coin">request_add_stake_mul_coin</a>(
     wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">SuiSystemState</a>,
-    stakes: vector&lt;Coin&lt;SUI&gt;&gt;,
+    stakes: vector&lt;Coin&lt;AQY&gt;&gt;,
     stake_amount: option::Option&lt;u64&gt;,
     validator_address: <b>address</b>,
     ctx: &<b>mut</b> TxContext,
@@ -675,7 +675,7 @@ Convert StakedSui into a FungibleStakedSui object.
 Convert FungibleStakedSui into a StakedSui object.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_redeem_fungible_staked_sui">redeem_fungible_staked_sui</a>(wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, fungible_staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_FungibleStakedSui">sui_system::staking_pool::FungibleStakedSui</a>, ctx: &<a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_redeem_fungible_staked_sui">redeem_fungible_staked_sui</a>(wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, fungible_staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_FungibleStakedSui">sui_system::staking_pool::FungibleStakedSui</a>, ctx: &<a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -688,7 +688,7 @@ Convert FungibleStakedSui into a StakedSui object.
     wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">SuiSystemState</a>,
     fungible_staked_sui: FungibleStakedSui,
     ctx: &TxContext,
-): Balance&lt;SUI&gt; {
+): Balance&lt;AQY&gt; {
     wrapper.<a href="../sui_system/sui_system.md#sui_system_sui_system_load_system_state_mut">load_system_state_mut</a>().<a href="../sui_system/sui_system.md#sui_system_sui_system_redeem_fungible_staked_sui">redeem_fungible_staked_sui</a>(fungible_staked_sui, ctx)
 }
 </code></pre>
@@ -701,10 +701,10 @@ Convert FungibleStakedSui into a StakedSui object.
 
 ## Function `request_withdraw_stake_non_entry`
 
-Non-entry version of <code><a href="../sui_system/sui_system.md#sui_system_sui_system_request_withdraw_stake">request_withdraw_stake</a></code> that returns the withdrawn SUI instead of transferring it to the sender.
+Non-entry version of <code><a href="../sui_system/sui_system.md#sui_system_sui_system_request_withdraw_stake">request_withdraw_stake</a></code> that returns the withdrawn AQY instead of transferring it to the sender.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_withdraw_stake_non_entry">request_withdraw_stake_non_entry</a>(wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_request_withdraw_stake_non_entry">request_withdraw_stake_non_entry</a>(wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -717,7 +717,7 @@ Non-entry version of <code><a href="../sui_system/sui_system.md#sui_system_sui_s
     wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">SuiSystemState</a>,
     staked_sui: StakedSui,
     ctx: &<b>mut</b> TxContext,
-): Balance&lt;SUI&gt; {
+): Balance&lt;AQY&gt; {
     wrapper.<a href="../sui_system/sui_system.md#sui_system_sui_system_load_system_state_mut">load_system_state_mut</a>().<a href="../sui_system/sui_system.md#sui_system_sui_system_request_withdraw_stake">request_withdraw_stake</a>(staked_sui, ctx)
 }
 </code></pre>
@@ -1484,7 +1484,7 @@ Getter returns the voting power of the active validators, values are voting powe
 
 ## Function `calculate_rewards`
 
-Calculate the rewards for a given staked SUI object.
+Calculate the rewards for a given staked AQY object.
 Used in the package, and can be dev-inspected.
 
 
@@ -1528,7 +1528,7 @@ gas coins.
 4. Update all validators.
 
 
-<pre><code><b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_advance_epoch">advance_epoch</a>(storage_reward: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, computation_reward: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, new_epoch: u64, next_protocol_version: u64, storage_rebate: u64, non_refundable_storage_fee: u64, storage_fund_reinvest_rate: u64, reward_slashing_rate: u64, epoch_start_timestamp_ms: u64, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_advance_epoch">advance_epoch</a>(storage_reward: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, computation_reward: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">sui_system::sui_system::SuiSystemState</a>, new_epoch: u64, next_protocol_version: u64, storage_rebate: u64, non_refundable_storage_fee: u64, storage_fund_reinvest_rate: u64, reward_slashing_rate: u64, epoch_start_timestamp_ms: u64, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -1538,8 +1538,8 @@ gas coins.
 
 
 <pre><code><b>fun</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_advance_epoch">advance_epoch</a>(
-    storage_reward: Balance&lt;SUI&gt;,
-    computation_reward: Balance&lt;SUI&gt;,
+    storage_reward: Balance&lt;AQY&gt;,
+    computation_reward: Balance&lt;AQY&gt;,
     wrapper: &<b>mut</b> <a href="../sui_system/sui_system.md#sui_system_sui_system_SuiSystemState">SuiSystemState</a>,
     new_epoch: u64,
     next_protocol_version: u64,
@@ -1550,7 +1550,7 @@ gas coins.
     reward_slashing_rate: u64, // how much rewards are slashed to punish a <a href="../sui_system/validator.md#sui_system_validator">validator</a>, in bps.
     epoch_start_timestamp_ms: u64, // Timestamp of the epoch start
     ctx: &<b>mut</b> TxContext,
-): Balance&lt;SUI&gt; {
+): Balance&lt;AQY&gt; {
     // Validator will make a special system call with sender set <b>as</b> 0x0.
     <b>assert</b>!(ctx.sender() == @0x0, <a href="../sui_system/sui_system.md#sui_system_sui_system_ENotSystemAddress">ENotSystemAddress</a>);
     <b>let</b> storage_rebate = wrapper

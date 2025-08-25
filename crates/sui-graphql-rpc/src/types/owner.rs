@@ -76,7 +76,7 @@ pub(crate) struct OwnerImpl {
         arg(name = "type", ty = "Option<ExactTypeFilter>"),
         ty = "Option<Balance>",
         desc = "Total balance of all coins with marker type owned by this object or address. If \
-                type is not supplied, it defaults to `0x2::sui::SUI`."
+                type is not supplied, it defaults to `0x2::sui::AQY`."
     ),
     field(
         name = "balances",
@@ -96,7 +96,7 @@ pub(crate) struct OwnerImpl {
         arg(name = "type", ty = "Option<ExactTypeFilter>"),
         ty = "Connection<String, Coin>",
         desc = "The coin objects for this object or address.\n\n\
-                `type` is a filter on the coin's type parameter, defaulting to `0x2::sui::SUI`."
+                `type` is a filter on the coin's type parameter, defaulting to `0x2::sui::AQY`."
     ),
     field(
         name = "staked_suis",
@@ -162,7 +162,7 @@ impl Owner {
     }
 
     /// Total balance of all coins with marker type owned by this object or address. If type is not
-    /// supplied, it defaults to `0x2::sui::SUI`.
+    /// supplied, it defaults to `0x2::sui::AQY`.
     pub(crate) async fn balance(
         &self,
         ctx: &Context<'_>,
@@ -187,7 +187,7 @@ impl Owner {
 
     /// The coin objects for this object or address.
     ///
-    ///`type` is a filter on the coin's type parameter, defaulting to `0x2::sui::SUI`.
+    ///`type` is a filter on the coin's type parameter, defaulting to `0x2::sui::AQY`.
     pub(crate) async fn coins(
         &self,
         ctx: &Context<'_>,

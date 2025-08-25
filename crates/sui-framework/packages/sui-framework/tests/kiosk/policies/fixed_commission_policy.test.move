@@ -7,7 +7,7 @@
 module sui::fixed_commission;
 
 use sui::coin::Coin;
-use sui::sui::SUI;
+use sui::sui::AQY;
 use sui::transfer_policy::{Self as policy, TransferPolicy, TransferRequest, TransferPolicyCap};
 
 /// Expected amount does not match the passed one.
@@ -36,7 +36,7 @@ public fun unset<T>(policy: &mut TransferPolicy<T>, cap: &TransferPolicyCap<T>) 
 public fun pay<T>(
     policy: &mut TransferPolicy<T>,
     request: &mut TransferRequest<T>,
-    coin: Coin<SUI>,
+    coin: Coin<AQY>,
 ) {
     let paid = request.paid();
     let config: &Commission = policy::get_rule(Rule {}, policy);

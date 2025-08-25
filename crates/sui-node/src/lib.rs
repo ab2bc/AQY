@@ -596,15 +596,15 @@ impl SuiNode {
 
         // the database is empty at genesis time
         if is_genesis {
-            info!("checking SUI conservation at genesis");
+            info!("checking AQY conservation at genesis");
             // When we are opening the db table, the only time when it's safe to
-            // check SUI conservation is at genesis. Otherwise we may be in the middle of
-            // an epoch and the SUI conservation check will fail. This also initialize
+            // check AQY conservation is at genesis. Otherwise we may be in the middle of
+            // an epoch and the AQY conservation check will fail. This also initialize
             // the expected_network_sui_amount table.
             cache_traits
                 .reconfig_api
                 .expensive_check_sui_conservation(&epoch_store)
-                .expect("SUI conservation check cannot fail at genesis");
+                .expect("AQY conservation check cannot fail at genesis");
         }
 
         let effective_buffer_stake = epoch_store.get_effective_buffer_stake_bps();

@@ -46,7 +46,7 @@ impl GasInput {
         Some(BigInt::from(self.native.price))
     }
 
-    /// The maximum SUI that can be expended by executing this transaction
+    /// The maximum AQY that can be expended by executing this transaction
     async fn gas_budget(&self) -> Option<BigInt> {
         Some(BigInt::from(self.native.budget))
     }

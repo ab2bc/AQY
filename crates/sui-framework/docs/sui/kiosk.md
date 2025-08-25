@@ -87,7 +87,7 @@ one having its own set of rules.
 object so they don't have to pay anything
 - I create and wrap a <code>TransferPolicy</code> so that players of my game can
 transfer items between <code><a href="../sui/kiosk.md#sui_kiosk_Kiosk">Kiosk</a></code>s in game without any charge (and maybe not
-even paying the price with a 0 SUI PurchaseCap)
+even paying the price with a 0 AQY PurchaseCap)
 
 ```
 Kiosk -> (Item, TransferRequest)
@@ -217,7 +217,7 @@ needs to be approved via the <code>TransferPolicy</code>.
 <dd>
 </dd>
 <dt>
-<code>profits: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;</code>
+<code>profits: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;</code>
 </dt>
 <dd>
  Balance of the Kiosk - all profits from sales go here.
@@ -783,7 +783,7 @@ Can only be performed by the bearer of the <code><a href="../sui/kiosk.md#sui_ki
 case where there's no items inside and a <code><a href="../sui/kiosk.md#sui_kiosk_Kiosk">Kiosk</a></code> is not shared.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_close_and_withdraw">close_and_withdraw</a>(self: <a href="../sui/kiosk.md#sui_kiosk_Kiosk">sui::kiosk::Kiosk</a>, cap: <a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">sui::kiosk::KioskOwnerCap</a>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_close_and_withdraw">close_and_withdraw</a>(self: <a href="../sui/kiosk.md#sui_kiosk_Kiosk">sui::kiosk::Kiosk</a>, cap: <a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">sui::kiosk::KioskOwnerCap</a>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -792,7 +792,7 @@ case where there's no items inside and a <code><a href="../sui/kiosk.md#sui_kios
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_close_and_withdraw">close_and_withdraw</a>(self: <a href="../sui/kiosk.md#sui_kiosk_Kiosk">Kiosk</a>, cap: <a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">KioskOwnerCap</a>, ctx: &<b>mut</b> TxContext): Coin&lt;SUI&gt; {
+<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_close_and_withdraw">close_and_withdraw</a>(self: <a href="../sui/kiosk.md#sui_kiosk_Kiosk">Kiosk</a>, cap: <a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">KioskOwnerCap</a>, ctx: &<b>mut</b> TxContext): Coin&lt;AQY&gt; {
     <b>let</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">Kiosk</a> { id, profits, <a href="../sui/kiosk.md#sui_kiosk_owner">owner</a>: _, <a href="../sui/kiosk.md#sui_kiosk_item_count">item_count</a>, allow_extensions: _ } = self;
     <b>let</b> <a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">KioskOwnerCap</a> { id: cap_id, `<b>for</b>` } = cap;
     <b>assert</b>!(id.to_inner() == `<b>for</b>`, <a href="../sui/kiosk.md#sui_kiosk_ENotOwner">ENotOwner</a>);
@@ -1064,7 +1064,7 @@ request their approval (by calling some function) so that the trade can be
 finalized.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_purchase">purchase</a>&lt;T: key, store&gt;(self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">sui::kiosk::Kiosk</a>, id: <a href="../sui/object.md#sui_object_ID">sui::object::ID</a>, payment: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;): (T, <a href="../sui/transfer_policy.md#sui_transfer_policy_TransferRequest">sui::transfer_policy::TransferRequest</a>&lt;T&gt;)
+<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_purchase">purchase</a>&lt;T: key, store&gt;(self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">sui::kiosk::Kiosk</a>, id: <a href="../sui/object.md#sui_object_ID">sui::object::ID</a>, payment: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;): (T, <a href="../sui/transfer_policy.md#sui_transfer_policy_TransferRequest">sui::transfer_policy::TransferRequest</a>&lt;T&gt;)
 </code></pre>
 
 
@@ -1076,7 +1076,7 @@ finalized.
 <pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_purchase">purchase</a>&lt;T: key + store&gt;(
     self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">Kiosk</a>,
     id: ID,
-    payment: Coin&lt;SUI&gt;,
+    payment: Coin&lt;AQY&gt;,
 ): (T, TransferRequest&lt;T&gt;) {
     <b>let</b> price = df::remove&lt;<a href="../sui/kiosk.md#sui_kiosk_Listing">Listing</a>, u64&gt;(&<b>mut</b> self.id, <a href="../sui/kiosk.md#sui_kiosk_Listing">Listing</a> { id, is_exclusive: <b>false</b> });
     <b>let</b> inner = dof::remove&lt;<a href="../sui/kiosk.md#sui_kiosk_Item">Item</a>, T&gt;(&<b>mut</b> self.id, <a href="../sui/kiosk.md#sui_kiosk_Item">Item</a> { id });
@@ -1142,7 +1142,7 @@ Unpack the <code><a href="../sui/kiosk.md#sui_kiosk_PurchaseCap">PurchaseCap</a>
 as the price for the listing making sure it's no less than <code>min_amount</code>.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_purchase_with_cap">purchase_with_cap</a>&lt;T: key, store&gt;(self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">sui::kiosk::Kiosk</a>, purchase_cap: <a href="../sui/kiosk.md#sui_kiosk_PurchaseCap">sui::kiosk::PurchaseCap</a>&lt;T&gt;, payment: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;): (T, <a href="../sui/transfer_policy.md#sui_transfer_policy_TransferRequest">sui::transfer_policy::TransferRequest</a>&lt;T&gt;)
+<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_purchase_with_cap">purchase_with_cap</a>&lt;T: key, store&gt;(self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">sui::kiosk::Kiosk</a>, purchase_cap: <a href="../sui/kiosk.md#sui_kiosk_PurchaseCap">sui::kiosk::PurchaseCap</a>&lt;T&gt;, payment: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;): (T, <a href="../sui/transfer_policy.md#sui_transfer_policy_TransferRequest">sui::transfer_policy::TransferRequest</a>&lt;T&gt;)
 </code></pre>
 
 
@@ -1154,7 +1154,7 @@ as the price for the listing making sure it's no less than <code>min_amount</cod
 <pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_purchase_with_cap">purchase_with_cap</a>&lt;T: key + store&gt;(
     self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">Kiosk</a>,
     purchase_cap: <a href="../sui/kiosk.md#sui_kiosk_PurchaseCap">PurchaseCap</a>&lt;T&gt;,
-    payment: Coin&lt;SUI&gt;,
+    payment: Coin&lt;AQY&gt;,
 ): (T, TransferRequest&lt;T&gt;) {
     <b>let</b> <a href="../sui/kiosk.md#sui_kiosk_PurchaseCap">PurchaseCap</a> { id, item_id, kiosk_id, min_price } = purchase_cap;
     id.delete();
@@ -1211,7 +1211,7 @@ allow the item for taking. Can only be returned to its <code><a href="../sui/kio
 Withdraw profits from the Kiosk.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_withdraw">withdraw</a>(self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">sui::kiosk::Kiosk</a>, cap: &<a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">sui::kiosk::KioskOwnerCap</a>, amount: <a href="../std/option.md#std_option_Option">std::option::Option</a>&lt;u64&gt;, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_withdraw">withdraw</a>(self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">sui::kiosk::Kiosk</a>, cap: &<a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">sui::kiosk::KioskOwnerCap</a>, amount: <a href="../std/option.md#std_option_Option">std::option::Option</a>&lt;u64&gt;, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -1225,7 +1225,7 @@ Withdraw profits from the Kiosk.
     cap: &<a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">KioskOwnerCap</a>,
     amount: Option&lt;u64&gt;,
     ctx: &<b>mut</b> TxContext,
-): Coin&lt;SUI&gt; {
+): Coin&lt;AQY&gt; {
     <b>assert</b>!(self.<a href="../sui/kiosk.md#sui_kiosk_has_access">has_access</a>(cap), <a href="../sui/kiosk.md#sui_kiosk_ENotOwner">ENotOwner</a>);
     <b>let</b> amount = <b>if</b> (amount.is_some()) {
         <b>let</b> amt = amount.destroy_some();
@@ -1664,7 +1664,7 @@ Get the amount of profits collected by selling items.
 Get mutable access to <code>profits</code> - owner only action.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_profits_mut">profits_mut</a>(self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">sui::kiosk::Kiosk</a>, cap: &<a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">sui::kiosk::KioskOwnerCap</a>): &<b>mut</b> <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_profits_mut">profits_mut</a>(self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">sui::kiosk::Kiosk</a>, cap: &<a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">sui::kiosk::KioskOwnerCap</a>): &<b>mut</b> <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -1673,7 +1673,7 @@ Get mutable access to <code>profits</code> - owner only action.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_profits_mut">profits_mut</a>(self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">Kiosk</a>, cap: &<a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">KioskOwnerCap</a>): &<b>mut</b> Balance&lt;SUI&gt; {
+<pre><code><b>public</b> <b>fun</b> <a href="../sui/kiosk.md#sui_kiosk_profits_mut">profits_mut</a>(self: &<b>mut</b> <a href="../sui/kiosk.md#sui_kiosk_Kiosk">Kiosk</a>, cap: &<a href="../sui/kiosk.md#sui_kiosk_KioskOwnerCap">KioskOwnerCap</a>): &<b>mut</b> Balance&lt;AQY&gt; {
     <b>assert</b>!(self.<a href="../sui/kiosk.md#sui_kiosk_has_access">has_access</a>(cap), <a href="../sui/kiosk.md#sui_kiosk_ENotOwner">ENotOwner</a>);
     &<b>mut</b> self.profits
 }

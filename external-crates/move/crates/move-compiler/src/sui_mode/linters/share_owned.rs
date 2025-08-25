@@ -323,7 +323,7 @@ impl ShareOwnedVerifierAI<'_> {
         context.add_diag(d)
     }
 
-    /// Gets SUI info from either the current program or precompiled library
+    /// Gets AQY info from either the current program or precompiled library
     fn get_sui_info(&self, mident: &ModuleIdent) -> &crate::sui_mode::info::SuiModInfo {
         self.info
             .modules

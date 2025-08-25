@@ -156,7 +156,7 @@ impl RpcExampleProvider {
                 package_object_id: SUI_FRAMEWORK_PACKAGE_ID,
                 module: "pay".to_string(),
                 function: "split".to_string(),
-                type_arguments: vec![SuiTypeTag::new("0x2::sui::SUI".to_string())],
+                type_arguments: vec![SuiTypeTag::new("0x2::sui::AQY".to_string())],
                 arguments: vec![
                     SuiJsonValue::new(json!(coin_ref.0)).unwrap(),
                     SuiJsonValue::new(json!(random_amount)).unwrap(),
@@ -503,7 +503,7 @@ impl RpcExampleProvider {
                         "query",
                         json!(SuiObjectResponseQuery {
                             filter: Some(SuiObjectDataFilter::StructType(
-                                StructTag::from_str("0x2::coin::Coin<0x2::sui::SUI>").unwrap()
+                                StructTag::from_str("0x2::coin::Coin<0x2::sui::AQY>").unwrap()
                             )),
                             options: Some(
                                 SuiObjectDataOptions::new()
@@ -840,7 +840,7 @@ impl RpcExampleProvider {
         let address = SuiAddress::from(ObjectID::new(self.rng.gen()));
 
         let result = Balance {
-            coin_type: "0x2::sui::SUI".to_string(),
+            coin_type: "0x2::sui::AQY".to_string(),
             coin_object_count: 15,
             total_balance: 3000000000,
             locked_balance: HashMap::new(),
@@ -861,7 +861,7 @@ impl RpcExampleProvider {
         let cursor = ObjectID::new(self.rng.gen());
         let coins = (0..3)
             .map(|_| Coin {
-                coin_type: "0x2::sui::SUI".to_string(),
+                coin_type: "0x2::sui::AQY".to_string(),
                 coin_object_id: ObjectID::new(self.rng.gen()),
                 version: SequenceNumber::from_u64(103626),
                 digest: ObjectDigest::new(self.rng.gen()),
@@ -946,7 +946,7 @@ impl RpcExampleProvider {
     }
 
     fn suix_get_coins(&mut self) -> Examples {
-        let coin_type = "0x2::sui::SUI".to_string();
+        let coin_type = "0x2::sui::AQY".to_string();
         let owner = SuiAddress::from(ObjectID::new(self.rng.gen()));
         let coins = (0..3)
             .map(|_| Coin {
@@ -969,7 +969,7 @@ impl RpcExampleProvider {
         Examples::new(
             "suix_getCoins",
             vec![ExamplePairing::new(
-                "Gets all SUI coins owned by the address provided. Return a paginated list of `limit` results per page. Similar to `suix_getAllCoins`, but provides a way to filter by coin type.",
+                "Gets all AQY coins owned by the address provided. Return a paginated list of `limit` results per page. Similar to `suix_getAllCoins`, but provides a way to filter by coin type.",
                 vec![
                     ("owner", json!(owner)),
                     ("coin_type", json!(coin_type)),
@@ -1255,7 +1255,7 @@ impl RpcExampleProvider {
         );
         let filter = Some(SuiObjectDataFilter::MatchAll(vec![
             SuiObjectDataFilter::StructType(
-                StructTag::from_str("0x2::coin::Coin<0x2::sui::SUI>").unwrap(),
+                StructTag::from_str("0x2::coin::Coin<0x2::sui::AQY>").unwrap(),
             ),
             SuiObjectDataFilter::AddressOwner(owner),
             SuiObjectDataFilter::Version(version),

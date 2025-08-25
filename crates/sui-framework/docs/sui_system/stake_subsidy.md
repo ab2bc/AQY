@@ -62,10 +62,10 @@ title: Module `sui_system::stake_subsidy`
 
 <dl>
 <dt>
-<code>balance: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;</code>
+<code>balance: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;</code>
 </dt>
 <dd>
- Balance of SUI set aside for stake subsidies that will be drawn down over time.
+ Balance of AQY set aside for stake subsidies that will be drawn down over time.
 </dd>
 <dt>
 <code>distribution_counter: u64</code>
@@ -133,7 +133,7 @@ title: Module `sui_system::stake_subsidy`
 
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_create">create</a>(balance: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, initial_distribution_amount: u64, stake_subsidy_period_length: u64, stake_subsidy_decrease_rate: u16, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_StakeSubsidy">sui_system::stake_subsidy::StakeSubsidy</a>
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_create">create</a>(balance: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;, initial_distribution_amount: u64, stake_subsidy_period_length: u64, stake_subsidy_decrease_rate: u16, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_StakeSubsidy">sui_system::stake_subsidy::StakeSubsidy</a>
 </code></pre>
 
 
@@ -143,7 +143,7 @@ title: Module `sui_system::stake_subsidy`
 
 
 <pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_create">create</a>(
-    balance: Balance&lt;SUI&gt;,
+    balance: Balance&lt;AQY&gt;,
     initial_distribution_amount: u64,
     stake_subsidy_period_length: u64,
     stake_subsidy_decrease_rate: u16,
@@ -176,7 +176,7 @@ title: Module `sui_system::stake_subsidy`
 Advance the epoch counter and draw down the subsidy for the epoch.
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_advance_epoch">advance_epoch</a>(self: &<b>mut</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_StakeSubsidy">sui_system::stake_subsidy::StakeSubsidy</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_advance_epoch">advance_epoch</a>(self: &<b>mut</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_StakeSubsidy">sui_system::stake_subsidy::StakeSubsidy</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -185,7 +185,7 @@ Advance the epoch counter and draw down the subsidy for the epoch.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_advance_epoch">advance_epoch</a>(self: &<b>mut</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_StakeSubsidy">StakeSubsidy</a>): Balance&lt;SUI&gt; {
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_advance_epoch">advance_epoch</a>(self: &<b>mut</b> <a href="../sui_system/stake_subsidy.md#sui_system_stake_subsidy_StakeSubsidy">StakeSubsidy</a>): Balance&lt;AQY&gt; {
     // Take the minimum of the reward amount and the remaining balance in
     // order to ensure we don't overdraft the remaining stake subsidy
     // balance

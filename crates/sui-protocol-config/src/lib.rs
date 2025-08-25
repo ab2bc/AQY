@@ -206,8 +206,8 @@ const MAX_PROTOCOL_VERSION: u64 = 94;
 //             Improve gas/wall time efficiency of some Move stdlib vector functions
 // Version 71: [SIP-45] Enable consensus amplification.
 // Version 72: Fix issue where `convert_type_argument_error` wasn't being used in all cases.
-//             Max gas budget moved to 50_000 SUI
-//             Max gas price moved to 50 SUI
+//             Max gas budget moved to 50_000 AQY
+//             Max gas price moved to 50 AQY
 //             Variants as type nodes.
 // Version 73: Enable new marker table version.
 //             Enable consensus garbage collection and new commit rule for devnet.
@@ -3587,9 +3587,9 @@ impl ProtocolConfig {
                     cfg.feature_flags.convert_type_argument_error = true;
 
                     // Invariant: max_gas_price * base_tx_cost_fixed <= max_tx_gas
-                    // max gas budget is in MIST and an absolute value 50_000 SUI
+                    // max gas budget is in MIST and an absolute value 50_000 AQY
                     cfg.max_tx_gas = Some(50_000_000_000_000);
-                    // max gas price is in MIST and an absolute value 50 SUI
+                    // max gas price is in MIST and an absolute value 50 AQY
                     cfg.max_gas_price = Some(50_000_000_000);
 
                     cfg.feature_flags.variant_nodes = true;

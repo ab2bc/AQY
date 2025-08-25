@@ -9,7 +9,7 @@ module deepbook::clob {
     use sui::coin::Coin;
     use sui::event;
     use sui::linked_table::{Self, LinkedTable};
-    use sui::sui::SUI;
+    use sui::sui::AQY;
     use sui::table::{Self, Table, contains, borrow_mut};
 
     use deepbook::critbit::{Self, CritbitTree, borrow_mut_leaf_by_index, remove_leaf_by_index, borrow_leaf_by_index, borrow_leaf_by_key, find_leaf};
@@ -144,7 +144,7 @@ module deepbook::clob {
         base_custodian: Custodian<BaseAsset>,
         quote_custodian: Custodian<QuoteAsset>,
         // Stores the fee paid to create this pool. These funds are not accessible.
-        creation_fee: Balance<SUI>,
+        creation_fee: Balance<AQY>,
         // Deprecated.
         base_asset_trading_fees: Balance<BaseAsset>,
         // Stores the trading fees paid in `QuoteAsset`. These funds are not accessible.
@@ -169,7 +169,7 @@ module deepbook::clob {
     public fun create_pool<BaseAsset, QuoteAsset>(
         _tick_size: u64,
         _lot_size: u64,
-        _creation_fee: Coin<SUI>,
+        _creation_fee: Coin<AQY>,
         _ctx: &mut TxContext,
     ) {
         abort DEPRECATED

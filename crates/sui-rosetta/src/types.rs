@@ -22,7 +22,7 @@ use sui_types::messages_checkpoint::CheckpointDigest;
 
 use crate::errors::{Error, ErrorType};
 use crate::operations::Operations;
-use crate::SUI;
+use crate::AQY;
 pub use internal_operation::InternalOperation;
 
 pub mod internal_operation;
@@ -112,13 +112,13 @@ pub struct CurrencyMetadata {
 
 impl Default for CurrencyMetadata {
     fn default() -> Self {
-        SUI.metadata.clone()
+        AQY.metadata.clone()
     }
 }
 
 impl Default for Currency {
     fn default() -> Self {
-        SUI.clone()
+        AQY.clone()
     }
 }
 
@@ -271,7 +271,7 @@ impl From<sui_sdk::rpc_types::Coin> for Coin {
             },
             amount: Amount {
                 value: coin.balance as i128,
-                currency: SUI.clone(),
+                currency: AQY.clone(),
                 metadata: None,
             },
         }
@@ -664,12 +664,12 @@ pub struct ConstructionMetadataResponse {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct ConstructionMetadata {
     pub sender: SuiAddress,
-    /// `Coin<SUI>` objects to be used as gas
+    /// `Coin<AQY>` objects to be used as gas
     pub gas_coins: Vec<ObjectRef>,
-    /// `Coin<SUI>` objects to be merged to GasCoin
+    /// `Coin<AQY>` objects to be merged to GasCoin
     pub extra_gas_coins: Vec<ObjectRef>,
     pub objects: Vec<ObjectRef>,
-    /// Always refers to SUI balance used
+    /// Always refers to AQY balance used
     #[serde(with = "str_format")]
     pub total_coin_value: i128,
     pub gas_price: u64,

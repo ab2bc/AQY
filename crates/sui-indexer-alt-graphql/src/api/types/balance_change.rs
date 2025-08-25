@@ -36,7 +36,7 @@ impl BalanceChange {
         }
     }
 
-    /// The inner type of the coin whose balance has changed (e.g. `0x2::sui::SUI`).
+    /// The inner type of the coin whose balance has changed (e.g. `0x2::sui::AQY`).
     async fn coin_type(&self) -> Result<Option<MoveType>, RpcError> {
         let StoredBalanceChange::V1 { coin_type, .. } = &self.stored;
         let type_ = TypeTag::from_str(coin_type).context("Failed to parse coin type")?;

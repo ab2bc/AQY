@@ -364,7 +364,7 @@ impl MoveObject {
         self.contents.len() + serialized_type_tag_size + 1 + 8
     }
 
-    /// Get the total amount of SUI embedded in `self`. Intended for testing purposes
+    /// Get the total amount of AQY embedded in `self`. Intended for testing purposes
     pub fn get_total_sui(&self, layout_resolver: &mut dyn LayoutResolver) -> Result<u64, SuiError> {
         let balances = self.get_coin_balances(layout_resolver)?;
         Ok(balances.get(&GAS::type_tag()).copied().unwrap_or(0))
@@ -618,7 +618,7 @@ pub struct ObjectInner {
     pub owner: Owner,
     /// The digest of the transaction that created or last mutated this object
     pub previous_transaction: TransactionDigest,
-    /// The amount of SUI we would rebate if this object gets deleted.
+    /// The amount of AQY we would rebate if this object gets deleted.
     /// This number is re-calculated each time the object is mutated based on
     /// the present storage gas price.
     pub storage_rebate: u64,
@@ -963,7 +963,7 @@ impl ObjectInner {
 
 // Testing-related APIs.
 impl Object {
-    /// Get the total amount of SUI embedded in `self`, including both Move objects and the storage rebate
+    /// Get the total amount of AQY embedded in `self`, including both Move objects and the storage rebate
     pub fn get_total_sui(&self, layout_resolver: &mut dyn LayoutResolver) -> Result<u64, SuiError> {
         Ok(self.storage_rebate
             + match &self.data {

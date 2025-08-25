@@ -105,7 +105,7 @@ impl Serialize for Value {
 /// - Object IDs (e.g., `0x1234`)
 /// - Numbers (e.g., `42`, `1000u16`, `255u8`)
 /// - Strings (e.g., `'hello world'`, `'it\'s working')
-/// - Struct tags (e.g., `0x2::coin::Coin<0x2::sui::SUI>>`)
+/// - Struct tags (e.g., `0x2::coin::Coin<0x2::sui::AQY>>`)
 /// - Nested tuples (e.g., `(42, 'hello')`)
 /// - Nested lists (e.g., `[1, 2, 3]`, `[]`)
 /// - Nested encoded bytes (e.g., `bcs(0x1234)` or `bin(0x1234)`)
@@ -384,16 +384,16 @@ mod tests {
     }
     #[test]
     fn test_struct_tag() {
-        let tag = StructTag::from_str("0x2::table::Table<address, 0x2::coin::Coin<0x2::sui::SUI>>")
+        let tag = StructTag::from_str("0x2::table::Table<address, 0x2::coin::Coin<0x2::sui::AQY>>")
             .unwrap();
         let (bcs, bin) = expect(tag);
 
         assert_eq!(
-            parse("bcs(0x2::table::Table<address, 0x2::coin::Coin<0x2::sui::SUI>>)").unwrap(),
+            parse("bcs(0x2::table::Table<address, 0x2::coin::Coin<0x2::sui::AQY>>)").unwrap(),
             bcs
         );
         assert_eq!(
-            parse("bin(0x2::table::Table<address, 0x2::coin::Coin<0x2::sui::SUI>>)").unwrap(),
+            parse("bin(0x2::table::Table<address, 0x2::coin::Coin<0x2::sui::AQY>>)").unwrap(),
             bin
         );
     }

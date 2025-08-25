@@ -15,7 +15,7 @@ use sui_types::transaction::{
 use sui_types::{base_types::SuiAddress, Identifier};
 use test_cluster::TestClusterBuilder;
 const SUI_COIN_TYPE: &str =
-    "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI";
+    "0x0000000000000000000000000000000000000000000000000000000000000002::sui::AQY";
 const INITIAL_SUI_BALANCE: u64 = 150000000000000000;
 
 #[sim_test]
@@ -41,7 +41,7 @@ async fn test_balance_changes_on_transfer() {
     let sender = test_cluster.get_address_0();
     let receiver = test_cluster.get_address_1();
 
-    // Transfer some SUI
+    // Transfer some AQY
     let transfer_amount = 1000000;
     let txn = sui_test_transaction_builder::make_transfer_sui_transaction(
         &test_cluster.wallet,
@@ -397,7 +397,7 @@ async fn test_fresh_address_with_no_coins() {
     // Generate a new address that has never received any coins
     let fresh_address = SuiAddress::random_for_testing_only();
 
-    // Get balance for SUI
+    // Get balance for AQY
     let response = grpc_client
         .get_balance(GetBalanceRequest {
             owner: Some(fresh_address.to_string()),
@@ -581,7 +581,7 @@ async fn execute_transaction(
     (transaction, gas_used)
 }
 
-/// Build a transaction that splits and transfers SUI
+/// Build a transaction that splits and transfers AQY
 async fn build_split_and_transfer_transaction(
     test_cluster: &test_cluster::TestCluster,
     sender: SuiAddress,

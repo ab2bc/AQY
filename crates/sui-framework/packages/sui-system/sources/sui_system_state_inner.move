@@ -7,7 +7,7 @@ use sui::bag::{Self, Bag};
 use sui::balance::{Self, Balance};
 use sui::coin::Coin;
 use sui::event;
-use sui::sui::SUI;
+use sui::sui::AQY;
 use sui::table::Table;
 use sui::vec_map::{Self, VecMap};
 use sui::vec_set::{Self, VecSet};
@@ -134,8 +134,8 @@ public struct SuiSystemStateInner has store {
     /// when advance_epoch_safe_mode is executed. They will eventually be processed once we
     /// are out of safe mode.
     safe_mode: bool,
-    safe_mode_storage_rewards: Balance<SUI>,
-    safe_mode_computation_rewards: Balance<SUI>,
+    safe_mode_storage_rewards: Balance<AQY>,
+    safe_mode_computation_rewards: Balance<AQY>,
     safe_mode_storage_rebates: u64,
     safe_mode_non_refundable_storage_fee: u64,
     /// Unix timestamp of the current epoch start
@@ -180,8 +180,8 @@ public struct SuiSystemStateInnerV2 has store {
     /// when advance_epoch_safe_mode is executed. They will eventually be processed once we
     /// are out of safe mode.
     safe_mode: bool,
-    safe_mode_storage_rewards: Balance<SUI>,
-    safe_mode_computation_rewards: Balance<SUI>,
+    safe_mode_storage_rewards: Balance<AQY>,
+    safe_mode_computation_rewards: Balance<AQY>,
     safe_mode_storage_rebates: u64,
     safe_mode_non_refundable_storage_fee: u64,
     /// Unix timestamp of the current epoch start
@@ -213,7 +213,7 @@ public struct SystemEpochInfoEvent has copy, drop {
 /// This function will be called only once in genesis.
 public(package) fun create(
     validators: vector<Validator>,
-    initial_storage_fund: Balance<SUI>,
+    initial_storage_fund: Balance<AQY>,
     protocol_version: u64,
     epoch_start_timestamp_ms: u64,
     parameters: SystemParameters,
@@ -473,7 +473,7 @@ public(package) fun set_candidate_validator_commission_rate(
 /// Add stake to a validator's staking pool.
 public(package) fun request_add_stake(
     self: &mut SuiSystemStateInnerV2,
-    stake: Coin<SUI>,
+    stake: Coin<AQY>,
     validator_address: address,
     ctx: &mut TxContext,
 ): StakedSui {
@@ -489,7 +489,7 @@ public(package) fun request_add_stake(
 /// Add stake to a validator's staking pool using multiple coins.
 public(package) fun request_add_stake_mul_coin(
     self: &mut SuiSystemStateInnerV2,
-    stakes: vector<Coin<SUI>>,
+    stakes: vector<Coin<AQY>>,
     stake_amount: Option<u64>,
     validator_address: address,
     ctx: &mut TxContext,
@@ -503,7 +503,7 @@ public(package) fun request_withdraw_stake(
     self: &mut SuiSystemStateInnerV2,
     staked_sui: StakedSui,
     ctx: &TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     self.validators.request_withdraw_stake(staked_sui, ctx)
 }
 
@@ -519,7 +519,7 @@ public(package) fun redeem_fungible_staked_sui(
     self: &mut SuiSystemStateInnerV2,
     fungible_staked_sui: FungibleStakedSui,
     ctx: &TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     self.validators.redeem_fungible_staked_sui(fungible_staked_sui, ctx)
 }
 
@@ -807,8 +807,8 @@ public(package) fun advance_epoch(
     self: &mut SuiSystemStateInnerV2,
     new_epoch: u64,
     next_protocol_version: u64,
-    mut storage_reward: Balance<SUI>,
-    mut computation_reward: Balance<SUI>,
+    mut storage_reward: Balance<AQY>,
+    mut computation_reward: Balance<AQY>,
     mut storage_rebate_amount: u64,
     mut non_refundable_storage_fee_amount: u64,
     // share of storage fund's rewards that's reinvested
@@ -817,7 +817,7 @@ public(package) fun advance_epoch(
     reward_slashing_rate: u64, // how much rewards are slashed to punish a validator, in bps.
     epoch_start_timestamp_ms: u64, // Timestamp of the epoch start
     ctx: &mut TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     let prev_epoch_start_timestamp = self.epoch_start_timestamp_ms;
     self.epoch_start_timestamp_ms = epoch_start_timestamp_ms;
 
@@ -1069,12 +1069,12 @@ public(package) fun active_validator_addresses(self: &SuiSystemStateInnerV2): ve
 }
 
 #[allow(lint(self_transfer))]
-/// Extract required Balance from vector of Coin<SUI>, transfer the remainder back to sender.
+/// Extract required Balance from vector of Coin<AQY>, transfer the remainder back to sender.
 fun extract_coin_balance(
-    mut coins: vector<Coin<SUI>>,
+    mut coins: vector<Coin<AQY>>,
     amount: Option<u64>,
     ctx: &mut TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     let acc = coins.pop_back();
     let merged = coins.fold!(acc, |mut acc, coin| { acc.join(coin); acc });
     let mut total_balance = merged.into_balance();

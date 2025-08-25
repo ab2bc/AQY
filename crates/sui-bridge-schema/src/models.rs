@@ -84,7 +84,7 @@ impl ToSql<Text, Pg> for TokenTransferStatus {
 #[derive(Copy, Clone, Debug, AsExpression, FromSqlRow, EnumString, AsRefStr)]
 #[diesel(sql_type = Text)]
 pub enum BridgeDataSource {
-    SUI,
+    AQY,
     ETH,
 }
 

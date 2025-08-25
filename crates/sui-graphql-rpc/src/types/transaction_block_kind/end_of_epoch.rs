@@ -180,7 +180,7 @@ impl ChangeEpochTransaction {
         BigInt::from(self.native.computation_charge)
     }
 
-    /// The SUI returned to transaction senders for cleaning up objects (in MIST).
+    /// The AQY returned to transaction senders for cleaning up objects (in MIST).
     async fn storage_rebate(&self) -> BigInt {
         BigInt::from(self.native.storage_rebate)
     }

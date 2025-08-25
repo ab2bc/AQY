@@ -5,13 +5,13 @@
 
 //# run-graphql
 { # Happy paths
-  complex: type(type: "0x2::priority_queue::PriorityQueue<0x2::coin::Coin<0x2::sui::SUI>>") { ...Type }
-  coin: type(type: "0x2::coin::Coin<0x2::sui::SUI>") { ...Type }
-  token: type(type: "0x2::token::Token<0x2::sui::SUI>") { ...Type }
-  balance: type(type: "0x2::balance::Balance<0x2::sui::SUI>") { ...Type }
+  complex: type(type: "0x2::priority_queue::PriorityQueue<0x2::coin::Coin<0x2::sui::AQY>>") { ...Type }
+  coin: type(type: "0x2::coin::Coin<0x2::sui::AQY>") { ...Type }
+  token: type(type: "0x2::token::Token<0x2::sui::AQY>") { ...Type }
+  balance: type(type: "0x2::balance::Balance<0x2::sui::AQY>") { ...Type }
   primitive: type(type: "u64") { ...Type }
   prim_vector: type(type: "vector<u64>") { ...Type }
-  coin_vector: type(type: "vector<0x2::coin::Coin<0x2::sui::SUI>>") { ...Type }
+  coin_vector: type(type: "vector<0x2::coin::Coin<0x2::sui::AQY>>") { ...Type }
 }
 
 fragment Type on MoveType {
@@ -24,13 +24,13 @@ fragment Type on MoveType {
 //# run-graphql
 { # Multi-get
   multiGetTypes(keys: [
-    "0x2::priority_queue::PriorityQueue<0x2::coin::Coin<0x2::sui::SUI>>",
-    "0x2::coin::Coin<0x2::sui::SUI>",
-    "0x2::token::Token<0x2::sui::SUI>",
-    "0x2::balance::Balance<0x2::sui::SUI>",
+    "0x2::priority_queue::PriorityQueue<0x2::coin::Coin<0x2::sui::AQY>>",
+    "0x2::coin::Coin<0x2::sui::AQY>",
+    "0x2::token::Token<0x2::sui::AQY>",
+    "0x2::balance::Balance<0x2::sui::AQY>",
     "u64",
     "vector<u64>",
-    "vector<0x2::coin::Coin<0x2::sui::SUI>>",
+    "vector<0x2::coin::Coin<0x2::sui::AQY>>",
     "0x2::coin::Coin<0x2::doesnt::EXIST>",
   ]) {
     repr
@@ -77,7 +77,7 @@ fragment Type on MoveType {
 
 //# run-graphql
 { # Unhappy path, type argument arity mismatch
-  type(type: "0x2::coin::Coin<0x2::sui::SUI, u64>") {
+  type(type: "0x2::coin::Coin<0x2::sui::AQY, u64>") {
     abilities
   }
 }

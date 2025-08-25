@@ -432,9 +432,9 @@ fun distribute_rewards_and_advance_epoch(
 ): u64 {
     use sui::tx_context::{epoch};
     use sui::coin::{Self};
-    use sui::sui::SUI;
+    use sui::sui::AQY;
 
-    let rewards = coin::mint_for_testing<SUI>(reward_amount, scenario.ctx());
+    let rewards = coin::mint_for_testing<AQY>(reward_amount, scenario.ctx());
     staking_pool.deposit_rewards(coin::into_balance(rewards));
 
     staking_pool.process_pending_stakes_and_withdraws(scenario.ctx());

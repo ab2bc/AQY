@@ -484,7 +484,7 @@ Emitted only when a maker order is filled.
 <dd>
 </dd>
 <dt>
-<code>creation_fee: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;</code>
+<code>creation_fee: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;</code>
 </dt>
 <dd>
 </dd>
@@ -749,7 +749,7 @@ Deprecated since v1.0.0, use <code><a href="../deepbook/clob.md#deepbook_clob_Or
 
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="../deepbook/clob.md#deepbook_clob_create_pool">create_pool</a>&lt;BaseAsset, QuoteAsset&gt;(_tick_size: u64, _lot_size: u64, _creation_fee: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, _ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>)
+<pre><code><b>public</b> <b>fun</b> <a href="../deepbook/clob.md#deepbook_clob_create_pool">create_pool</a>&lt;BaseAsset, QuoteAsset&gt;(_tick_size: u64, _lot_size: u64, _creation_fee: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;, _ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>)
 </code></pre>
 
 
@@ -761,7 +761,7 @@ Deprecated since v1.0.0, use <code><a href="../deepbook/clob.md#deepbook_clob_Or
 <pre><code><b>public</b> <b>fun</b> <a href="../deepbook/clob.md#deepbook_clob_create_pool">create_pool</a>&lt;BaseAsset, QuoteAsset&gt;(
     _tick_size: u64,
     _lot_size: u64,
-    _creation_fee: Coin&lt;SUI&gt;,
+    _creation_fee: Coin&lt;AQY&gt;,
     _ctx: &<b>mut</b> TxContext,
 ) {
     <b>abort</b> <a href="../deepbook/clob.md#deepbook_clob_DEPRECATED">DEPRECATED</a>

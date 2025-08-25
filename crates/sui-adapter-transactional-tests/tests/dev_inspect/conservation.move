@@ -8,10 +8,10 @@
 //# publish
 
 module test::m {
-    use sui::sui::SUI;
+    use sui::sui::AQY;
     use sui::coin::Coin;
 
-    public fun transfer_back(c: Coin<SUI>, ctx: &mut TxContext) {
+    public fun transfer_back(c: Coin<AQY>, ctx: &mut TxContext) {
         sui::transfer::public_transfer(c, tx_context::sender(ctx))
     }
 }

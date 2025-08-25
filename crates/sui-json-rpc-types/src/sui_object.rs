@@ -191,7 +191,7 @@ pub struct SuiObjectData {
     /// SuiObjectDataOptions.showPreviousTransaction is set to true
     #[serde(skip_serializing_if = "Option::is_none")]
     pub previous_transaction: Option<TransactionDigest>,
-    /// The amount of SUI we would rebate if this object gets deleted.
+    /// The amount of AQY we would rebate if this object gets deleted.
     /// This number is re-calculated each time the object is mutated based on
     /// the present storage gas price.
     #[schemars(with = "Option<BigInt<u64>>")]
@@ -1228,7 +1228,7 @@ impl SuiObjectDataFilter {
                     ObjectType::Struct(s) => s.clone().into(),
                 };
                 // If people do not provide type_params, we will match all type_params
-                // e.g. `0x2::coin::Coin` can match `0x2::coin::Coin<0x2::sui::SUI>`
+                // e.g. `0x2::coin::Coin` can match `0x2::coin::Coin<0x2::sui::AQY>`
                 if !s.type_params.is_empty() && s.type_params != obj_tag.type_params {
                     false
                 } else {

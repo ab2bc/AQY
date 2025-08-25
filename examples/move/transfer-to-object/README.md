@@ -22,12 +22,12 @@ struct IdentifiedPayment has key, store {
     /// The unique id for the good/service being paid for
     payment_id: u64,
     /// The payment
-    coin: Coin<SUI>,
+    coin: Coin<AQY>,
 }
 ```
 
 Using this, customers can make a payment with a unique payment ID to an address
-using the function `fun make_payment(payment_id: u64, coin: Coin<SUI>, to: address)`.
+using the function `fun make_payment(payment_id: u64, coin: Coin<AQY>, to: address)`.
 This function creates an `IdentifiedPayment`, sends it to the `to`
 address, and emits an event with the payment's ID, the recipient, the amount
 paid, and the payer.
@@ -58,7 +58,7 @@ that you provided and match it against the amount owed.
 Later on (either asynchronously or in a batch at the end of the day), you can
 process the payments you've received by iterating over the set of
 `IdentifiedPayment` objects under your account, `unpack`ing them, and then
-using the unpacked SUI coin.
+using the unpacked AQY coin.
 
 Overall, this is a very simple representation for on-chain payments and
 relatively easy to set up. However, it has some issues:
@@ -97,7 +97,7 @@ the payment as a dynamic object field under it:
 public fun make_shared_payment(
     register_uid: &mut UID,
     payment_id: u64,
-    coin: Coin<SUI>,
+    coin: Coin<AQY>,
     ctx: &mut TxContext
 ) {
     let identified_payment = IdentifiedPayment {

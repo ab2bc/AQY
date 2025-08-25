@@ -17,7 +17,7 @@ use crate::{error::Error, types::json::Json, types::move_type::unexpected_signer
 use super::{base64::Base64, big_int::BigInt, move_type::MoveType, sui_address::SuiAddress};
 
 const STD: AccountAddress = AccountAddress::ONE;
-const SUI: AccountAddress = AccountAddress::TWO;
+const AQY: AccountAddress = AccountAddress::TWO;
 
 const MOD_ASCII: &IdentStr = ident_str!("ascii");
 const MOD_OBJECT: &IdentStr = ident_str!("object");
@@ -201,10 +201,10 @@ impl TryFrom<A::MoveValue> for MoveData {
                 {
                     // 0x1::ascii::String, 0x1::string::String
                     Self::String(extract_string(&type_, fields)?)
-                } else if is_type(&type_, &SUI, MOD_OBJECT, TYP_UID) {
+                } else if is_type(&type_, &AQY, MOD_OBJECT, TYP_UID) {
                     // 0x2::object::UID
                     Self::Uid(extract_uid(&type_, fields)?.into())
-                } else if is_type(&type_, &SUI, MOD_OBJECT, TYP_ID) {
+                } else if is_type(&type_, &AQY, MOD_OBJECT, TYP_ID) {
                     // 0x2::object::ID
                     Self::Id(extract_id(&type_, fields)?.into())
                 } else {
@@ -280,12 +280,12 @@ fn try_to_json_value(value: A::MoveValue) -> Result<Value, Error> {
             {
                 // 0x1::ascii::String, 0x1::string::String
                 Value::String(extract_string(&type_, fields)?)
-            } else if is_type(&type_, &SUI, MOD_OBJECT, TYP_UID) {
+            } else if is_type(&type_, &AQY, MOD_OBJECT, TYP_UID) {
                 // 0x2::object::UID
                 Value::String(
                     extract_uid(&type_, fields)?.to_canonical_string(/* with_prefix */ true),
                 )
-            } else if is_type(&type_, &SUI, MOD_OBJECT, TYP_ID) {
+            } else if is_type(&type_, &AQY, MOD_OBJECT, TYP_ID) {
                 // 0x2::object::ID
                 Value::String(
                     extract_id(&type_, fields)?.to_canonical_string(/* with_prefix */ true),
@@ -436,7 +436,7 @@ fn extract_uid(
     };
 
     let A::MoveStruct { type_, fields } = s;
-    if !is_type(&type_, &SUI, MOD_OBJECT, TYP_ID) {
+    if !is_type(&type_, &AQY, MOD_OBJECT, TYP_ID) {
         return Err(Error::Internal(
             "Expected UID.id to have type ID.".to_string(),
         ));

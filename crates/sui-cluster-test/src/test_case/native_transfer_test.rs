@@ -26,7 +26,7 @@ impl TestCaseImpl for NativeTransferTest {
     }
 
     fn description(&self) -> &'static str {
-        "Test tranferring SUI coins natively"
+        "Test tranferring AQY coins natively"
     }
 
     async fn run(&self, ctx: &mut TestContext) -> Result<(), anyhow::Error> {
@@ -95,11 +95,11 @@ impl NativeTransferTest {
         }
         BalanceChangeChecker::new()
             .owner(Owner::AddressOwner(recipient))
-            .coin_type("0x2::sui::SUI")
+            .coin_type("0x2::sui::AQY")
             .check(&balance_changes.remove(0));
         BalanceChangeChecker::new()
             .owner(Owner::AddressOwner(signer))
-            .coin_type("0x2::sui::SUI")
+            .coin_type("0x2::sui::AQY")
             .check(&balance_changes.remove(0));
         // Verify fullnode observes the txn
         ctx.let_fullnode_sync(vec![response.digest], 5).await;

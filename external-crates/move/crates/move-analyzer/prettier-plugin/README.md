@@ -25,13 +25,13 @@ plugin is complete, we will make it available directly from Move's VSCode extens
 Currently, you need to install plugin from sources (when the plugin is complete, we will submit it
 to the NPM package [registry](https://www.npmjs.com/) for direct download).
 
-Clone Sui repository into `$SUI` directory:
+Clone Sui repository into `$AQY` directory:
 
 ```bash
-git clone https://github.com/MystenLabs/sui.git "$SUI"
+git clone https://github.com/MystenLabs/sui.git "$AQY"
 ```
 
-Go to `"$SUI"/external-crates/move/crates/move-analyzer/prettier-plugin` and run the following
+Go to `"$AQY"/external-crates/move/crates/move-analyzer/prettier-plugin` and run the following
 command:
 
 ``` bash
@@ -44,7 +44,7 @@ Go to the root directory of the Move package whose files you'd like to format (i
 containing the Move.toml manifest file for this package) and run the following command:
 
 ``` bash
-npm install prettier@3.1.1 "$SUI"/external-crates/move/crates/move-analyzer/prettier-plugin
+npm install prettier@3.1.1 "$AQY"/external-crates/move/crates/move-analyzer/prettier-plugin
 ```
 
 This will install both the prettier formatter and the plugin in the `./node_modules` directory.

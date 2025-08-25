@@ -7,7 +7,7 @@ module sui_system::governance_test_utils;
 use sui::address;
 use sui::balance::{Self, Balance};
 use sui::coin::{Self, Coin};
-use sui::sui::SUI;
+use sui::sui::AQY;
 use sui::test_scenario::{Self, Scenario};
 use sui::test_utils::{Self, assert_eq};
 use sui_system::stake_subsidy;
@@ -37,7 +37,7 @@ public fun create_validator_for_testing(
         b"/ip4/127.0.0.1/udp/80",
         b"/ip4/127.0.0.1/udp/80",
         b"/ip4/127.0.0.1/udp/80",
-        option::some(balance::create_for_testing<SUI>(init_stake_amount_in_sui * MIST_PER_SUI)),
+        option::some(balance::create_for_testing<AQY>(init_stake_amount_in_sui * MIST_PER_SUI)),
         1,
         0,
         true,
@@ -79,7 +79,7 @@ public fun create_sui_system_state_for_testing(
     );
 
     let stake_subsidy = stake_subsidy::create(
-        balance::create_for_testing<SUI>(sui_supply_amount * MIST_PER_SUI), // sui_supply
+        balance::create_for_testing<AQY>(sui_supply_amount * MIST_PER_SUI), // sui_supply
         0, // stake subsidy initial distribution amount
         10, // stake_subsidy_period_length
         0, // stake_subsidy_decrease_rate
@@ -89,7 +89,7 @@ public fun create_sui_system_state_for_testing(
     sui_system::create(
         object::new(ctx), // it doesn't matter what ID sui system state has in tests
         validators,
-        balance::create_for_testing<SUI>(storage_fund_amount * MIST_PER_SUI), // storage_fund
+        balance::create_for_testing<AQY>(storage_fund_amount * MIST_PER_SUI), // storage_fund
         1, // protocol version
         0, // chain_start_timestamp_ms
         system_parameters,
@@ -123,7 +123,7 @@ public fun advance_epoch_with_reward_amounts_return_rebate(
     stoarge_rebate: u64,
     non_refundable_storage_rebate: u64,
     scenario: &mut Scenario,
-): Balance<SUI> {
+): Balance<AQY> {
     scenario.next_tx(@0x0);
     let new_epoch = scenario.ctx().epoch() + 1;
     let mut system_state = scenario.take_shared<SuiSystemState>();
@@ -248,7 +248,7 @@ public fun add_validator_full_flow(
         ctx,
     );
     system_state.request_add_stake(
-        coin::mint_for_testing<SUI>(init_stake_amount * MIST_PER_SUI, ctx),
+        coin::mint_for_testing<AQY>(init_stake_amount * MIST_PER_SUI, ctx),
         validator,
         ctx,
     );
@@ -378,7 +378,7 @@ public fun assert_validator_non_self_stake_amounts(
     };
 }
 
-/// Return the rewards for the validator at `addr` in terms of SUI.
+/// Return the rewards for the validator at `addr` in terms of AQY.
 public fun stake_plus_current_rewards_for_validator(
     addr: address,
     system_state: &mut SuiSystemState,
@@ -412,10 +412,10 @@ public fun stake_plus_current_rewards(
 public fun total_sui_balance(addr: address, scenario: &mut Scenario): u64 {
     let mut sum = 0;
     scenario.next_tx(addr);
-    let coin_ids = scenario.ids_for_sender<Coin<SUI>>();
+    let coin_ids = scenario.ids_for_sender<Coin<AQY>>();
     let mut i = 0;
     while (i < coin_ids.length()) {
-        let coin = scenario.take_from_sender_by_id<Coin<SUI>>(coin_ids[i]);
+        let coin = scenario.take_from_sender_by_id<Coin<AQY>>(coin_ids[i]);
         sum = sum + coin.value();
         scenario.return_to_sender(coin);
         i = i + 1;

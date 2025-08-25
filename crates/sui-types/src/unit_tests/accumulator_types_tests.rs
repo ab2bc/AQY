@@ -15,7 +15,7 @@ use move_core_types::language_storage::{StructTag, TypeTag};
 
 #[test]
 fn test_sui_balance_accumulator_field_recognition() {
-    // Create a Field<Key<Balance<SUI>>, U128> type
+    // Create a Field<Key<Balance<AQY>>, U128> type
     let sui_balance = Balance::type_tag(GAS::type_tag());
     let key_type = AccumulatorKey::get_type_tag(&[sui_balance]);
     let u128_type = U128::get_type_tag();
@@ -54,7 +54,7 @@ fn test_non_sui_balance_accumulator_field_recognition() {
     // Convert to MoveObjectType and check if it's recognized
     let move_type = MoveObjectType::from(field_type.clone());
 
-    // Should be recognized as a balance accumulator field, but not SUI
+    // Should be recognized as a balance accumulator field, but not AQY
     assert!(move_type.is_balance_accumulator_field());
     assert!(!move_type.is_sui_balance_accumulator_field());
 
@@ -95,7 +95,7 @@ fn test_non_accumulator_field_not_recognized() {
 
 #[test]
 fn test_accumulator_field_type_params() {
-    // Create a Field<Key<Balance<SUI>>, U128> type
+    // Create a Field<Key<Balance<AQY>>, U128> type
     let sui_balance = Balance::type_tag(GAS::type_tag());
     let key_type = AccumulatorKey::get_type_tag(&[sui_balance]);
     let u128_type = U128::get_type_tag();
@@ -113,7 +113,7 @@ fn test_accumulator_field_type_params() {
 
 #[test]
 fn test_accumulator_field_struct_tag_reconstruction() {
-    // Create a Field<Key<Balance<SUI>>, U128> type
+    // Create a Field<Key<Balance<AQY>>, U128> type
     let sui_balance = Balance::type_tag(GAS::type_tag());
     let key_type = AccumulatorKey::get_type_tag(&[sui_balance]);
     let u128_type = U128::get_type_tag();
@@ -132,7 +132,7 @@ fn test_accumulator_storage_savings() {
     let owner = SuiAddress::random_for_testing_only();
     let balance = 1000u64;
 
-    // Create the field struct tag for Field<Key<Balance<SUI>>, U128>
+    // Create the field struct tag for Field<Key<Balance<AQY>>, U128>
     let sui_balance = Balance::type_tag(GAS::type_tag());
     let key_type = AccumulatorKey::get_type_tag(&[sui_balance]);
     let u128_type = U128::get_type_tag();

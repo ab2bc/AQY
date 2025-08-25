@@ -344,7 +344,7 @@ impl Epoch {
         Ok(storage_rebate.map(BigInt::from))
     }
 
-    /// SUI set aside to account for objects stored on-chain, at the start of the epoch.
+    /// AQY set aside to account for objects stored on-chain, at the start of the epoch.
     /// This is also used for storage rebates.
     async fn storage_fund(&self, ctx: &Context<'_>) -> Result<Option<StorageFund>, RpcError> {
         let Some(system_state) = self.system_state(ctx).await? else {

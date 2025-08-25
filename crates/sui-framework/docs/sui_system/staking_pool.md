@@ -129,11 +129,11 @@ A staking pool embedded in each validator struct in the system state object.
 <code><a href="../sui_system/staking_pool.md#sui_system_staking_pool_sui_balance">sui_balance</a>: u64</code>
 </dt>
 <dd>
- The total number of SUI tokens in this pool, including the SUI in the rewards_pool, as well as in all the principal
+ The total number of AQY tokens in this pool, including the AQY in the rewards_pool, as well as in all the principal
  in the <code><a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">StakedSui</a></code> object, updated at epoch boundaries.
 </dd>
 <dt>
-<code>rewards_pool: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;</code>
+<code>rewards_pool: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;</code>
 </dt>
 <dd>
  The epoch stake rewards will be added here at the end of each epoch.
@@ -163,7 +163,7 @@ A staking pool embedded in each validator struct in the system state object.
 </dt>
 <dd>
  Pending stake withdrawn during the current epoch, emptied at epoch boundaries.
- This includes both the principal and rewards SUI withdrawn.
+ This includes both the principal and rewards AQY withdrawn.
 </dd>
 <dt>
 <code>pending_pool_token_withdraw: u64</code>
@@ -186,7 +186,7 @@ A staking pool embedded in each validator struct in the system state object.
 
 ## Struct `PoolTokenExchangeRate`
 
-Struct representing the exchange rate of the stake pool token to SUI.
+Struct representing the exchange rate of the stake pool token to AQY.
 
 
 <pre><code><b>public</b> <b>struct</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_PoolTokenExchangeRate">PoolTokenExchangeRate</a> <b>has</b> <b>copy</b>, drop, store
@@ -218,7 +218,7 @@ Struct representing the exchange rate of the stake pool token to SUI.
 
 ## Struct `StakedSui`
 
-A self-custodial object holding the staked SUI tokens.
+A self-custodial object holding the staked AQY tokens.
 
 
 <pre><code><b>public</b> <b>struct</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">StakedSui</a> <b>has</b> key, store
@@ -249,10 +249,10 @@ A self-custodial object holding the staked SUI tokens.
  The epoch at which the stake becomes active.
 </dd>
 <dt>
-<code>principal: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;</code>
+<code>principal: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;</code>
 </dt>
 <dd>
- The staked SUI tokens.
+ The staked AQY tokens.
 </dd>
 </dl>
 
@@ -263,7 +263,7 @@ A self-custodial object holding the staked SUI tokens.
 
 ## Struct `FungibleStakedSui`
 
-An alternative to <code><a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">StakedSui</a></code> that holds the pool token amount instead of the SUI balance.
+An alternative to <code><a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">StakedSui</a></code> that holds the pool token amount instead of the AQY balance.
 StakedSui objects can be converted to FungibleStakedSuis after the initial warmup period.
 The advantage of this is that you can now merge multiple StakedSui objects from different
 activation epochs into a single FungibleStakedSui object.
@@ -330,7 +330,7 @@ Holds useful information
  fungible_staked_sui supply
 </dd>
 <dt>
-<code>principal: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;</code>
+<code>principal: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;</code>
 </dt>
 <dd>
  principal balance. Rewards are withdrawn from the reward pool
@@ -609,7 +609,7 @@ Create a new, empty staking pool.
 Request to stake to a staking pool. The stake starts counting at the beginning of the next epoch,
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_request_add_stake">request_add_stake</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, stake: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, <a href="../sui_system/staking_pool.md#sui_system_staking_pool_stake_activation_epoch">stake_activation_epoch</a>: u64, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_request_add_stake">request_add_stake</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, stake: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;, <a href="../sui_system/staking_pool.md#sui_system_staking_pool_stake_activation_epoch">stake_activation_epoch</a>: u64, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>
 </code></pre>
 
 
@@ -620,7 +620,7 @@ Request to stake to a staking pool. The stake starts counting at the beginning o
 
 <pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_request_add_stake">request_add_stake</a>(
     pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">StakingPool</a>,
-    stake: Balance&lt;SUI&gt;,
+    stake: Balance&lt;AQY&gt;,
     <a href="../sui_system/staking_pool.md#sui_system_staking_pool_stake_activation_epoch">stake_activation_epoch</a>: u64,
     ctx: &<b>mut</b> TxContext,
 ): <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">StakedSui</a> {
@@ -646,11 +646,11 @@ Request to stake to a staking pool. The stake starts counting at the beginning o
 ## Function `request_withdraw_stake`
 
 Request to withdraw the given stake plus rewards from a staking pool.
-Both the principal and corresponding rewards in SUI are withdrawn.
+Both the principal and corresponding rewards in AQY are withdrawn.
 A proportional amount of pool token withdraw is recorded and processed at epoch change time.
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_request_withdraw_stake">request_withdraw_stake</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>, ctx: &<a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_request_withdraw_stake">request_withdraw_stake</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>, ctx: &<a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -663,7 +663,7 @@ A proportional amount of pool token withdraw is recorded and processed at epoch 
     pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">StakingPool</a>,
     staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">StakedSui</a>,
     ctx: &TxContext,
-): Balance&lt;SUI&gt; {
+): Balance&lt;AQY&gt; {
     // stake is inactive and the pool is not preactive - allow direct withdraw
     // the reason why we exclude preactive pools is to avoid potential underflow
     // on subtraction, and we need to enforce `pending_stake_withdraw` call.
@@ -703,7 +703,7 @@ A proportional amount of pool token withdraw is recorded and processed at epoch 
 
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_redeem_fungible_staked_sui">redeem_fungible_staked_sui</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, fungible_staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_FungibleStakedSui">sui_system::staking_pool::FungibleStakedSui</a>, ctx: &<a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_redeem_fungible_staked_sui">redeem_fungible_staked_sui</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, fungible_staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_FungibleStakedSui">sui_system::staking_pool::FungibleStakedSui</a>, ctx: &<a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -716,7 +716,7 @@ A proportional amount of pool token withdraw is recorded and processed at epoch 
     pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">StakingPool</a>,
     fungible_staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_FungibleStakedSui">FungibleStakedSui</a>,
     ctx: &TxContext,
-): Balance&lt;SUI&gt; {
+): Balance&lt;AQY&gt; {
     <b>let</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_FungibleStakedSui">FungibleStakedSui</a> { id, <a href="../sui_system/staking_pool.md#sui_system_staking_pool_pool_id">pool_id</a>, value } = fungible_staked_sui;
     <b>assert</b>!(<a href="../sui_system/staking_pool.md#sui_system_staking_pool_pool_id">pool_id</a> == object::id(pool), <a href="../sui_system/staking_pool.md#sui_system_staking_pool_EWrongPool">EWrongPool</a>);
     id.delete();
@@ -806,7 +806,7 @@ returns (principal_withdraw_amount, rewards_withdraw_amount)
 
 ## Function `convert_to_fungible_staked_sui`
 
-Convert the given staked SUI to an FungibleStakedSui object
+Convert the given staked AQY to an FungibleStakedSui object
 
 
 <pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_convert_to_fungible_staked_sui">convert_to_fungible_staked_sui</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/staking_pool.md#sui_system_staking_pool_FungibleStakedSui">sui_system::staking_pool::FungibleStakedSui</a>
@@ -866,12 +866,12 @@ Convert the given staked SUI to an FungibleStakedSui object
 
 ## Function `withdraw_from_principal`
 
-Withdraw the principal SUI stored in the StakedSui object, and calculate the corresponding amount of pool
+Withdraw the principal AQY stored in the StakedSui object, and calculate the corresponding amount of pool
 tokens using exchange rate at staking epoch.
-Returns values are amount of pool tokens withdrawn and withdrawn principal portion of SUI.
+Returns values are amount of pool tokens withdrawn and withdrawn principal portion of AQY.
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_withdraw_from_principal">withdraw_from_principal</a>(pool: &<a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>): (u64, <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;)
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_withdraw_from_principal">withdraw_from_principal</a>(pool: &<a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>): (u64, <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;)
 </code></pre>
 
 
@@ -883,7 +883,7 @@ Returns values are amount of pool tokens withdrawn and withdrawn principal porti
 <pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_withdraw_from_principal">withdraw_from_principal</a>(
     pool: &<a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">StakingPool</a>,
     staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">StakedSui</a>,
-): (u64, Balance&lt;SUI&gt;) {
+): (u64, Balance&lt;AQY&gt;) {
     // Check that the stake information matches the pool.
     <b>assert</b>!(staked_sui.<a href="../sui_system/staking_pool.md#sui_system_staking_pool_pool_id">pool_id</a> == object::id(pool), <a href="../sui_system/staking_pool.md#sui_system_staking_pool_EWrongPool">EWrongPool</a>);
     <b>let</b> exchange_rate_at_staking_epoch = pool.<a href="../sui_system/staking_pool.md#sui_system_staking_pool_pool_token_exchange_rate_at_epoch">pool_token_exchange_rate_at_epoch</a>(staked_sui.<a href="../sui_system/staking_pool.md#sui_system_staking_pool_stake_activation_epoch">stake_activation_epoch</a>);
@@ -903,7 +903,7 @@ Returns values are amount of pool tokens withdrawn and withdrawn principal porti
 
 
 
-<pre><code><b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_unwrap_staked_sui">unwrap_staked_sui</a>(staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_unwrap_staked_sui">unwrap_staked_sui</a>(staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -912,7 +912,7 @@ Returns values are amount of pool tokens withdrawn and withdrawn principal porti
 <summary>Implementation</summary>
 
 
-<pre><code><b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_unwrap_staked_sui">unwrap_staked_sui</a>(staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">StakedSui</a>): Balance&lt;SUI&gt; {
+<pre><code><b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_unwrap_staked_sui">unwrap_staked_sui</a>(staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">StakedSui</a>): Balance&lt;AQY&gt; {
     <b>let</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">StakedSui</a> { id, principal, .. } = staked_sui;
     id.delete();
     principal
@@ -927,10 +927,10 @@ Returns values are amount of pool tokens withdrawn and withdrawn principal porti
 
 ## Function `deposit_rewards`
 
-Called at epoch advancement times to add rewards (in SUI) to the staking pool.
+Called at epoch advancement times to add rewards (in AQY) to the staking pool.
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_deposit_rewards">deposit_rewards</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, rewards: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;)
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_deposit_rewards">deposit_rewards</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, rewards: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;)
 </code></pre>
 
 
@@ -939,7 +939,7 @@ Called at epoch advancement times to add rewards (in SUI) to the staking pool.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_deposit_rewards">deposit_rewards</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">StakingPool</a>, rewards: Balance&lt;SUI&gt;) {
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_deposit_rewards">deposit_rewards</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">StakingPool</a>, rewards: Balance&lt;AQY&gt;) {
     pool.<a href="../sui_system/staking_pool.md#sui_system_staking_pool_sui_balance">sui_balance</a> = pool.<a href="../sui_system/staking_pool.md#sui_system_staking_pool_sui_balance">sui_balance</a> + rewards.value();
     pool.rewards_pool.join(rewards);
 }
@@ -1051,7 +1051,7 @@ Called at epoch boundaries to process the pending stake.
 ## Function `withdraw_rewards`
 
 This function does the following:
-1. Calculates the total amount of SUI (including principal and rewards) that the provided pool tokens represent
+1. Calculates the total amount of AQY (including principal and rewards) that the provided pool tokens represent
 at the current exchange rate.
 2. Using the above number and the given <code>principal_withdraw_amount</code>, calculates the rewards portion of the
 stake we should withdraw.
@@ -1059,7 +1059,7 @@ stake we should withdraw.
 portion because the principal portion was already taken out of the staker's self custodied StakedSui.
 
 
-<pre><code><b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_withdraw_rewards">withdraw_rewards</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, principal_withdraw_amount: u64, pool_token_withdraw_amount: u64, epoch: u64): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>fun</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_withdraw_rewards">withdraw_rewards</a>(pool: &<b>mut</b> <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakingPool">sui_system::staking_pool::StakingPool</a>, principal_withdraw_amount: u64, pool_token_withdraw_amount: u64, epoch: u64): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -1073,7 +1073,7 @@ portion because the principal portion was already taken out of the staker's self
     principal_withdraw_amount: u64,
     pool_token_withdraw_amount: u64,
     epoch: u64,
-): Balance&lt;SUI&gt; {
+): Balance&lt;AQY&gt; {
     <b>let</b> exchange_rate = pool.<a href="../sui_system/staking_pool.md#sui_system_staking_pool_pool_token_exchange_rate_at_epoch">pool_token_exchange_rate_at_epoch</a>(epoch);
     <b>let</b> total_sui_withdraw_amount = exchange_rate.<a href="../sui_system/staking_pool.md#sui_system_staking_pool_get_sui_amount">get_sui_amount</a>(pool_token_withdraw_amount);
     <b>let</b> <b>mut</b> reward_withdraw_amount = <b>if</b> (total_sui_withdraw_amount &gt;= principal_withdraw_amount) {

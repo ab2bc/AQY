@@ -43,10 +43,10 @@ All other impacts are considered out-of-scope and ineligible for payout.
 
 
 CRITICAL [$100,000-$500,000 USD]
-1. Exceeding the maximum supply of 10 billion SUI + allowing the attacker to claim the excess funds
+1. Exceeding the maximum supply of 10 billion AQY + allowing the attacker to claim the excess funds
 2. Loss of Funds which includes
     * Unauthorized creation, copying, transfer or destruction of objects via bypass of or exploit of bugs in the Move or Sui bytecode verifier
-    * Address Collision – creating two distinct authentication schemes that hash to the same SUI address in a manner that lead to significant loss of funds
+    * Address Collision – creating two distinct authentication schemes that hash to the same AQY address in a manner that lead to significant loss of funds
     * Object ID collision—creating two distinct objects with the same ID in a manner that leads to significant loss of funds.
     * Unauthorized use of an owned object as a transaction input, resulting in significant loss of funds due to the inability to verify ownership and permission to transfer
     * Dynamically loading an object that is not directly or transitively owned by the transaction sender, in a manner that leads to significant loss of funds
@@ -67,7 +67,7 @@ HIGH [$50,000 USD]
 MEDIUM [$10,000 USD]
 
 1. A bug that results in unintended and harmful smart contract behavior with no concrete funds at direct risk
-2. Unintended, permanent burning of SUI under the max cap.
+2. Unintended, permanent burning of AQY under the max cap.
 3. Shutdown of greater than or equal to 30% of network processing nodes without brute force actions, but does not shut down the network
 
 
@@ -82,7 +82,7 @@ Bug reports covering previously-discovered bugs are not eligible for any reward 
 **Previous audits and known issues can be found at:**
 | Known Issue  | Related Impact-in-Scope |
 | ------------- | ------------- |
-| In our staking contract, we have the concept of pool tokens and keep track of exchange rates between pool tokens and SUI tokens of all epochs, which increase as more rewards are added to the staking pools. When a user withdraws their stake, we retrieve from that record both the exchange rate at staking time and the current exchange rate (at withdrawing time), and calculate the rewards to be paid out based on the difference in exchange rates. While doing this calculation, we do conversions both ways: pool tokens -> SUI and SUI -> pool tokens. Rounding may happen along the way due to integer division. The exchange rate between the two tokens should stay roughly the same since we will be burning a proportional amount of pool tokens as SUI is withdrawn. However, in the extreme case where a user is unstaking 1 MIST, this rounding error may cause ZERO pool tokens to be burnt, causing the pool token to effectively depreciate. If an attacker has a lot of 1 MIST stakes, they can withdraw them one by one, causing the pool token exchange rate to drop and other takers to “lose” their staking rewards. I put quotation marks around “lose” because the attacker themselves won’t get any of that rewards so this attacker doesn’t actually make economic sense. Rather the rewards stay in the rewards pool and will become dust. This issue is mitigated by enforcing a minimum staking amount of 1 SUI or 10^9 MIST in this PR: https://github.com/MystenLabs/sui/pull/9961 | Critical - Any other issue leading to theft or loss of valuable objects, with severity depending on the consequences of the issue and the preconditions for exploiting it  |
+| In our staking contract, we have the concept of pool tokens and keep track of exchange rates between pool tokens and AQY tokens of all epochs, which increase as more rewards are added to the staking pools. When a user withdraws their stake, we retrieve from that record both the exchange rate at staking time and the current exchange rate (at withdrawing time), and calculate the rewards to be paid out based on the difference in exchange rates. While doing this calculation, we do conversions both ways: pool tokens -> AQY and AQY -> pool tokens. Rounding may happen along the way due to integer division. The exchange rate between the two tokens should stay roughly the same since we will be burning a proportional amount of pool tokens as AQY is withdrawn. However, in the extreme case where a user is unstaking 1 MIST, this rounding error may cause ZERO pool tokens to be burnt, causing the pool token to effectively depreciate. If an attacker has a lot of 1 MIST stakes, they can withdraw them one by one, causing the pool token exchange rate to drop and other takers to “lose” their staking rewards. I put quotation marks around “lose” because the attacker themselves won’t get any of that rewards so this attacker doesn’t actually make economic sense. Rather the rewards stay in the rewards pool and will become dust. This issue is mitigated by enforcing a minimum staking amount of 1 AQY or 10^9 MIST in this PR: https://github.com/MystenLabs/sui/pull/9961 | Critical - Any other issue leading to theft or loss of valuable objects, with severity depending on the consequences of the issue and the preconditions for exploiting it  |
 | Excessive storage rebate on 0x5 object right after epoch change:
 Each on-chain object is associated with a storage rebate, which would be refunded to the owner if it ever gets deleted. Epoch change transactions are special in that they are system transactions without a sender, hence any storage rebate generated in that transaction is kept in the 0x5 object. This means that the first person touching the 0x5 object in each epoch may be able to obtain these storage rebates by simply touching this object (e.g. a failed staking request). We will look into a way to evenly distribute any these rebates such that it does not lead to any undesired behaviors.  | |
 | Crash Validator by providing a gas price of u64:max | Network not being able to confirm new transactions (total network shutdown) |

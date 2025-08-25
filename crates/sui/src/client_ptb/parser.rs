@@ -1033,7 +1033,7 @@ mod tests {
             "0x2::object::UID",
             "3::staking_pool::StakedSui",
             // Generic types
-            "0x2::coin::Coin<2::sui::SUI>",
+            "0x2::coin::Coin<2::sui::AQY>",
             "sui::table::Table<sui::object::ID, vector<0x1::option::Option<u32>>>",
         ];
         let mut parsed = Vec::new();

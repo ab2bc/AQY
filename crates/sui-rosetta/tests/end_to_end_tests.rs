@@ -668,27 +668,27 @@ async fn test_transfer_single_gas_coin() {
 ///
 /// use sui::balance::Balance;
 /// use sui::coin::Coin;
-/// use sui::sui::SUI;
+/// use sui::sui::AQY;
 ///
 /// public struct Vault has key, store {
 ///     id: UID,
-///     balance: Balance<SUI>
+///     balance: Balance<AQY>
 /// }
 ///
-/// public fun from_coin(coin: Coin<SUI>, ctx: &mut TxContext): Vault {
+/// public fun from_coin(coin: Coin<AQY>, ctx: &mut TxContext): Vault {
 ///     Vault {
 ///         id: object::new(ctx),
 ///         balance: coin.into_balance()
 ///     }
 /// }
 ///
-/// public fun to_coin(self: Vault, ctx: &mut TxContext): Coin<SUI> {
+/// public fun to_coin(self: Vault, ctx: &mut TxContext): Coin<AQY> {
 ///     let Vault { id, balance } = self;
 ///     id.delete();
 ///     balance.into_coin(ctx)
 /// }
 ///
-/// public fun amount_to_coin(self: &mut Vault, amount: u64, ctx: &mut TxContext): Coin<SUI> {
+/// public fun amount_to_coin(self: &mut Vault, amount: u64, ctx: &mut TxContext): Coin<AQY> {
 ///     self.balance.split(amount).into_coin(ctx)
 /// }
 ///
@@ -872,7 +872,7 @@ async fn test_balance_from_obj_paid_eq_gas() {
           "owner": {
             "AddressOwner": SENDER.to_string()
           },
-          "objectType": "0x2::coin::Coin<0x2::sui::SUI>",
+          "objectType": "0x2::coin::Coin<0x2::sui::AQY>",
           "objectId": "0x08d6f5f85a55933fff977c94a2d1d94e8e2fff241c19c20bc5c032e0989f16a4",
           "version": "9",
           "previousVersion": "8",
@@ -896,7 +896,7 @@ async fn test_balance_from_obj_paid_eq_gas() {
           "owner": {
             "AddressOwner": SENDER.to_string()
           },
-          "objectType": "0x2::coin::Coin<0x2::sui::SUI>",
+          "objectType": "0x2::coin::Coin<0x2::sui::AQY>",
           "objectId": "0x2cdc782a9d96099e2c81d0a6da4894010ce4a46497e1099d12e8b36eca686afe",
           "version": "9",
           "digest": "6o2P3rp4jzYtvxtwpcENgP3eQNofpD77XtiAS8LZY18g"
@@ -907,7 +907,7 @@ async fn test_balance_from_obj_paid_eq_gas() {
           "owner": {
             "AddressOwner": RECIPIENT.to_string()
           },
-          "objectType": "0x2::coin::Coin<0x2::sui::SUI>",
+          "objectType": "0x2::coin::Coin<0x2::sui::AQY>",
           "objectId": "0xd0416564dd8e4cb54cc4151c229546484f22053a721297bafd326e1049c49d47",
           "version": "9",
           "digest": "3fo2kTR6tpe2c9dkHtLFGH8eVTTq2BKRNpJ19ognTmCe"
@@ -918,7 +918,7 @@ async fn test_balance_from_obj_paid_eq_gas() {
           "owner": {
             "AddressOwner": RECIPIENT.to_string()
           },
-          "coinType": "0x2::sui::SUI",
+          "coinType": "0x2::sui::AQY",
           "amount": AMOUNT.to_string()
         }
       ],

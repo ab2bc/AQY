@@ -32,7 +32,7 @@ pub(crate) struct ObjectFilter {
     /// - A package address: `0x2`,
     /// - A module: `0x2::coin`,
     /// - A fully-qualified name: `0x2::coin::Coin`,
-    /// - A type instantiation: `0x2::coin::Coin<0x2::sui::SUI>`.
+    /// - A type instantiation: `0x2::coin::Coin<0x2::sui::AQY>`.
     pub type_: Option<TypeFilter>,
 }
 
@@ -203,7 +203,7 @@ mod tests {
         let sui = ObjectFilter {
             owner_kind: None,
             owner: None,
-            type_: Some("0x2::coin::Coin<0x2::sui::SUI>".parse().unwrap()),
+            type_: Some("0x2::coin::Coin<0x2::sui::AQY>".parse().unwrap()),
         };
 
         let token = ObjectFilter {
@@ -233,7 +233,7 @@ mod tests {
         let a_sui = ObjectFilter {
             owner_kind: Some(OwnerKind::Address),
             owner: Some("0x1".parse().unwrap()),
-            type_: Some("0x2::coin::Coin<0x2::sui::SUI>".parse().unwrap()),
+            type_: Some("0x2::coin::Coin<0x2::sui::AQY>".parse().unwrap()),
         };
 
         let o_coin = ObjectFilter {

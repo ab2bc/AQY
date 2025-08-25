@@ -6,11 +6,11 @@ module sui_system::staking_pool;
 
 use sui::bag::{Self, Bag};
 use sui::balance::{Self, Balance};
-use sui::sui::SUI;
+use sui::sui::AQY;
 use sui::table::{Self, Table};
 
 /// StakedSui objects cannot be split to below this amount.
-const MIN_STAKING_THRESHOLD: u64 = 1_000_000_000; // 1 SUI
+const MIN_STAKING_THRESHOLD: u64 = 1_000_000_000; // 1 AQY
 
 const EInsufficientPoolTokenBalance: u64 = 0;
 const EWrongPool: u64 = 1;
@@ -43,11 +43,11 @@ public struct StakingPool has key, store {
     /// The epoch at which this staking pool ceased to be active. `None` = {pre-active, active},
     /// `Some(<epoch_number>)` if in-active, and it was de-activated at epoch `<epoch_number>`.
     deactivation_epoch: Option<u64>,
-    /// The total number of SUI tokens in this pool, including the SUI in the rewards_pool, as well as in all the principal
+    /// The total number of AQY tokens in this pool, including the AQY in the rewards_pool, as well as in all the principal
     /// in the `StakedSui` object, updated at epoch boundaries.
     sui_balance: u64,
     /// The epoch stake rewards will be added here at the end of each epoch.
-    rewards_pool: Balance<SUI>,
+    rewards_pool: Balance<AQY>,
     /// Total number of pool tokens issued by the pool.
     pool_token_balance: u64,
     /// Exchange rate history of previous epochs. Key is the epoch number.
@@ -57,7 +57,7 @@ public struct StakingPool has key, store {
     /// Pending stake amount for this epoch, emptied at epoch boundaries.
     pending_stake: u64,
     /// Pending stake withdrawn during the current epoch, emptied at epoch boundaries.
-    /// This includes both the principal and rewards SUI withdrawn.
+    /// This includes both the principal and rewards AQY withdrawn.
     pending_total_sui_withdraw: u64,
     /// Pending pool token withdrawn during the current epoch, emptied at epoch boundaries.
     pending_pool_token_withdraw: u64,
@@ -65,24 +65,24 @@ public struct StakingPool has key, store {
     extra_fields: Bag,
 }
 
-/// Struct representing the exchange rate of the stake pool token to SUI.
+/// Struct representing the exchange rate of the stake pool token to AQY.
 public struct PoolTokenExchangeRate has copy, drop, store {
     sui_amount: u64,
     pool_token_amount: u64,
 }
 
-/// A self-custodial object holding the staked SUI tokens.
+/// A self-custodial object holding the staked AQY tokens.
 public struct StakedSui has key, store {
     id: UID,
     /// ID of the staking pool we are staking with.
     pool_id: ID,
     /// The epoch at which the stake becomes active.
     stake_activation_epoch: u64,
-    /// The staked SUI tokens.
-    principal: Balance<SUI>,
+    /// The staked AQY tokens.
+    principal: Balance<AQY>,
 }
 
-/// An alternative to `StakedSui` that holds the pool token amount instead of the SUI balance.
+/// An alternative to `StakedSui` that holds the pool token amount instead of the AQY balance.
 /// StakedSui objects can be converted to FungibleStakedSuis after the initial warmup period.
 /// The advantage of this is that you can now merge multiple StakedSui objects from different
 /// activation epochs into a single FungibleStakedSui object.
@@ -100,7 +100,7 @@ public struct FungibleStakedSuiData has key, store {
     /// fungible_staked_sui supply
     total_supply: u64,
     /// principal balance. Rewards are withdrawn from the reward pool
-    principal: Balance<SUI>,
+    principal: Balance<AQY>,
 }
 
 // === dynamic field keys ===
@@ -130,7 +130,7 @@ public(package) fun new(ctx: &mut TxContext): StakingPool {
 /// Request to stake to a staking pool. The stake starts counting at the beginning of the next epoch,
 public(package) fun request_add_stake(
     pool: &mut StakingPool,
-    stake: Balance<SUI>,
+    stake: Balance<AQY>,
     stake_activation_epoch: u64,
     ctx: &mut TxContext,
 ): StakedSui {
@@ -148,13 +148,13 @@ public(package) fun request_add_stake(
 }
 
 /// Request to withdraw the given stake plus rewards from a staking pool.
-/// Both the principal and corresponding rewards in SUI are withdrawn.
+/// Both the principal and corresponding rewards in AQY are withdrawn.
 /// A proportional amount of pool token withdraw is recorded and processed at epoch change time.
 public(package) fun request_withdraw_stake(
     pool: &mut StakingPool,
     staked_sui: StakedSui,
     ctx: &TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     // stake is inactive and the pool is not preactive - allow direct withdraw
     // the reason why we exclude preactive pools is to avoid potential underflow
     // on subtraction, and we need to enforce `pending_stake_withdraw` call.
@@ -192,7 +192,7 @@ public(package) fun redeem_fungible_staked_sui(
     pool: &mut StakingPool,
     fungible_staked_sui: FungibleStakedSui,
     ctx: &TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     let FungibleStakedSui { id, pool_id, value } = fungible_staked_sui;
     assert!(pool_id == object::id(pool), EWrongPool);
 
@@ -266,7 +266,7 @@ fun calculate_fungible_staked_sui_withdraw_amount(
     (principal_withdraw_amount, rewards_withdraw_amount)
 }
 
-/// Convert the given staked SUI to an FungibleStakedSui object
+/// Convert the given staked AQY to an FungibleStakedSui object
 public(package) fun convert_to_fungible_staked_sui(
     pool: &mut StakingPool,
     staked_sui: StakedSui,
@@ -312,13 +312,13 @@ public(package) fun convert_to_fungible_staked_sui(
     }
 }
 
-/// Withdraw the principal SUI stored in the StakedSui object, and calculate the corresponding amount of pool
+/// Withdraw the principal AQY stored in the StakedSui object, and calculate the corresponding amount of pool
 /// tokens using exchange rate at staking epoch.
-/// Returns values are amount of pool tokens withdrawn and withdrawn principal portion of SUI.
+/// Returns values are amount of pool tokens withdrawn and withdrawn principal portion of AQY.
 public(package) fun withdraw_from_principal(
     pool: &StakingPool,
     staked_sui: StakedSui,
-): (u64, Balance<SUI>) {
+): (u64, Balance<AQY>) {
     // Check that the stake information matches the pool.
     assert!(staked_sui.pool_id == object::id(pool), EWrongPool);
 
@@ -332,7 +332,7 @@ public(package) fun withdraw_from_principal(
 /// Allows calling `.into_balance()` on `StakedSui` to invoke `unwrap_staked_sui`
 use fun unwrap_staked_sui as StakedSui.into_balance;
 
-fun unwrap_staked_sui(staked_sui: StakedSui): Balance<SUI> {
+fun unwrap_staked_sui(staked_sui: StakedSui): Balance<AQY> {
     let StakedSui { id, principal, .. } = staked_sui;
     id.delete();
     principal
@@ -340,8 +340,8 @@ fun unwrap_staked_sui(staked_sui: StakedSui): Balance<SUI> {
 
 // ==== functions called at epoch boundaries ===
 
-/// Called at epoch advancement times to add rewards (in SUI) to the staking pool.
-public(package) fun deposit_rewards(pool: &mut StakingPool, rewards: Balance<SUI>) {
+/// Called at epoch advancement times to add rewards (in AQY) to the staking pool.
+public(package) fun deposit_rewards(pool: &mut StakingPool, rewards: Balance<AQY>) {
     pool.sui_balance = pool.sui_balance + rewards.value();
     pool.rewards_pool.join(rewards);
 }
@@ -385,7 +385,7 @@ public(package) fun process_pending_stake(pool: &mut StakingPool) {
 }
 
 /// This function does the following:
-///     1. Calculates the total amount of SUI (including principal and rewards) that the provided pool tokens represent
+///     1. Calculates the total amount of AQY (including principal and rewards) that the provided pool tokens represent
 ///        at the current exchange rate.
 ///     2. Using the above number and the given `principal_withdraw_amount`, calculates the rewards portion of the
 ///        stake we should withdraw.
@@ -396,7 +396,7 @@ fun withdraw_rewards(
     principal_withdraw_amount: u64,
     pool_token_withdraw_amount: u64,
     epoch: u64,
-): Balance<SUI> {
+): Balance<AQY> {
     let exchange_rate = pool.pool_token_exchange_rate_at_epoch(epoch);
     let total_sui_withdraw_amount = exchange_rate.get_sui_amount(pool_token_withdraw_amount);
     let mut reward_withdraw_amount = if (total_sui_withdraw_amount >= principal_withdraw_amount) {
@@ -646,7 +646,7 @@ macro fun mul_div($a: u64, $b: u64, $c: u64): u64 {
     (($a as u128) * ($b as u128) / ($c as u128)) as u64
 }
 
-// Given the `staked_sui` receipt calculate the current rewards (in terms of SUI) for it.
+// Given the `staked_sui` receipt calculate the current rewards (in terms of AQY) for it.
 public(package) fun calculate_rewards(
     pool: &StakingPool,
     staked_sui: &StakedSui,

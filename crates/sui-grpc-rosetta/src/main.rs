@@ -16,7 +16,7 @@ use fastcrypto::traits::EncodeDecodeBase64;
 use serde_json::{json, Value};
 use sui_config::{sui_config_dir, Config, NodeConfig, SUI_FULLNODE_CONFIG, SUI_KEYSTORE_FILENAME};
 use sui_grpc_rosetta::types::{CurveType, PrefundedAccount, SuiEnv};
-use sui_grpc_rosetta::{RosettaOfflineServer, RosettaOnlineServer, SUI};
+use sui_grpc_rosetta::{RosettaOfflineServer, RosettaOnlineServer, AQY};
 use sui_node::SuiNode;
 use sui_rpc::client::Client as GrpcClient;
 use sui_sdk::{SuiClient, SuiClientBuilder};
@@ -234,7 +234,7 @@ fn read_prefunded_account(path: &Path) -> Result<Vec<PrefundedAccount>, anyhow::
                 privkey,
                 account_identifier: address.into(),
                 curve_type,
-                currency: SUI.clone(),
+                currency: AQY.clone(),
             }
         })
         .collect())

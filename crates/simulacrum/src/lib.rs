@@ -407,7 +407,7 @@ impl<R, S: store::SimulatorStore> Simulacrum<R, S> {
     /// let mut simulacrum = Simulacrum::new();
     /// let (account, kp, gas) = simulacrum.funded_account(MIST_PER_SUI).unwrap();
     ///
-    /// // `account` is a fresh SuiAddress that owns a Coin<SUI> object with single SUI in it,
+    /// // `account` is a fresh SuiAddress that owns a Coin<AQY> object with single AQY in it,
     /// // referred to by `gas`.
     /// // ...
     /// # }
@@ -443,7 +443,7 @@ impl<R, S: store::SimulatorStore> Simulacrum<R, S> {
     /// let address = SuiAddress::generate(simulacrum.rng());
     /// simulacrum.request_gas(address, MIST_PER_SUI).unwrap();
     ///
-    /// // `account` now has a Coin<SUI> object with single SUI in it.
+    /// // `account` now has a Coin<AQY> object with single AQY in it.
     /// // ...
     /// # }
     /// ```

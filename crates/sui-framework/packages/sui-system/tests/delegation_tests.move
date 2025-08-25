@@ -24,7 +24,7 @@ const MIST_PER_SUI: u64 = 1_000_000_000;
 
 #[test]
 // Scenario:
-// 1. Stake 60 SUI to VALIDATOR_ADDR_1
+// 1. Stake 60 AQY to VALIDATOR_ADDR_1
 // 2. Split the stake into 20 and 40
 // 3. Join the 20 and 40 back together
 // 4. Check that the stake is 60 again
@@ -88,7 +88,7 @@ fun split_below_threshold() {
     let validator = validator_builder::new().initial_stake(100).sui_address(VALIDATOR_ADDR_1);
     let mut runner = test_runner::new().validators(vector[validator]).build();
 
-    // Stake 2 SUI to the validator.
+    // Stake 2 AQY to the validator.
     runner.set_sender(STAKER_ADDR_1).stake_with(VALIDATOR_ADDR_1, 2);
 
     runner.owned_tx!<StakedSui>(|mut stake| {
@@ -103,7 +103,7 @@ fun split_nonentry_below_threshold() {
     let validator = validator_builder::new().initial_stake(100).sui_address(VALIDATOR_ADDR_1);
     let mut runner = test_runner::new().validators(vector[validator]).build();
 
-    // Stake 2 SUI to the validator.
+    // Stake 2 AQY to the validator.
     runner.set_sender(STAKER_ADDR_1).stake_with(VALIDATOR_ADDR_1, 2);
 
     runner.owned_tx!<StakedSui>(|mut stake| {
@@ -115,7 +115,7 @@ fun split_nonentry_below_threshold() {
 
 #[test]
 // Scenario:
-// 1. Stake 60 SUI to VALIDATOR_ADDR_1
+// 1. Stake 60 AQY to VALIDATOR_ADDR_1
 // 2. Check that the stake is not yet added to the validator
 // 3. Advance epoch
 // 4. Check that the stake is added to the validator
@@ -129,7 +129,7 @@ fun add_remove_stake_flow() {
         ])
         .build();
 
-    // Stake 60 SUI to the validator.
+    // Stake 60 AQY to the validator.
     runner.set_sender(STAKER_ADDR_1).stake_with(VALIDATOR_ADDR_1, 60);
 
     // Check that the stake is NOT yet added to the validator.
@@ -174,7 +174,7 @@ fun remove_stake_post_active_flow_with_rewards() {
 }
 
 // Scenario:
-// 1. Stake 100 SUI to VALIDATOR_ADDR_1
+// 1. Stake 100 AQY to VALIDATOR_ADDR_1
 // 2. Advance epoch
 // 3. Check that the stake is added to the validator
 // 4. Remove the validator and advance epoch
@@ -190,7 +190,7 @@ fun remove_stake_post_active_flow(should_distribute_rewards: bool) {
         .storage_fund_amount(100)
         .build();
 
-    // Stake 100 SUI to the validator.
+    // Stake 100 AQY to the validator.
     runner.set_sender(STAKER_ADDR_1).stake_with(VALIDATOR_ADDR_1, 100);
 
     // Advance epoch.
@@ -251,7 +251,7 @@ fun earns_rewards_at_last_epoch() {
         .storage_fund_amount(100)
         .build();
 
-    // Stake 100 SUI to the validator.
+    // Stake 100 AQY to the validator.
     runner.set_sender(STAKER_ADDR_1).stake_with(VALIDATOR_ADDR_1, 100);
 
     runner.advance_epoch(option::none()).destroy_for_testing();
@@ -299,7 +299,7 @@ fun add_stake_post_active_flow() {
         ])
         .build();
 
-    // Stake 100 SUI to the validator.
+    // Stake 100 AQY to the validator.
     runner.set_sender(STAKER_ADDR_1).stake_with(VALIDATOR_ADDR_1, 100);
 
     // Advance epoch.
@@ -325,7 +325,7 @@ fun add_stake_post_active_flow() {
 #[test]
 // Scenario:
 // 1. Add a validator candidate
-// 2. Stake 100 SUI to the validator candidate
+// 2. Stake 100 AQY to the validator candidate
 // 3. Advance epoch twice with some rewards
 // 4. Unstake from the preactive validator. There should be no rewards earned.
 fun add_preactive_remove_preactive() {
@@ -353,7 +353,7 @@ fun add_preactive_remove_preactive() {
 #[test, expected_failure(abort_code = validator_set::ENotAValidator)]
 // Scenario:
 // 1. Add a validator candidate
-// 2. Stake 100 SUI to the validator candidate
+// 2. Stake 100 AQY to the validator candidate
 // 3. Request to add the validator candidate to the active validator set.
 // 4. Try staking to the validator candidate. This should fail because the validator candidate is pending.
 fun add_preactive_remove_pending_failure() {
@@ -363,7 +363,7 @@ fun add_preactive_remove_pending_failure() {
     // Add the validator candidate.
     runner.add_validator_candidate(validator);
 
-    // Stake 100 SUI to the validator candidate.
+    // Stake 100 AQY to the validator candidate.
     runner.set_sender(STAKER_ADDR_1).stake_with(NEW_VALIDATOR_ADDR, 100);
 
     // Try adding self to the active validator set.
@@ -395,7 +395,7 @@ fun add_preactive_remove_active() {
     // Add the validator candidate.
     runner.add_validator_candidate(validator);
 
-    // Stake 100 SUI to the validator candidate.
+    // Stake 100 AQY to the validator candidate.
     runner.set_sender(STAKER_ADDR_1).stake_with(NEW_VALIDATOR_ADDR, 100);
 
     // Advance epoch twice with some rewards
@@ -413,10 +413,10 @@ fun add_preactive_remove_active() {
         );
     });
 
-    // Stake 50 SUI to the validator candidate from staker 2.
+    // Stake 50 AQY to the validator candidate from staker 2.
     runner.set_sender(STAKER_ADDR_2).stake_with(NEW_VALIDATOR_ADDR, 50);
 
-    // Stake 100 SUI to the validator candidate from staker 3.
+    // Stake 100 AQY to the validator candidate from staker 3.
     runner.set_sender(STAKER_ADDR_3).stake_with(NEW_VALIDATOR_ADDR, 100);
 
     // Activate the validator candidate.
@@ -441,10 +441,10 @@ fun add_preactive_remove_active() {
     let opts = runner.advance_epoch_opts().computation_charge(85);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
-    // staker 1 and 3 unstake from the validator and earns about 2/5 * (85 - 10) * 1/3 = 10 SUI each.
+    // staker 1 and 3 unstake from the validator and earns about 2/5 * (85 - 10) * 1/3 = 10 AQY each.
     // Although they stake in different epochs, they earn the same rewards as long as they unstake
     // in the same epoch because the validator was preactive when they staked.
-    // So they will both get slightly more than 110 SUI in total balance.
+    // So they will both get slightly more than 110 AQY in total balance.
     runner.set_sender(STAKER_ADDR_1).unstake(0);
     assert_eq!(runner.sui_balance(), 110002000000);
 
@@ -455,8 +455,8 @@ fun add_preactive_remove_active() {
     let opts = runner.advance_epoch_opts().computation_charge(85);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
-    // staker 2 earns about 5 SUI from the previous epoch and 24-ish from this one
-    // so in total she has about 50 + 5 + 24 = 79 SUI.
+    // staker 2 earns about 5 AQY from the previous epoch and 24-ish from this one
+    // so in total she has about 50 + 5 + 24 = 79 AQY.
     runner.set_sender(STAKER_ADDR_2).unstake(0);
     assert_eq!(runner.sui_balance(), 78862939078);
 
@@ -471,7 +471,7 @@ fun add_preactive_remove_post_active() {
     // Add the validator candidate.
     runner.add_validator_candidate(validator);
 
-    // Stake 100 SUI to the validator candidate.
+    // Stake 100 AQY to the validator candidate.
     runner.set_sender(STAKER_ADDR_1).stake_with(NEW_VALIDATOR_ADDR, 100);
 
     // Now the preactive becomes active
@@ -480,7 +480,7 @@ fun add_preactive_remove_post_active() {
     // Advance epoch with no rewards.
     runner.advance_epoch(option::none()).destroy_for_testing();
 
-    // staker 1 earns a bit greater than 30 SUI here. A bit greater because the new validator's voting power
+    // staker 1 earns a bit greater than 30 AQY here. A bit greater because the new validator's voting power
     // is slightly greater than 1/3 of the total voting power.
     let opts = runner.advance_epoch_opts().computation_charge(90);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
@@ -504,7 +504,7 @@ fun add_remove_stake_preactive_candidate() {
     let validator = validator_builder::preset().sui_address(NEW_VALIDATOR_ADDR).build(runner.ctx());
     runner.add_validator_candidate(validator);
 
-    // Stake 100 SUI to the validator candidate from each of the two stakers.
+    // Stake 100 AQY to the validator candidate from each of the two stakers.
     runner.set_sender(STAKER_ADDR_1).stake_with(NEW_VALIDATOR_ADDR, 100);
     runner.set_sender(STAKER_ADDR_2).stake_with(NEW_VALIDATOR_ADDR, 100);
 
@@ -543,7 +543,7 @@ fun add_remove_stake_preactive_candidate() {
 #[test]
 // Scenario:
 // 1. Add a validator candidate
-// 2. Delegate 100 SUI to the validator candidate
+// 2. Delegate 100 AQY to the validator candidate
 // 3. Advance epoch and give out some rewards. The candidate should get nothing.
 // 4. Remove the candidate
 // 5. Staker unstakes and gets no rewards.
@@ -578,7 +578,7 @@ fun add_preactive_candidate_drop_out() {
 #[test]
 // Scenario:
 // 1. Add a validator candidate
-// 2. Stake 100 SUI to the validator candidate
+// 2. Stake 100 AQY to the validator candidate
 // 3. Request removal of the validator candidate without epoch advancement
 // 4. Unstake from the validator candidate
 fun remove_inactive_stake_from_inactive_candidate() {
@@ -588,7 +588,7 @@ fun remove_inactive_stake_from_inactive_candidate() {
 
     runner.add_validator_candidate(validator);
 
-    // Stake 100 SUI to the validator candidate
+    // Stake 100 AQY to the validator candidate
     runner.set_sender(validator_address).stake_with(validator_address, 100);
 
     // Request removal of the validator candidate without epoch advancement
@@ -606,7 +606,7 @@ fun remove_inactive_stake_from_inactive_candidate() {
 
 #[test]
 /// Scenario:
-/// 1. Stake 100 SUI to the validator.
+/// 1. Stake 100 AQY to the validator.
 /// 2. Advance epoch.
 /// 3. Advance epoch with rewards.
 /// 4. Check the exchange rates in the system state.
@@ -631,7 +631,7 @@ fun staking_pool_exchange_rate_getter() {
     runner.advance_epoch(option::none()).destroy_for_testing();
 
     // Advance epoch with rewards.
-    // Each staking pool (2 pools) gets 10 SUI of rewards.
+    // Each staking pool (2 pools) gets 10 AQY of rewards.
     let opts = runner.advance_epoch_opts().computation_charge(20);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
@@ -640,8 +640,8 @@ fun staking_pool_exchange_rate_getter() {
         let rates = system.pool_exchange_rates(&pool_id);
         assert_eq!(rates.length(), 3);
         rates.assert_exchange_rate_eq(0, 0, 0); // no tokens at epoch 0
-        rates.assert_exchange_rate_eq(1, 200, 200); // 200 SUI of self + delegate stake at epoch 1
-        rates.assert_exchange_rate_eq(2, 210, 200); // 10 SUI of rewards at epoch 2
+        rates.assert_exchange_rate_eq(1, 200, 200); // 200 AQY of self + delegate stake at epoch 1
+        rates.assert_exchange_rate_eq(2, 210, 200); // 10 AQY of rewards at epoch 2
     });
 
     runner.finish();

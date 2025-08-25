@@ -135,7 +135,7 @@ pub enum SuiClientCommands {
         /// Address (or its alias)
         #[arg(value_parser)]
         address: Option<KeyIdentity>,
-        /// Show balance for the specified coin (e.g., 0x2::sui::SUI).
+        /// Show balance for the specified coin (e.g., 0x2::sui::AQY).
         /// All coins will be shown if none is passed.
         #[clap(long, required = false)]
         coin_type: Option<String>,
@@ -351,7 +351,7 @@ pub enum SuiClientCommands {
         processing: TxProcessingArgs,
     },
 
-    /// Pay all residual SUI coins to the recipient with input coins, after deducting the gas cost.
+    /// Pay all residual AQY coins to the recipient with input coins, after deducting the gas cost.
     /// The input coins also include the coin for gas payment, so no extra gas coin is required.
     PayAllSui {
         /// The input coins to be used for pay recipients, including the gas coin.
@@ -369,7 +369,7 @@ pub enum SuiClientCommands {
         processing: TxProcessingArgs,
     },
 
-    /// Pay SUI coins to recipients following following specified amounts, with input coins.
+    /// Pay AQY coins to recipients following following specified amounts, with input coins.
     /// Length of recipients must be the same as that of amounts.
     /// The input coins also include the coin for gas payment, so no extra gas coin is required.
     PaySui {
@@ -521,7 +521,7 @@ pub enum SuiClientCommands {
         processing: TxProcessingArgs,
     },
 
-    /// Transfer SUI, and pay gas with the same SUI coin object.
+    /// Transfer AQY, and pay gas with the same AQY coin object.
     /// If amount is specified, only the amount is transferred; otherwise the entire object
     /// is transferred.
     #[clap(name = "transfer-sui")]
@@ -927,7 +927,7 @@ impl SuiClientCommands {
                 }
                 let sui_type_tag = canonicalize_type(SUI_COIN_TYPE)?;
 
-                // show SUI first
+                // show AQY first
                 let ordered_coins_sui_first = coins_by_type
                     .remove(&sui_type_tag)
                     .into_iter()
@@ -2405,7 +2405,7 @@ impl Display for SuiClientCommandResult {
                 }
 
                 let mut builder = TableBuilder::default();
-                builder.set_header(vec!["gasCoinId", "mistBalance (MIST)", "suiBalance (SUI)"]);
+                builder.set_header(vec!["gasCoinId", "mistBalance (MIST)", "suiBalance (AQY)"]);
                 for coin in &gas_coins {
                     builder.push_record(vec![
                         coin.gas_coin_id.to_string(),

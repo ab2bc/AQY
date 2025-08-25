@@ -3,7 +3,7 @@
 
 //# init --protocol-version 70 --accounts A B C --addresses test=0x0 --simulator
 
-// Transaction with balance changes - transfer SUI from A to B
+// Transaction with balance changes - transfer AQY from A to B
 //# programmable --sender A --inputs 1000 @B
 //> 0: SplitCoins(Gas, [Input(0)]);
 //> 1: TransferObjects([Result(0)], Input(1))

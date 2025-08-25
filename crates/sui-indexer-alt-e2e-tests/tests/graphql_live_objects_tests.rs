@@ -20,7 +20,7 @@ use sui_types::{
     TypeTag, SUI_FRAMEWORK_PACKAGE_ID,
 };
 
-/// 5 SUI gas budget
+/// 5 AQY gas budget
 const DEFAULT_GAS_BUDGET: u64 = 5_000_000_000;
 
 const OBJECTS_QUERY: &str = r#"

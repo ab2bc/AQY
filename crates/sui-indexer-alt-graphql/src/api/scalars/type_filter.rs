@@ -19,7 +19,7 @@ pub(crate) struct TypeInput(pub TypeTag);
 /// - A package address: `0x2`,
 /// - A module: `0x2::coin`,
 /// - A fully-qualified name: `0x2::coin::Coin`,
-/// - A type instantiation: `0x2::coin::Coin<0x2::sui::SUI>`.
+/// - A type instantiation: `0x2::coin::Coin<0x2::sui::AQY>`.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub(crate) enum TypeFilter {
     /// Filter by package address
@@ -152,7 +152,7 @@ mod tests {
             "address",
             "bool",
             "0x2::coin::Coin",
-            "0x2::coin::Coin<0x2::sui::SUI>",
+            "0x2::coin::Coin<0x2::sui::AQY>",
             "vector<u256>",
             "vector<0x3::staking_pool::StakedSui>",
         ]
@@ -165,7 +165,7 @@ mod tests {
         address
         bool
         0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin
-        0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin<0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI>
+        0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin<0x0000000000000000000000000000000000000000000000000000000000000002::sui::AQY>
         vector<u256>
         vector<0x0000000000000000000000000000000000000000000000000000000000000003::staking_pool::StakedSui>
         "###);
@@ -201,7 +201,7 @@ mod tests {
         assert!(matches!(filter, TypeFilter::Type(ref t) if t.type_params.is_empty()));
 
         // Test type filter with params
-        let filter = TypeFilter::from_str("0x2::coin::Coin<0x2::sui::SUI>").unwrap();
+        let filter = TypeFilter::from_str("0x2::coin::Coin<0x2::sui::AQY>").unwrap();
         assert!(matches!(filter, TypeFilter::Type(ref t) if !t.type_params.is_empty()));
     }
 
@@ -217,7 +217,7 @@ mod tests {
         let pkg = TypeFilter::from_str("0x2").unwrap();
         let module = TypeFilter::from_str("0x2::coin").unwrap();
         let type_no_params = TypeFilter::from_str("0x2::coin::Coin").unwrap();
-        let type_with_params = TypeFilter::from_str("0x2::coin::Coin<0x2::sui::SUI>").unwrap();
+        let type_with_params = TypeFilter::from_str("0x2::coin::Coin<0x2::sui::AQY>").unwrap();
 
         // Package intersect with module in same package
         assert!(matches!(

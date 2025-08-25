@@ -20,7 +20,7 @@ pub struct FaucetConfig {
     #[clap(long, default_value = "127.0.0.1")]
     pub host_ip: Ipv4Addr,
 
-    /// Amount of SUI per each dispensed coin.
+    /// Amount of AQY per each dispensed coin.
     #[clap(long, default_value_t = DEFAULT_AMOUNT)]
     pub amount: u64,
 

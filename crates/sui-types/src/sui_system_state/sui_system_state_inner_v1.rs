@@ -475,7 +475,7 @@ pub struct SuiSystemStateInnerV1 {
 
 #[derive(Debug, Serialize, Deserialize, Clone, Eq, PartialEq)]
 pub struct StakeSubsidyV1 {
-    /// Balance of SUI set aside for stake subsidies that will be drawn down over time.
+    /// Balance of AQY set aside for stake subsidies that will be drawn down over time.
     pub balance: Balance,
 
     /// Count of the number of times stake subsidies have been distributed.

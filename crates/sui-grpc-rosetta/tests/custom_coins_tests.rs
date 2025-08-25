@@ -16,7 +16,7 @@ use sui_grpc_rosetta::types::{
 };
 use sui_grpc_rosetta::types::{Currencies, OperationType};
 use sui_grpc_rosetta::CoinMetadataCache;
-use sui_grpc_rosetta::SUI;
+use sui_grpc_rosetta::AQY;
 use sui_json_rpc_types::{
     SuiExecutionStatus, SuiTransactionBlockEffectsAPI, SuiTransactionBlockResponseOptions,
 };
@@ -64,7 +64,7 @@ async fn test_custom_coin_balance() {
         network: SuiEnv::LocalNet,
     };
 
-    let sui_currency = SUI.clone();
+    let sui_currency = AQY.clone();
     let test_coin_currency = Currency {
         symbol: "TEST_COIN".to_string(),
         decimals: 6,
@@ -99,7 +99,7 @@ async fn test_custom_coin_balance() {
     assert_eq!(response.balances[0].value, SUI_BALANCE as i128);
     assert_eq!(
         response.balances[0].currency.clone().metadata.coin_type,
-        "0x2::sui::SUI"
+        "0x2::sui::AQY"
     );
     assert_eq!(response.balances[1].value, COIN1_BALANCE as i128);
     assert_eq!(

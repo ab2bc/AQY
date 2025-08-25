@@ -10,7 +10,7 @@ use utils::setup_for_read;
 // The example will use the active address in the wallet (if it exists or create one if it doesn't)
 // check if it has coins and request coins from the faucet if there aren't any.
 // If there is no wallet, it will create a wallet and two addresses, set one address as active,
-// and add 1 SUI to the active address.
+// and add 1 AQY to the active address.
 // By default, the example will use the Sui testnet network (fullnode.testnet.sui.io:443).
 
 #[tokio::main]
@@ -21,9 +21,9 @@ async fn main() -> Result<(), anyhow::Error> {
 
     // Get coins for this address. Coins can be filtered by `coin_type`
     // (e.g., 0x168da5bf1f48dafc111b0a488fa454aca95e0b5e::usdc::USDC) or
-    // use `None` for the default `Coin<SUI>` which is represented as
-    // "0x2::sui::SUI"
-    let coin_type = Some("0x2::sui::SUI".to_string());
+    // use `None` for the default `Coin<AQY>` which is represented as
+    // "0x2::sui::AQY"
+    let coin_type = Some("0x2::sui::AQY".to_string());
     let coins = sui
         .coin_read_api()
         .get_coins(active_address, coin_type.clone(), None, Some(5)) // get the first five coins
@@ -56,7 +56,7 @@ async fn main() -> Result<(), anyhow::Error> {
         .await;
     println!(" *** Coins Stream ***\n");
 
-    // Select coins based on the provided coin type (SUI in this example). Use `None` for the default Sui coin
+    // Select coins based on the provided coin type (AQY in this example). Use `None` for the default Sui coin
     let select_coins = sui
         .coin_read_api()
         .select_coins(active_address, coin_type, 1, vec![])
@@ -68,7 +68,7 @@ async fn main() -> Result<(), anyhow::Error> {
 
     // Balance
     // Returns the balance for the specified coin type for this address,
-    // or if None is passed, it will use Coin<SUI> as the coin type
+    // or if None is passed, it will use Coin<AQY> as the coin type
     let balance = sui
         .coin_read_api()
         .get_balance(active_address, None)
@@ -82,10 +82,10 @@ async fn main() -> Result<(), anyhow::Error> {
     println!("Total Balance: {:?}", total_balance);
     println!(" *** Balance + Total Balance ***\n ");
 
-    // Return the coin metadata for the Coin<SUI>
+    // Return the coin metadata for the Coin<AQY>
     let coin_metadata = sui
         .coin_read_api()
-        .get_coin_metadata("0x2::sui::SUI".to_string())
+        .get_coin_metadata("0x2::sui::AQY".to_string())
         .await?;
 
     println!(" *** Coin Metadata *** ");
@@ -95,7 +95,7 @@ async fn main() -> Result<(), anyhow::Error> {
     // Total Supply
     let total_supply = sui
         .coin_read_api()
-        .get_total_supply("0x2::sui::SUI".to_string())
+        .get_total_supply("0x2::sui::AQY".to_string())
         .await?;
     println!(" *** Total Supply *** ");
     println!("{:?}", total_supply);

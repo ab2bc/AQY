@@ -150,7 +150,7 @@ Sender is not @0x0 the system address.
 
 <a name="sui_balance_ENotSUI"></a>
 
-System operation performed for a coin other than SUI
+System operation performed for a coin other than AQY
 
 
 <pre><code><b>const</b> <a href="../sui/balance.md#sui_balance_ENotSUI">ENotSUI</a>: u64 = 4;

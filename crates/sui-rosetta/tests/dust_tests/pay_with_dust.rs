@@ -759,7 +759,7 @@ async fn test_pay_with_many_small_coins_fail_insufficient_balance_budget_none() 
     };
 
     let details = Some(json!({ "error":
-        format!("Invalid input: Address {sender} does not have amount: {recipient_change} + budget: {expected_budget} balance. SUI balance: {}.", recipient_change + expected_budget - 1)
+        format!("Invalid input: Address {sender} does not have amount: {recipient_change} + budget: {expected_budget} balance. AQY balance: {}.", recipient_change + expected_budget - 1)
     }));
     assert_eq!(
         err,

@@ -370,12 +370,12 @@ The top-level object containing all information of the Sui system.
  are out of safe mode.
 </dd>
 <dt>
-<code>safe_mode_storage_rewards: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;</code>
+<code>safe_mode_storage_rewards: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;</code>
 </dt>
 <dd>
 </dd>
 <dt>
-<code>safe_mode_computation_rewards: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;</code>
+<code>safe_mode_computation_rewards: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;</code>
 </dt>
 <dd>
 </dd>
@@ -498,12 +498,12 @@ Uses SystemParametersV2 as the parameters.
  are out of safe mode.
 </dd>
 <dt>
-<code>safe_mode_storage_rewards: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;</code>
+<code>safe_mode_storage_rewards: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;</code>
 </dt>
 <dd>
 </dd>
 <dt>
-<code>safe_mode_computation_rewards: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;</code>
+<code>safe_mode_computation_rewards: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;</code>
 </dt>
 <dd>
 </dd>
@@ -767,7 +767,7 @@ This function will be called only once in genesis.
 
 <pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_create">create</a>(
     <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_validators">validators</a>: vector&lt;Validator&gt;,
-    initial_storage_fund: Balance&lt;SUI&gt;,
+    initial_storage_fund: Balance&lt;AQY&gt;,
     <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_protocol_version">protocol_version</a>: u64,
     <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_epoch_start_timestamp_ms">epoch_start_timestamp_ms</a>: u64,
     parameters: <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SystemParameters">SystemParameters</a>,
@@ -1230,7 +1230,7 @@ This function is used to set new commission rate for candidate validators
 Add stake to a validator's staking pool.
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_request_add_stake">request_add_stake</a>(self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">sui_system::sui_system_state_inner::SuiSystemStateInnerV2</a>, stake: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, validator_address: <b>address</b>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_request_add_stake">request_add_stake</a>(self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">sui_system::sui_system_state_inner::SuiSystemStateInnerV2</a>, stake: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;, validator_address: <b>address</b>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>
 </code></pre>
 
 
@@ -1241,7 +1241,7 @@ Add stake to a validator's staking pool.
 
 <pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_request_add_stake">request_add_stake</a>(
     self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">SuiSystemStateInnerV2</a>,
-    stake: Coin&lt;SUI&gt;,
+    stake: Coin&lt;AQY&gt;,
     validator_address: <b>address</b>,
     ctx: &<b>mut</b> TxContext,
 ): StakedSui {
@@ -1266,7 +1266,7 @@ Add stake to a validator's staking pool.
 Add stake to a validator's staking pool using multiple coins.
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_request_add_stake_mul_coin">request_add_stake_mul_coin</a>(self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">sui_system::sui_system_state_inner::SuiSystemStateInnerV2</a>, stakes: vector&lt;<a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;&gt;, stake_amount: <a href="../std/option.md#std_option_Option">std::option::Option</a>&lt;u64&gt;, validator_address: <b>address</b>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_request_add_stake_mul_coin">request_add_stake_mul_coin</a>(self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">sui_system::sui_system_state_inner::SuiSystemStateInnerV2</a>, stakes: vector&lt;<a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;&gt;, stake_amount: <a href="../std/option.md#std_option_Option">std::option::Option</a>&lt;u64&gt;, validator_address: <b>address</b>, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>
 </code></pre>
 
 
@@ -1277,7 +1277,7 @@ Add stake to a validator's staking pool using multiple coins.
 
 <pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_request_add_stake_mul_coin">request_add_stake_mul_coin</a>(
     self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">SuiSystemStateInnerV2</a>,
-    stakes: vector&lt;Coin&lt;SUI&gt;&gt;,
+    stakes: vector&lt;Coin&lt;AQY&gt;&gt;,
     stake_amount: Option&lt;u64&gt;,
     validator_address: <b>address</b>,
     ctx: &<b>mut</b> TxContext,
@@ -1298,7 +1298,7 @@ Add stake to a validator's staking pool using multiple coins.
 Withdraw some portion of a stake from a validator's staking pool.
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_request_withdraw_stake">request_withdraw_stake</a>(self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">sui_system::sui_system_state_inner::SuiSystemStateInnerV2</a>, staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>, ctx: &<a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_request_withdraw_stake">request_withdraw_stake</a>(self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">sui_system::sui_system_state_inner::SuiSystemStateInnerV2</a>, staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_StakedSui">sui_system::staking_pool::StakedSui</a>, ctx: &<a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -1311,7 +1311,7 @@ Withdraw some portion of a stake from a validator's staking pool.
     self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">SuiSystemStateInnerV2</a>,
     staked_sui: StakedSui,
     ctx: &TxContext,
-): Balance&lt;SUI&gt; {
+): Balance&lt;AQY&gt; {
     self.<a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_validators">validators</a>.<a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_request_withdraw_stake">request_withdraw_stake</a>(staked_sui, ctx)
 }
 </code></pre>
@@ -1354,7 +1354,7 @@ Withdraw some portion of a stake from a validator's staking pool.
 
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_redeem_fungible_staked_sui">redeem_fungible_staked_sui</a>(self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">sui_system::sui_system_state_inner::SuiSystemStateInnerV2</a>, fungible_staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_FungibleStakedSui">sui_system::staking_pool::FungibleStakedSui</a>, ctx: &<a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_redeem_fungible_staked_sui">redeem_fungible_staked_sui</a>(self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">sui_system::sui_system_state_inner::SuiSystemStateInnerV2</a>, fungible_staked_sui: <a href="../sui_system/staking_pool.md#sui_system_staking_pool_FungibleStakedSui">sui_system::staking_pool::FungibleStakedSui</a>, ctx: &<a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -1367,7 +1367,7 @@ Withdraw some portion of a stake from a validator's staking pool.
     self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">SuiSystemStateInnerV2</a>,
     fungible_staked_sui: FungibleStakedSui,
     ctx: &TxContext,
-): Balance&lt;SUI&gt; {
+): Balance&lt;AQY&gt; {
     self.<a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_validators">validators</a>.<a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_redeem_fungible_staked_sui">redeem_fungible_staked_sui</a>(fungible_staked_sui, ctx)
 }
 </code></pre>
@@ -2118,7 +2118,7 @@ gas coins.
 4. Update all validators.
 
 
-<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_advance_epoch">advance_epoch</a>(self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">sui_system::sui_system_state_inner::SuiSystemStateInnerV2</a>, new_epoch: u64, next_protocol_version: u64, storage_reward: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, computation_reward: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, storage_rebate_amount: u64, non_refundable_storage_fee_amount: u64, storage_fund_reinvest_rate: u64, reward_slashing_rate: u64, <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_epoch_start_timestamp_ms">epoch_start_timestamp_ms</a>: u64, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>public</b>(package) <b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_advance_epoch">advance_epoch</a>(self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">sui_system::sui_system_state_inner::SuiSystemStateInnerV2</a>, new_epoch: u64, next_protocol_version: u64, storage_reward: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, computation_reward: <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, storage_rebate_amount: u64, non_refundable_storage_fee_amount: u64, storage_fund_reinvest_rate: u64, reward_slashing_rate: u64, <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_epoch_start_timestamp_ms">epoch_start_timestamp_ms</a>: u64, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -2131,8 +2131,8 @@ gas coins.
     self: &<b>mut</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_SuiSystemStateInnerV2">SuiSystemStateInnerV2</a>,
     new_epoch: u64,
     next_protocol_version: u64,
-    <b>mut</b> storage_reward: Balance&lt;SUI&gt;,
-    <b>mut</b> computation_reward: Balance&lt;SUI&gt;,
+    <b>mut</b> storage_reward: Balance&lt;AQY&gt;,
+    <b>mut</b> computation_reward: Balance&lt;AQY&gt;,
     <b>mut</b> storage_rebate_amount: u64,
     <b>mut</b> non_refundable_storage_fee_amount: u64,
     // share of storage fund's rewards that's reinvested
@@ -2141,7 +2141,7 @@ gas coins.
     reward_slashing_rate: u64, // how much rewards are slashed to punish a <a href="../sui_system/validator.md#sui_system_validator">validator</a>, in bps.
     <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_epoch_start_timestamp_ms">epoch_start_timestamp_ms</a>: u64, // Timestamp of the <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_epoch">epoch</a> start
     ctx: &<b>mut</b> TxContext,
-): Balance&lt;SUI&gt; {
+): Balance&lt;AQY&gt; {
     <b>let</b> prev_epoch_start_timestamp = self.<a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_epoch_start_timestamp_ms">epoch_start_timestamp_ms</a>;
     self.<a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_epoch_start_timestamp_ms">epoch_start_timestamp_ms</a> = <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_epoch_start_timestamp_ms">epoch_start_timestamp_ms</a>;
     <b>let</b> bps_denominator = <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_BASIS_POINT_DENOMINATOR">BASIS_POINT_DENOMINATOR</a>;
@@ -2683,10 +2683,10 @@ Returns all the validators who are currently reporting <code>addr</code>
 
 ## Function `extract_coin_balance`
 
-Extract required Balance from vector of Coin<SUI>, transfer the remainder back to sender.
+Extract required Balance from vector of Coin<AQY>, transfer the remainder back to sender.
 
 
-<pre><code><b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_extract_coin_balance">extract_coin_balance</a>(coins: vector&lt;<a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;&gt;, amount: <a href="../std/option.md#std_option_Option">std::option::Option</a>&lt;u64&gt;, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_extract_coin_balance">extract_coin_balance</a>(coins: vector&lt;<a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;&gt;, amount: <a href="../std/option.md#std_option_Option">std::option::Option</a>&lt;u64&gt;, ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -2696,10 +2696,10 @@ Extract required Balance from vector of Coin<SUI>, transfer the remainder back t
 
 
 <pre><code><b>fun</b> <a href="../sui_system/sui_system_state_inner.md#sui_system_sui_system_state_inner_extract_coin_balance">extract_coin_balance</a>(
-    <b>mut</b> coins: vector&lt;Coin&lt;SUI&gt;&gt;,
+    <b>mut</b> coins: vector&lt;Coin&lt;AQY&gt;&gt;,
     amount: Option&lt;u64&gt;,
     ctx: &<b>mut</b> TxContext,
-): Balance&lt;SUI&gt; {
+): Balance&lt;AQY&gt; {
     <b>let</b> acc = coins.pop_back();
     <b>let</b> merged = coins.fold!(acc, |<b>mut</b> acc, coin| { acc.join(coin); acc });
     <b>let</b> <b>mut</b> total_balance = merged.into_balance();

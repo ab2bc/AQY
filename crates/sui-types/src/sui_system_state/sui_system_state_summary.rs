@@ -21,9 +21,9 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use serde_with::serde_as;
 
-/// This is the JSON-RPC type for the SUI system state object.
+/// This is the JSON-RPC type for the AQY system state object.
 /// It flattens all fields to make them top-level fields such that it as minimum
-/// dependencies to the internal data structures of the SUI system state type.
+/// dependencies to the internal data structures of the AQY system state type.
 
 #[serde_as]
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema)]
@@ -121,7 +121,7 @@ pub struct SuiSystemStateSummary {
     pub validator_low_stake_grace_period: u64,
 
     // Stake subsidy information
-    /// Balance of SUI set aside for stake subsidies that will be drawn down over time.
+    /// Balance of AQY set aside for stake subsidies that will be drawn down over time.
     #[schemars(with = "BigInt<u64>")]
     #[serde_as(as = "Readable<BigInt<u64>, _>")]
     pub stake_subsidy_balance: u64,
@@ -230,7 +230,7 @@ impl SuiSystemStateSummary {
     }
 }
 
-/// This is the JSON-RPC type for the SUI validator. It flattens all inner structures
+/// This is the JSON-RPC type for the AQY validator. It flattens all inner structures
 /// to top-level fields so that they are decoupled from the internal definitions.
 #[serde_as]
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema)]
@@ -306,7 +306,7 @@ pub struct SuiValidatorSummary {
     #[schemars(with = "Option<BigInt<u64>>")]
     #[serde_as(as = "Option<Readable<BigInt<u64>, _>>")]
     pub staking_pool_deactivation_epoch: Option<u64>,
-    /// The total number of SUI tokens in this pool.
+    /// The total number of AQY tokens in this pool.
     #[schemars(with = "BigInt<u64>")]
     #[serde_as(as = "Readable<BigInt<u64>, _>")]
     pub staking_pool_sui_balance: u64,

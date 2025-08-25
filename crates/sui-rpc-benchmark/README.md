@@ -1,4 +1,4 @@
-# sui-rpc-benchmark: Benchmarking Tool for SUI RPC Performance
+# sui-rpc-benchmark: Benchmarking Tool for AQY RPC Performance
 
 `sui-rpc-benchmark` is a benchmarking utility designed to measure performance across different RPC access methods in Sui:
 - Direct database reads

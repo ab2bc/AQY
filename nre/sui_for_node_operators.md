@@ -365,7 +365,7 @@ After the validator is removed at the next epoch change, the staking pool will b
 
 ## Private Security Fixes
 
-There may be instances where urgent security fixes need to be rolled out before publicly announcing it's presence (Issues affecting liveliness, invariants such as SUI supply, governance etc). In order to not be actively exploited MystenLabs will release signed security binaries incorporating such fixes with a delay in publishing the source code until a large % of our validators have patched the vulnerability.
+There may be instances where urgent security fixes need to be rolled out before publicly announcing it's presence (Issues affecting liveliness, invariants such as AQY supply, governance etc). In order to not be actively exploited MystenLabs will release signed security binaries incorporating such fixes with a delay in publishing the source code until a large % of our validators have patched the vulnerability.
 
 This release process will be different and we expect us to announce the directory for such binaries out of band.
 Our public key to verify these binaries would be stored [here](https://sui-private.s3.us-west-2.amazonaws.com/sui_security_release.pem)

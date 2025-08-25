@@ -795,6 +795,107 @@ sui-execution = { path = "sui-execution" }
 # move-vm-runtime = { path = "external-crates/move/move-vm/runtime" }
 # move-bytecode-verifier = { path = "external-crates/move/move-bytecode-verifier" }
 
+aqy-sdk-types = {package = "sui-sdk-types", git = "https://github.com/MystenLabs/sui-rust-sdk.git", rev = "8bc0ff524a3a60561f1ba6315399f6f09e2b85b3", features = [ "hash", "serde" ]}
+aqy-crypto = {package = "sui-crypto", git = "https://github.com/MystenLabs/sui-rust-sdk.git", rev = "8bc0ff524a3a60561f1ba6315399f6f09e2b85b3", features = [ "ed25519", "secp256r1", "secp256k1", "passkey", "zklogin" ]}
+aqy-rpc = {package = "sui-rpc", git = "https://github.com/MystenLabs/sui-rust-sdk.git", rev = "8bc0ff524a3a60561f1ba6315399f6f09e2b85b3"}
+aqy-graphql-client = {package = "sui-graphql-client", git = "https://github.com/MystenLabs/sui-rust-sdk.git", rev = "8bc0ff524a3a60561f1ba6315399f6f09e2b85b3"}
+aqy-graphql-client-build = {package = "sui-graphql-client-build", git = "https://github.com/MystenLabs/sui-rust-sdk.git", rev = "8bc0ff524a3a60561f1ba6315399f6f09e2b85b3"}
+aqy-adapter-transactional-tests = {package = "sui-adapter-transactional-tests", path = "crates/sui-adapter-transactional-tests"}
+aqy-analytics-indexer = {package = "sui-analytics-indexer", path = "crates/sui-analytics-indexer"}
+aqy-analytics-indexer-derive = {package = "sui-analytics-indexer-derive", path = "crates/sui-analytics-indexer-derive"}
+aqy-authority-aggregation = {package = "sui-authority-aggregation", path = "crates/sui-authority-aggregation"}
+aqy-benchmark = {package = "sui-benchmark", path = "crates/sui-benchmark"}
+aqy-bridge = {package = "sui-bridge", path = "crates/sui-bridge"}
+aqy-bridge-schema = {package = "sui-bridge-schema", path = "crates/sui-bridge-schema"}
+aqy-cluster-test = {package = "sui-cluster-test", path = "crates/sui-cluster-test"}
+aqy-config = {package = "sui-config", path = "crates/sui-config"}
+aqy-core = {package = "sui-core", path = "crates/sui-core"}
+aqy-cost = {package = "sui-cost", path = "crates/sui-cost"}
+aqy-data-ingestion = {package = "sui-data-ingestion", path = "crates/sui-data-ingestion"}
+aqy-data-ingestion-core = {package = "sui-data-ingestion-core", path = "crates/sui-data-ingestion-core"}
+aqy-default-config = {package = "sui-default-config", path = "crates/sui-default-config"}
+aqy-display = {package = "sui-display", path = "crates/sui-display"}
+aqy-e2e-tests = {package = "sui-e2e-tests", path = "crates/sui-e2e-tests"}
+aqy-enum-compat-util = {package = "sui-enum-compat-util", path = "crates/sui-enum-compat-util"}
+aqy-faucet = {package = "sui-faucet", path = "crates/sui-faucet"}
+aqy-field-count = {package = "sui-field-count", path = "crates/sui-field-count"}
+aqy-field-count-derive = {package = "sui-field-count-derive", path = "crates/sui-field-count-derive"}
+aqy-framework = {package = "sui-framework", path = "crates/sui-framework"}
+aqy-framework-snapshot = {package = "sui-framework-snapshot", path = "crates/sui-framework-snapshot"}
+aqy-framework-tests = {package = "sui-framework-tests", path = "crates/sui-framework-tests"}
+aqy-graphql-rpc = {package = "sui-graphql-rpc", path = "crates/sui-graphql-rpc"}
+aqy-graphql-rpc-client = {package = "sui-graphql-rpc-client", path = "crates/sui-graphql-rpc-client"}
+aqy-graphql-rpc-headers = {package = "sui-graphql-rpc-headers", path = "crates/sui-graphql-rpc-headers"}
+aqy-genesis-builder = {package = "sui-genesis-builder", path = "crates/sui-genesis-builder"}
+aqy-http = {package = "sui-http", path = "crates/sui-http"}
+aqy-indexer = {package = "sui-indexer", path = "crates/sui-indexer"}
+aqy-indexer-alt = {package = "sui-indexer-alt", path = "crates/sui-indexer-alt"}
+aqy-indexer-alt-consistent-api = {package = "sui-indexer-alt-consistent-api", path = "crates/sui-indexer-alt-consistent-api"}
+aqy-indexer-alt-consistent-store = {package = "sui-indexer-alt-consistent-store", path = "crates/sui-indexer-alt-consistent-store"}
+aqy-indexer-alt-framework = {package = "sui-indexer-alt-framework", path = "crates/sui-indexer-alt-framework", default-features = false}
+aqy-indexer-alt-framework-store-traits = {package = "sui-indexer-alt-framework-store-traits", path = "crates/sui-indexer-alt-framework-store-traits"}
+aqy-indexer-alt-graphql = {package = "sui-indexer-alt-graphql", path = "crates/sui-indexer-alt-graphql"}
+aqy-indexer-alt-jsonrpc = {package = "sui-indexer-alt-jsonrpc", path = "crates/sui-indexer-alt-jsonrpc"}
+aqy-indexer-alt-metrics = {package = "sui-indexer-alt-metrics", path = "crates/sui-indexer-alt-metrics"}
+aqy-indexer-alt-reader = {package = "sui-indexer-alt-reader", path = "crates/sui-indexer-alt-reader"}
+aqy-indexer-alt-restorer = {package = "sui-indexer-alt-restorer", path = "crates/sui-indexer-alt-restorer"}
+aqy-indexer-alt-schema = {package = "sui-indexer-alt-schema", path = "crates/sui-indexer-alt-schema"}
+aqy-indexer-builder = {package = "sui-indexer-builder", path = "crates/sui-indexer-builder"}
+aqy-json = {package = "sui-json", path = "crates/sui-json"}
+aqy-json-rpc = {package = "sui-json-rpc", path = "crates/sui-json-rpc"}
+aqy-json-rpc-api = {package = "sui-json-rpc-api", path = "crates/sui-json-rpc-api"}
+aqy-json-rpc-types = {package = "sui-json-rpc-types", path = "crates/sui-json-rpc-types"}
+aqy-keys = {package = "sui-keys", path = "crates/sui-keys"}
+aqy-kvstore = {package = "sui-kvstore", path = "crates/sui-kvstore"}
+aqy-kv-rpc = {package = "sui-kv-rpc", path = "crates/sui-kv-rpc"}
+aqy-macros = {package = "sui-macros", path = "crates/sui-macros"}
+aqy-metric-checker = {package = "sui-metric-checker", path = "crates/sui-metric-checker"}
+aqy-metrics-push-client = {package = "sui-metrics-push-client", path = "crates/sui-metrics-push-client"}
+aqy-move = {package = "sui-move", path = "crates/sui-move"}
+aqy-move-build = {package = "sui-move-build", path = "crates/sui-move-build"}
+aqy-move-lsp = {package = "sui-move-lsp", path = "crates/sui-move-lsp"}
+aqy-name-service = {package = "sui-name-service", path = "crates/sui-name-service"}
+aqy-network = {package = "sui-network", path = "crates/sui-network"}
+aqy-node = {package = "sui-node", path = "crates/sui-node"}
+aqy-open-rpc = {package = "sui-open-rpc", path = "crates/sui-open-rpc"}
+aqy-open-rpc-macros = {package = "sui-open-rpc-macros", path = "crates/sui-open-rpc-macros"}
+aqy-package-dump = {package = "sui-package-dump", path = "crates/sui-package-dump"}
+aqy-package-management = {package = "sui-package-management", path = "crates/sui-package-management"}
+aqy-package-resolver = {package = "sui-package-resolver", path = "crates/sui-package-resolver"}
+aqy-pg-db = {package = "sui-pg-db", path = "crates/sui-pg-db"}
+aqy-proc-macros = {package = "sui-proc-macros", path = "crates/sui-proc-macros"}
+aqy-protocol-config = {package = "sui-protocol-config", path = "crates/sui-protocol-config"}
+aqy-protocol-config-macros = {package = "sui-protocol-config-macros", path = "crates/sui-protocol-config-macros"}
+aqy-proxy = {package = "sui-proxy", path = "crates/sui-proxy"}
+aqy-replay = {package = "sui-replay", path = "crates/sui-replay"}
+aqy-replay-2 = {package = "sui-replay-2", path = "crates/sui-replay-2"}
+aqy-rosetta = {package = "sui-rosetta", path = "crates/sui-rosetta"}
+aqy-grpc-rosetta = {package = "sui-grpc-rosetta", path = "crates/sui-grpc-rosetta"}
+aqy-rpc-loadgen = {package = "sui-rpc-loadgen", path = "crates/sui-rpc-loadgen"}
+aqy-sdk = {package = "sui-sdk", path = "crates/sui-sdk"}
+aqy-simulator = {package = "sui-simulator", path = "crates/sui-simulator"}
+aqy-snapshot = {package = "sui-snapshot", path = "crates/sui-snapshot"}
+aqy-source-validation = {package = "sui-source-validation", path = "crates/sui-source-validation"}
+aqy-source-validation-service = {package = "sui-source-validation-service", path = "crates/sui-source-validation-service"}
+aqy-sql-macro = {package = "sui-sql-macro", path = "crates/sui-sql-macro"}
+aqy-storage = {package = "sui-storage", path = "crates/sui-storage"}
+aqy-surfer = {package = "sui-surfer", path = "crates/sui-surfer"}
+aqy-swarm = {package = "sui-swarm", path = "crates/sui-swarm"}
+aqy-swarm-config = {package = "sui-swarm-config", path = "crates/sui-swarm-config"}
+aqy-synthetic-ingestion = {package = "sui-synthetic-ingestion", path = "crates/sui-synthetic-ingestion"}
+aqy-telemetry = {package = "sui-telemetry", path = "crates/sui-telemetry"}
+aqy-test-transaction-builder = {package = "sui-test-transaction-builder", path = "crates/sui-test-transaction-builder"}
+aqy-test-validator = {package = "sui-test-validator", path = "crates/sui-test-validator"}
+aqy-tls = {package = "sui-tls", path = "crates/sui-tls"}
+aqy-rpc-api = {package = "sui-rpc-api", path = "crates/sui-rpc-api"}
+aqy-tool = {package = "sui-tool", path = "crates/sui-tool"}
+aqy-transaction-builder = {package = "sui-transaction-builder", path = "crates/sui-transaction-builder"}
+aqy-transaction-checks = {package = "sui-transaction-checks", path = "crates/sui-transaction-checks"}
+aqy-transactional-test-runner = {package = "sui-transactional-test-runner", path = "crates/sui-transactional-test-runner"}
+aqy-types = {package = "sui-types", path = "crates/sui-types"}
+aqy-upgrade-compatibility-transactional-tests = {package = "sui-upgrade-compatibility-transactional-tests", path = "crates/sui-upgrade-compatibility-transactional-tests"}
+aqy-verifier-transactional-tests = {package = "sui-verifier-transactional-tests", path = "crates/sui-verifier-transactional-tests"}
+aqy-execution = {package = "sui-execution", path = "sui-execution"}
 [patch.crates-io]
 async-graphql = { git = "https://github.com/amnn/async-graphql", branch = "v7.0.1-react-18-graphiql-4" }
 async-graphql-axum = { git = "https://github.com/amnn/async-graphql", branch = "v7.0.1-react-18-graphiql-4" }

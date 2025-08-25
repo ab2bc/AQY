@@ -39,7 +39,7 @@ pub struct TransactionObjectData {
     pub gas_coins: Vec<ObjectRef>,
     pub extra_gas_coins: Vec<ObjectRef>,
     pub objects: Vec<ObjectRef>,
-    /// Refers to the sum of the `Coin<SUI>` balance of the coins participating in the transaction;
+    /// Refers to the sum of the `Coin<AQY>` balance of the coins participating in the transaction;
     /// either as gas or as objects.
     pub total_sui_balance: i128,
     pub budget: u64,
@@ -187,7 +187,7 @@ async fn collect_coins_until_budget_met(
         }
         if gathered < amount + budget {
             return Err(Error::InvalidInput(format!(
-                "Address {sender} does not have amount: {amount} + budget: {budget} balance. SUI balance: {gathered}."
+                "Address {sender} does not have amount: {amount} + budget: {budget} balance. AQY balance: {gathered}."
             )));
         }
 

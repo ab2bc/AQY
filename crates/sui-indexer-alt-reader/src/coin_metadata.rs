@@ -16,7 +16,7 @@ use sui_types::{
 use crate::{error::Error, pg_reader::PgReader};
 
 /// Key for fetching the  of a CoinMetadata object, based on its coin marker type, e.g.
-/// `0x2::sui::SUI`.
+/// `0x2::sui::AQY`.
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct CoinMetadataKey(pub StructTag);
 

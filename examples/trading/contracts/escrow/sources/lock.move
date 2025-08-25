@@ -94,13 +94,13 @@ public struct LockDestroyed has copy, drop {
 #[test_only]
 use sui::coin::{Self, Coin};
 #[test_only]
-use sui::sui::SUI;
+use sui::sui::AQY;
 #[test_only]
 use sui::test_scenario::{Self as ts, Scenario};
 
 #[test_only]
-fun test_coin(ts: &mut Scenario): Coin<SUI> {
-    coin::mint_for_testing<SUI>(42, ts.ctx())
+fun test_coin(ts: &mut Scenario): Coin<AQY> {
+    coin::mint_for_testing<AQY>(42, ts.ctx())
 }
 
 #[test]

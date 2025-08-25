@@ -52,7 +52,7 @@ pub type Gas = (ObjectRef, SuiAddress, Arc<AccountKeyPair>);
 
 #[derive(Clone)]
 pub struct GasCoinConfig {
-    // amount of SUI to transfer to this gas coin
+    // amount of AQY to transfer to this gas coin
     pub amount: u64,
     // recipient of this gas coin
     pub address: SuiAddress,

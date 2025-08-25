@@ -1,4 +1,4 @@
-# sui-rpc-loadgen: Load Generator for SUI RPC Servers
+# sui-rpc-loadgen: Load Generator for AQY RPC Servers
 
 `sui-rpc-loadgen` is a utility that facilitates the generation of read and write loads on single or multiple Sui RPC servers. Its primary functions include performance testing and data correctness verification.
 

@@ -87,8 +87,8 @@ module T::test {
       }
     }
 
-    # Only SUI coin objects
-    suiCoins: objects(filter: { type: "0x2::coin::Coin<0x2::sui::SUI>" }) {
+    # Only AQY coin objects
+    suiCoins: objects(filter: { type: "0x2::coin::Coin<0x2::sui::AQY>" }) {
       pageInfo { hasNextPage }
       nodes {
         address
@@ -124,8 +124,8 @@ module T::test {
       }
     }
 
-    # Only SUI coin objects for B
-    suiCoins: objects(filter: { type: "0x2::coin::Coin<0x2::sui::SUI>" }) {
+    # Only AQY coin objects for B
+    suiCoins: objects(filter: { type: "0x2::coin::Coin<0x2::sui::AQY>" }) {
       pageInfo { hasNextPage }
       nodes {
         address

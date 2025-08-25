@@ -1,7 +1,7 @@
 // Copyright (c) Mysten Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 
-// tests TransferObject with a SUI coin
+// tests TransferObject with a AQY coin
 
 //# init --accounts A B C
 

@@ -114,7 +114,7 @@ impl SuinsRegistration {
     }
 
     /// Total balance of all coins with marker type owned by this object. If type is not supplied,
-    /// it defaults to `0x2::sui::SUI`.
+    /// it defaults to `0x2::sui::AQY`.
     pub(crate) async fn balance(
         &self,
         ctx: &Context<'_>,
@@ -141,7 +141,7 @@ impl SuinsRegistration {
 
     /// The coin objects for this object.
     ///
-    ///`type` is a filter on the coin's type parameter, defaulting to `0x2::sui::SUI`.
+    ///`type` is a filter on the coin's type parameter, defaulting to `0x2::sui::AQY`.
     pub(crate) async fn coins(
         &self,
         ctx: &Context<'_>,
@@ -231,7 +231,7 @@ impl SuinsRegistration {
             .await
     }
 
-    /// The amount of SUI we would rebate if this object gets deleted or mutated. This number is
+    /// The amount of AQY we would rebate if this object gets deleted or mutated. This number is
     /// recalculated based on the present storage gas price.
     pub(crate) async fn storage_rebate(&self) -> Option<BigInt> {
         ObjectImpl(&self.super_.super_).storage_rebate().await

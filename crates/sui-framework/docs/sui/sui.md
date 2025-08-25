@@ -2,11 +2,11 @@
 title: Module `sui::sui`
 ---
 
-Coin<SUI> is the token used to pay for gas in Sui.
+Coin<AQY> is the token used to pay for gas in Sui.
 It has 9 decimals, and the smallest unit (10^-9) is called "mist".
 
 
--  [Struct `SUI`](#sui_sui_SUI)
+-  [Struct `AQY`](#sui_sui_SUI)
 -  [Constants](#@Constants_0)
 -  [Function `new`](#sui_sui_new)
 -  [Function `transfer`](#sui_sui_transfer)
@@ -45,12 +45,12 @@ It has 9 decimals, and the smallest unit (10^-9) is called "mist".
 
 <a name="sui_sui_SUI"></a>
 
-## Struct `SUI`
+## Struct `AQY`
 
 Name of the coin
 
 
-<pre><code><b>public</b> <b>struct</b> <a href="../sui/sui.md#sui_sui_SUI">SUI</a> <b>has</b> drop
+<pre><code><b>public</b> <b>struct</b> <a href="../sui/sui.md#sui_sui_SUI">AQY</a> <b>has</b> drop
 </code></pre>
 
 
@@ -124,11 +124,11 @@ The total supply of Sui denominated in Mist (10 Billion * 10^9)
 
 ## Function `new`
 
-Register the <code><a href="../sui/sui.md#sui_sui_SUI">SUI</a></code> Coin to acquire its <code>Supply</code>.
+Register the <code><a href="../sui/sui.md#sui_sui_SUI">AQY</a></code> Coin to acquire its <code>Supply</code>.
 This should be called only once during genesis creation.
 
 
-<pre><code><b>fun</b> <a href="../sui/sui.md#sui_sui_new">new</a>(ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;
+<pre><code><b>fun</b> <a href="../sui/sui.md#sui_sui_new">new</a>(ctx: &<b>mut</b> <a href="../sui/tx_context.md#sui_tx_context_TxContext">sui::tx_context::TxContext</a>): <a href="../sui/balance.md#sui_balance_Balance">sui::balance::Balance</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;
 </code></pre>
 
 
@@ -137,13 +137,13 @@ This should be called only once during genesis creation.
 <summary>Implementation</summary>
 
 
-<pre><code><b>fun</b> <a href="../sui/sui.md#sui_sui_new">new</a>(ctx: &<b>mut</b> TxContext): Balance&lt;<a href="../sui/sui.md#sui_sui_SUI">SUI</a>&gt; {
+<pre><code><b>fun</b> <a href="../sui/sui.md#sui_sui_new">new</a>(ctx: &<b>mut</b> TxContext): Balance&lt;<a href="../sui/sui.md#sui_sui_SUI">AQY</a>&gt; {
     <b>assert</b>!(ctx.sender() == @0x0, <a href="../sui/sui.md#sui_sui_ENotSystemAddress">ENotSystemAddress</a>);
     <b>assert</b>!(ctx.epoch() == 0, <a href="../sui/sui.md#sui_sui_EAlreadyMinted">EAlreadyMinted</a>);
     <b>let</b> (treasury, metadata) = <a href="../sui/coin.md#sui_coin_create_currency">coin::create_currency</a>(
-        <a href="../sui/sui.md#sui_sui_SUI">SUI</a> {},
+        <a href="../sui/sui.md#sui_sui_SUI">AQY</a> {},
         9,
-        b"<a href="../sui/sui.md#sui_sui_SUI">SUI</a>",
+        b"<a href="../sui/sui.md#sui_sui_SUI">AQY</a>",
         b"Sui",
         // TODO: add appropriate description and logo <a href="../sui/url.md#sui_url">url</a>
         b"",
@@ -168,7 +168,7 @@ This should be called only once during genesis creation.
 
 
 
-<pre><code><b>public</b> <b>entry</b> <b>fun</b> <a href="../sui/transfer.md#sui_transfer">transfer</a>(c: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::SUI</a>&gt;, recipient: <b>address</b>)
+<pre><code><b>public</b> <b>entry</b> <b>fun</b> <a href="../sui/transfer.md#sui_transfer">transfer</a>(c: <a href="../sui/coin.md#sui_coin_Coin">sui::coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">sui::sui::AQY</a>&gt;, recipient: <b>address</b>)
 </code></pre>
 
 
@@ -177,7 +177,7 @@ This should be called only once during genesis creation.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>entry</b> <b>fun</b> <a href="../sui/transfer.md#sui_transfer">transfer</a>(c: <a href="../sui/coin.md#sui_coin_Coin">coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">SUI</a>&gt;, recipient: <b>address</b>) {
+<pre><code><b>public</b> <b>entry</b> <b>fun</b> <a href="../sui/transfer.md#sui_transfer">transfer</a>(c: <a href="../sui/coin.md#sui_coin_Coin">coin::Coin</a>&lt;<a href="../sui/sui.md#sui_sui_SUI">AQY</a>&gt;, recipient: <b>address</b>) {
     <a href="../sui/transfer.md#sui_transfer_public_transfer">transfer::public_transfer</a>(c, recipient)
 }
 </code></pre>

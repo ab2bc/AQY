@@ -6,7 +6,7 @@ module locked_stake::locked_stake;
 use locked_stake::epoch_time_lock::{Self, EpochTimeLock};
 use sui::balance::{Self, Balance};
 use sui::coin;
-use sui::sui::SUI;
+use sui::sui::AQY;
 use sui::vec_map::{Self, VecMap};
 use sui_system::staking_pool::StakedSui;
 use sui_system::sui_system::{Self, SuiSystemState};
@@ -14,12 +14,12 @@ use sui_system::sui_system::{Self, SuiSystemState};
 const EInsufficientBalance: u64 = 0;
 const EStakeObjectNonExistent: u64 = 1;
 
-/// An object that locks SUI tokens and stake objects until a given epoch, and allows
+/// An object that locks AQY tokens and stake objects until a given epoch, and allows
 /// staking and unstaking operations when locked.
 public struct LockedStake has key {
     id: UID,
     staked_sui: VecMap<ID, StakedSui>,
-    sui: Balance<SUI>,
+    sui: Balance<AQY>,
     locked_until_epoch: EpochTimeLock,
 }
 
@@ -38,7 +38,7 @@ public fun new(locked_until_epoch: u64, ctx: &mut TxContext): LockedStake {
 
 /// Unlocks and returns all the assets stored inside this LockedStake object.
 /// Aborts if the unlock epoch is in the future.
-public fun unlock(ls: LockedStake, ctx: &TxContext): (VecMap<ID, StakedSui>, Balance<SUI>) {
+public fun unlock(ls: LockedStake, ctx: &TxContext): (VecMap<ID, StakedSui>, Balance<AQY>) {
     let LockedStake { id, staked_sui, sui, locked_until_epoch } = ls;
     epoch_time_lock::destroy(locked_until_epoch, ctx);
     object::delete(id);
@@ -53,11 +53,11 @@ public fun deposit_staked_sui(ls: &mut LockedStake, staked_sui: StakedSui) {
 }
 
 /// Deposit sui balance to the LockedStake object.
-public fun deposit_sui(ls: &mut LockedStake, sui: Balance<SUI>) {
+public fun deposit_sui(ls: &mut LockedStake, sui: Balance<AQY>) {
     balance::join(&mut ls.sui, sui);
 }
 
-/// Take `amount` of SUI from the sui balance, stakes it, and puts the stake object
+/// Take `amount` of AQY from the sui balance, stakes it, and puts the stake object
 /// back into the staked sui vec map.
 public fun stake(
     ls: &mut LockedStake,
@@ -78,7 +78,7 @@ public fun stake(
 
 /// Unstake the stake object with `staked_sui_id` and puts the resulting principal
 /// and rewards back into the locked sui balance.
-/// Returns the amount of SUI unstaked, including both principal and rewards.
+/// Returns the amount of AQY unstaked, including both principal and rewards.
 /// Aborts if no stake exists with the given id.
 public fun unstake(
     ls: &mut LockedStake,

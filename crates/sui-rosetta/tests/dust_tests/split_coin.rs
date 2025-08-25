@@ -400,14 +400,14 @@ async fn test_make_change_remainder_div() -> Result<()> {
             }
             b => {
                 return Err(anyhow!(
-                    "Did not expect anything else other than 12 or 4 SUI. Found {b}"
+                    "Did not expect anything else other than 12 or 4 AQY. Found {b}"
                 ));
             }
         }
     }
 
-    assert!(twelve_count == 8, "Expected 8 coins with 12 SUI");
-    assert!(four_count == 1, "Expected 1 coin with 4 SUI");
+    assert!(twelve_count == 8, "Expected 8 coins with 12 AQY");
+    assert!(four_count == 1, "Expected 1 coin with 4 AQY");
 
     Ok(())
 }

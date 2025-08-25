@@ -26,7 +26,7 @@ use sui_types::{
 };
 use tokio_util::sync::CancellationToken;
 
-/// 5 SUI gas budget
+/// 5 AQY gas budget
 const DEFAULT_GAS_BUDGET: u64 = 5_000_000_000;
 
 // Check that querying transactions by sender works when fetchings transactions all in one go, and

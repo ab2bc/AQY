@@ -50,7 +50,7 @@ fun validator_rewards() {
     let opts = runner.advance_epoch_opts().computation_charge(100);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
-    // check rewards distribution, given that validator 2 has 920 SUI of stake now
+    // check rewards distribution, given that validator 2 has 920 AQY of stake now
     runner.system_tx!(|system, _| {
         assert_eq!(system.validator_stake_amount(VALIDATOR_ADDR_1), 150 * MIST_PER_SUI);
         assert_eq!(system.validator_stake_amount(VALIDATOR_ADDR_2), 970 * MIST_PER_SUI);
@@ -135,7 +135,7 @@ fun stake_rewards() {
     runner.set_sender(STAKER_ADDR_1).unstake(0);
     runner.set_sender(STAKER_ADDR_2).stake_with(VALIDATOR_ADDR_1, 600);
 
-    // Each pool gets 30 SUI.
+    // Each pool gets 30 AQY.
     let opts = runner.advance_epoch_opts().computation_charge(120);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
@@ -145,24 +145,24 @@ fun stake_rewards() {
         vector[140 * MIST_PER_SUI, 240 * MIST_PER_SUI, 360 * MIST_PER_SUI, 460 * MIST_PER_SUI],
     );
 
-    // staker 1 receives only 20 SUI of rewards, not 40 since we are using pre-epoch exchange rate.
+    // staker 1 receives only 20 AQY of rewards, not 40 since we are using pre-epoch exchange rate.
     assert_eq!(runner.set_sender(STAKER_ADDR_1).sui_balance(), 220 * MIST_PER_SUI);
 
-    // staker 2 receives 20 SUI of rewards.
+    // staker 2 receives 20 AQY of rewards.
     runner.set_sender(STAKER_ADDR_2).unstake(0);
     assert_eq!(runner.set_sender(STAKER_ADDR_2).sui_balance(), 120 * MIST_PER_SUI);
 
     let opts = runner.advance_epoch_opts().computation_charge(40);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
-    // unstake 600 principal SUI
+    // unstake 600 principal AQY
     runner.set_sender(STAKER_ADDR_2).unstake(0);
 
-    // additional 600 SUI of principal and 46 SUI of rewards withdrawn to Coin<SUI>
+    // additional 600 AQY of principal and 46 AQY of rewards withdrawn to Coin<AQY>
     // For this stake, the staking exchange rate is 100 : 140 and the unstaking
     // exchange rate is 528 : 750 -ish so the total sui withdraw will be:
-    // (600 * 100 / 140) * 750 / 528 = ~608. Together with the 120 SUI we already have,
-    // that would be about 728 SUI.
+    // (600 * 100 / 140) * 750 / 528 = ~608. Together with the 120 AQY we already have,
+    // that would be about 728 AQY.
     // TODO: Come up with better numbers and clean it up!
     assert_eq!(runner.set_sender(STAKER_ADDR_2).sui_balance(), 728108108107);
 
@@ -274,11 +274,11 @@ fun validator_commission() {
         assert_eq!(system.validator_stake_amount(VALIDATOR_ADDR_4), 490 * MIST_PER_SUI);
     });
 
-    // Staker 1 rewards in the recent distribution is 0.9 x 30 = 27 SUI
-    // Validator 1 rewards in the recent distribution is 60 - 27 = 33 SUI
+    // Staker 1 rewards in the recent distribution is 0.9 x 30 = 27 AQY
+    // Validator 1 rewards in the recent distribution is 60 - 27 = 33 AQY
 
-    // Staker 2 amounts for 0.8 * 60 * (108 / 330) + 108 = 123.709 SUI
-    // Validator 2 amounts for 390 - 123.709 = 266.291 SUI
+    // Staker 2 amounts for 0.8 * 60 * (108 / 330) + 108 = 123.709 AQY
+    // Validator 2 amounts for 390 - 123.709 = 266.291 AQY
 
     assert_stake_rewards_for_addresses(
         &mut runner,
@@ -322,8 +322,8 @@ fun rewards_slashing() {
 
     // Without reward slashing, the validator's stakes should be [100+450, 200+600, 300+900, 400+900]
     // after the last epoch advancement.
-    // Since 60 SUI, or 10% of validator_2's rewards (600) are slashed, she only has 800 - 60 = 740 now.
-    // There are in total 90 SUI of rewards slashed (60 from the validator, and 30 from her staker)
+    // Since 60 AQY, or 10% of validator_2's rewards (600) are slashed, she only has 800 - 60 = 740 now.
+    // There are in total 90 AQY of rewards slashed (60 from the validator, and 30 from her staker)
     // so the unslashed validators each get their share of additional rewards, which is 30.
     assert_stake_rewards_for_addresses(
         &mut runner,
@@ -363,14 +363,14 @@ fun entire_rewards_slashing() {
         runner.set_sender(validator_address).report_validator(VALIDATOR_ADDR_2);
     });
 
-    // 3600 SUI of total rewards, 100% reward slashing.
+    // 3600 AQY of total rewards, 100% reward slashing.
     // So validator_2 is the only one whose rewards should get slashed.
     let opts = runner.advance_epoch_opts().computation_charge(3600).reward_slashing_rate(10_000);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
     // Without reward slashing, the validator's stakes should be [100+450, 200+600, 300+900, 400+900]
     // after the last epoch advancement.
-    // The entire rewards of validator 2's staking pool are slashed, which is 900 SUI.
+    // The entire rewards of validator 2's staking pool are slashed, which is 900 AQY.
     // so the unslashed validators each get their share of additional rewards, which is 300.
     assert_stake_rewards_for_addresses(
         &mut runner,
@@ -387,7 +387,7 @@ fun entire_rewards_slashing() {
     runner.set_sender(STAKER_ADDR_1).unstake(0);
     runner.set_sender(STAKER_ADDR_2).unstake(0);
 
-    // Same analysis as above. Staker 1 has 150 additional SUI, and since all of staker 2's rewards are slashed she only gets back her principal.
+    // Same analysis as above. Staker 1 has 150 additional AQY, and since all of staker 2's rewards are slashed she only gets back her principal.
     assert_eq!(runner.set_sender(STAKER_ADDR_1).sui_balance(), (550 + 150) * MIST_PER_SUI);
     assert_eq!(runner.set_sender(STAKER_ADDR_2).sui_balance(), 100 * MIST_PER_SUI);
 
@@ -421,7 +421,7 @@ fun rewards_slashing_with_storage_fund() {
         runner.set_sender(validator_address).report_validator(VALIDATOR_ADDR_4);
     });
 
-    // 1000 SUI of storage rewards, 1500 SUI of computation rewards, 50% slashing threshold
+    // 1000 AQY of storage rewards, 1500 AQY of computation rewards, 50% slashing threshold
     // and 20% slashing rate
     let opts = runner
         .advance_epoch_opts()
@@ -430,10 +430,10 @@ fun rewards_slashing_with_storage_fund() {
         .reward_slashing_rate(2000);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
-    // Each unslashed validator staking pool gets 300 SUI of computation rewards + 75 SUI of storage fund rewards +
-    // 20 SUI (1/3) of validator 4's slashed computation reward and 5 SUI (1/3) of validator 4's slashed
-    // storage fund reward, so in total it gets 400 SUI of rewards.
-    // Validator 3 has a delegator with her so she gets 320 * 3/4 + 75 + 5 = 320 SUI of rewards.
+    // Each unslashed validator staking pool gets 300 AQY of computation rewards + 75 AQY of storage fund rewards +
+    // 20 AQY (1/3) of validator 4's slashed computation reward and 5 AQY (1/3) of validator 4's slashed
+    // storage fund reward, so in total it gets 400 AQY of rewards.
+    // Validator 3 has a delegator with her so she gets 320 * 3/4 + 75 + 5 = 320 AQY of rewards.
     // Validator 4's should get 300 * 4/5 * (1 - 20%) = 192 in computation rewards and 75 * (1 - 20%) = 60 in storage rewards.
     assert_stake_rewards_for_addresses(
         &mut runner,
@@ -445,9 +445,9 @@ fun rewards_slashing_with_storage_fund() {
     runner.set_sender(STAKER_ADDR_1).unstake(0);
     runner.set_sender(STAKER_ADDR_2).unstake(0);
 
-    // Staker 1 gets 320 * 1/4 = 80 SUI of rewards.
+    // Staker 1 gets 320 * 1/4 = 80 AQY of rewards.
     assert_eq!(runner.set_sender(STAKER_ADDR_1).sui_balance(), (100 + 80) * MIST_PER_SUI);
-    // Staker 2 gets 300 * 1/5 * (1 - 20%) = 48 SUI of rewards.
+    // Staker 2 gets 300 * 1/5 * (1 - 20%) = 48 AQY of rewards.
     assert_eq!(runner.set_sender(STAKER_ADDR_2).sui_balance(), (100 + 48) * MIST_PER_SUI);
 
     runner.finish();
@@ -493,9 +493,9 @@ fun everyone_slashed() {
     );
 
     runner.system_tx!(|system, _| {
-        // Storage fund balance should increase by 4000 SUI.
+        // Storage fund balance should increase by 4000 AQY.
         assert_eq!(system.get_storage_fund_total_balance(), 4000 * MIST_PER_SUI);
-        // The entire 1000 SUI of storage rewards should go to the object rebate portion of the storage fund.
+        // The entire 1000 AQY of storage rewards should go to the object rebate portion of the storage fund.
         assert_eq!(system.get_storage_fund_object_rebates(), 1000 * MIST_PER_SUI);
     });
 
@@ -521,25 +521,25 @@ fun mul_rewards_withdraws_at_same_epoch() {
 
     runner.set_sender(STAKER_ADDR_2).stake_with(VALIDATOR_ADDR_1, 480);
 
-    // Staker 1 gets 2/3 * 1/4 * 120 = 20 SUI here.
+    // Staker 1 gets 2/3 * 1/4 * 120 = 20 AQY here.
     let opts = runner.advance_epoch_opts().computation_charge(120);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
     runner.set_sender(STAKER_ADDR_1).stake_with(VALIDATOR_ADDR_1, 130);
     runner.set_sender(STAKER_ADDR_3).stake_with(VALIDATOR_ADDR_1, 390);
 
-    // Staker 1 gets 20 SUI here and staker 2 gets 40 SUI here.
+    // Staker 1 gets 20 AQY here and staker 2 gets 40 AQY here.
     let opts = runner.advance_epoch_opts().computation_charge(280);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
     runner.set_sender(STAKER_ADDR_3).stake_with(VALIDATOR_ADDR_1, 280);
     runner.set_sender(STAKER_ADDR_4).stake_with(VALIDATOR_ADDR_1, 1400);
 
-    // Staker 1 gets 30 SUI, staker 2 gets 40 SUI and staker 3 gets 30 SUI.
+    // Staker 1 gets 30 AQY, staker 2 gets 40 AQY and staker 3 gets 30 AQY.
     let opts = runner.advance_epoch_opts().computation_charge(440);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
-    // Check that we have the right amount of SUI in the staking pool.
+    // Check that we have the right amount of AQY in the staking pool.
     runner.system_tx!(|system, _| {
         assert_eq!(system.validator_stake_amount(VALIDATOR_ADDR_1), 140 * 23 * MIST_PER_SUI);
     });
@@ -552,15 +552,15 @@ fun mul_rewards_withdraws_at_same_epoch() {
     runner.set_sender(STAKER_ADDR_3).unstake(0);
     runner.set_sender(STAKER_ADDR_4).unstake(0);
 
-    // staker 1's first stake was active for 3 epochs so got 20 * 3 = 60 SUI of rewards
-    // and her second stake was active for only one epoch and got 10 SUI of rewards.
+    // staker 1's first stake was active for 3 epochs so got 20 * 3 = 60 AQY of rewards
+    // and her second stake was active for only one epoch and got 10 AQY of rewards.
     assert_eq!(
         runner.set_sender(STAKER_ADDR_1).sui_balance(),
         (220 + 130 + 20 * 3 + 10) * MIST_PER_SUI,
     );
-    // staker 2's stake was active for 2 epochs so got 40 * 2 = 80 SUI of rewards
+    // staker 2's stake was active for 2 epochs so got 40 * 2 = 80 AQY of rewards
     assert_eq!(runner.set_sender(STAKER_ADDR_2).sui_balance(), (480 + 40 * 2) * MIST_PER_SUI);
-    // staker 3's first stake was active for 1 epoch and got 30 SUI of rewards
+    // staker 3's first stake was active for 1 epoch and got 30 AQY of rewards
     // and her second stake didn't get any rewards.
     assert_eq!(runner.set_sender(STAKER_ADDR_3).sui_balance(), (390 + 280 + 30) * MIST_PER_SUI);
     // staker 4 joined and left in an epoch where no rewards were earned so she got no rewards.
@@ -591,7 +591,7 @@ fun uncapped_rewards() {
     let opts = runner.advance_epoch_opts().computation_charge(10_000);
     runner.advance_epoch(option::some(opts)).destroy_for_testing();
 
-    // Check that each validator has the correct amount of SUI in their stake pool.
+    // Check that each validator has the correct amount of AQY in their stake pool.
     runner.system_tx!(|system, _| {
         num_validators.do!(|i| {
             let addr = address::from_u256(i as u256);

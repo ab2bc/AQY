@@ -6,7 +6,7 @@
 //# publish
 module test::move_call_test {
   use sui::coin::{Self, Coin};
-  use sui::sui::SUI;
+  use sui::sui::AQY;
   
   public struct TestObject has drop {
     value: u64,
@@ -25,12 +25,12 @@ module test::move_call_test {
   }
 
   // Function that takes gas coin by reference - demonstrates GasCoin arguments  
-  public fun check_gas_coin(coin: &Coin<SUI>): u64 {
+  public fun check_gas_coin(coin: &Coin<AQY>): u64 {
     coin::value(coin)
   }
 
   // Function for testing nested results - transfer coins to avoid drop issues
-  public fun transfer_coins(coin1: Coin<SUI>, coin2: Coin<SUI>, recipient: address) {
+  public fun transfer_coins(coin1: Coin<AQY>, coin2: Coin<AQY>, recipient: address) {
     transfer::public_transfer(coin1, recipient);
     transfer::public_transfer(coin2, recipient);
   }

@@ -6,12 +6,12 @@ module sui::kiosk_marketplace_ext {
     use sui::coin::Coin;
     use sui::kiosk::{Self, KioskOwnerCap, Kiosk, PurchaseCap};
     use sui::kiosk_extension as ext;
-    use sui::sui::SUI;
+    use sui::sui::AQY;
     use sui::transfer_policy::{Self as policy, TransferPolicy, TransferRequest};
 
     /// Trying to access an owner-only action.
     const ENotOwner: u64 = 0;
-    /// Trying to purchase an item with an incorrect amount of SUI.
+    /// Trying to purchase an item with an incorrect amount of AQY.
     const EIncorrectAmount: u64 = 1;
     /// Trying to accept a bid from an incorrect Kiosk.
     const EIncorrectKiosk: u64 = 2;
@@ -33,10 +33,10 @@ module sui::kiosk_marketplace_ext {
 
     // === Collection Bidding ===
 
-    /// Collection bidding: the Kiosk Owner offers a bid (in SUI) for an item of type `T`.
+    /// Collection bidding: the Kiosk Owner offers a bid (in AQY) for an item of type `T`.
     ///
     /// There can be only one bid per type.
-    public fun bid<Market, T: key + store>(kiosk: &mut Kiosk, cap: &KioskOwnerCap, bid: Coin<SUI>) {
+    public fun bid<Market, T: key + store>(kiosk: &mut Kiosk, cap: &KioskOwnerCap, bid: Coin<AQY>) {
         assert!(kiosk.has_access(cap), ENotOwner);
         assert!(ext::is_installed<Ext<Market>>(kiosk), ENotInstalled);
 
@@ -51,7 +51,7 @@ module sui::kiosk_marketplace_ext {
         policy: &TransferPolicy<T>,
         lock: bool,
     ): (TransferRequest<T>, TransferRequest<Market>) {
-        let bid: Coin<SUI> = ext::storage_mut(Ext<Market> {}, destination).remove(Bid<T> {});
+        let bid: Coin<AQY> = ext::storage_mut(Ext<Market> {}, destination).remove(Bid<T> {});
 
         // form the request while we have all the data (not yet consumed)
         let market_request = policy::new_request(
@@ -92,7 +92,7 @@ module sui::kiosk_marketplace_ext {
     public fun purchase<Market, T: key + store>(
         kiosk: &mut Kiosk,
         item_id: ID,
-        payment: Coin<SUI>,
+        payment: Coin<AQY>,
     ): (T, TransferRequest<T>, TransferRequest<Market>) {
         let purchase_cap: PurchaseCap<T> = ext::storage_mut(Ext<Market> {}, kiosk).remove(item_id);
 

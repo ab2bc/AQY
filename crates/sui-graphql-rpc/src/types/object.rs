@@ -117,7 +117,7 @@ pub(crate) struct ObjectFilter {
     /// name.
     ///
     /// Generic types can be queried by either the generic type name, e.g. `0x2::coin::Coin`, or by
-    /// the full type name, such as `0x2::coin::Coin<0x2::sui::SUI>`.
+    /// the full type name, such as `0x2::coin::Coin<0x2::sui::AQY>`.
     pub type_: Option<TypeFilter>,
 
     /// Filter for live objects by their current owners.
@@ -344,7 +344,7 @@ impl Object {
     }
 
     /// Total balance of all coins with marker type owned by this object. If type is not supplied,
-    /// it defaults to `0x2::sui::SUI`.
+    /// it defaults to `0x2::sui::AQY`.
     pub(crate) async fn balance(
         &self,
         ctx: &Context<'_>,
@@ -369,7 +369,7 @@ impl Object {
 
     /// The coin objects for this object.
     ///
-    ///`type` is a filter on the coin's type parameter, defaulting to `0x2::sui::SUI`.
+    ///`type` is a filter on the coin's type parameter, defaulting to `0x2::sui::AQY`.
     pub(crate) async fn coins(
         &self,
         ctx: &Context<'_>,
@@ -456,7 +456,7 @@ impl Object {
         ObjectImpl(self).previous_transaction_block(ctx).await
     }
 
-    /// The amount of SUI we would rebate if this object gets deleted or mutated. This number is
+    /// The amount of AQY we would rebate if this object gets deleted or mutated. This number is
     /// recalculated based on the present storage gas price.
     pub(crate) async fn storage_rebate(&self) -> Option<BigInt> {
         ObjectImpl(self).storage_rebate().await

@@ -1006,7 +1006,7 @@ async fn test_move_call_args_linter_command() -> Result<(), anyhow::Error> {
     // let err_string = format!("{} ", resp.err().unwrap());
     // let framework_addr = SUI_FRAMEWORK_ADDRESS.to_hex_literal();
     // let package_addr = package.to_hex_literal();
-    // assert!(err_string.contains(&format!("Expected argument of type {package_addr}::object_basics::Object, but found type {framework_addr}::coin::Coin<{framework_addr}::sui::SUI>")));
+    // assert!(err_string.contains(&format!("Expected argument of type {package_addr}::object_basics::Object, but found type {framework_addr}::coin::Coin<{framework_addr}::sui::AQY>")));
 
     // Try a proper transfer
     let args = [
@@ -3859,7 +3859,7 @@ async fn test_dry_run() -> Result<(), anyhow::Error> {
 
     assert_dry_run(transfer_dry_run, object_id, "Transfer");
 
-    // === TRANSFER SUI === //
+    // === TRANSFER AQY === //
     let transfer_sui_dry_run = SuiClientCommands::TransferSui {
         to: KeyIdentity::Address(SuiAddress::random_for_testing_only()),
         sui_coin_object_id: object_to_send,
@@ -3926,7 +3926,7 @@ async fn test_dry_run() -> Result<(), anyhow::Error> {
 
     assert_dry_run(pay_dry_run, gas_coin_id, "Pay");
 
-    // === PAY SUI === //
+    // === PAY AQY === //
     let pay_sui_dry_run = SuiClientCommands::PaySui {
         input_coins: vec![object_id],
         recipients: vec![KeyIdentity::Address(SuiAddress::random_for_testing_only())],
@@ -3945,7 +3945,7 @@ async fn test_dry_run() -> Result<(), anyhow::Error> {
 
     assert_dry_run(pay_sui_dry_run, object_id, "PaySui");
 
-    // === PAY ALL SUI === //
+    // === PAY ALL AQY === //
     let pay_all_sui_dry_run = SuiClientCommands::PayAllSui {
         input_coins: vec![object_id],
         recipient: KeyIdentity::Address(SuiAddress::random_for_testing_only()),

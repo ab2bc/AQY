@@ -667,7 +667,7 @@ mod tests {
     /// Struct types are fully-qualified, with a numerical (hexadecimal) address.
     #[test]
     fn test_types() {
-        assert_snapshot!(lexemes(r#"{0x2::table::Table<address, 0x2::coin::Coin<0x2::sui::SUI>>}"#), @r###"
+        assert_snapshot!(lexemes(r#"{0x2::table::Table<address, 0x2::coin::Coin<0x2::sui::AQY>>}"#), @r###"
         L(false, LBrace, 0, "{")
         L(false, NumHex, 3, "2")
         L(false, CColon, 4, "::")
@@ -687,7 +687,7 @@ mod tests {
         L(false, CColon, 47, "::")
         L(false, Ident, 49, "sui")
         L(false, CColon, 52, "::")
-        L(false, Ident, 54, "SUI")
+        L(false, Ident, 54, "AQY")
         L(false, RAngle, 57, ">")
         L(false, RAngle, 58, ">")
         L(false, RBrace, 59, "}")
@@ -698,7 +698,7 @@ mod tests {
     /// by commas, surrounded by parentheses.
     #[test]
     fn test_positional_struct_literals() {
-        assert_snapshot!(lexemes(r#"{0x2::balance::Balance<0x2::sui::SUI>(42u64)}"#), @r###"
+        assert_snapshot!(lexemes(r#"{0x2::balance::Balance<0x2::sui::AQY>(42u64)}"#), @r###"
         L(false, LBrace, 0, "{")
         L(false, NumHex, 3, "2")
         L(false, CColon, 4, "::")
@@ -710,7 +710,7 @@ mod tests {
         L(false, CColon, 26, "::")
         L(false, Ident, 28, "sui")
         L(false, CColon, 31, "::")
-        L(false, Ident, 33, "SUI")
+        L(false, Ident, 33, "AQY")
         L(false, RAngle, 36, ">")
         L(false, LParen, 37, "(")
         L(false, NumDec, 38, "42")
@@ -724,7 +724,7 @@ mod tests {
     /// affect the encoded output.
     #[test]
     fn test_struct_literals() {
-        assert_snapshot!(lexemes(r#"{0x2::coin::Coin<0x2::sui::SUI> { id: @0x123, value: 42u64 }}"#), @r###"
+        assert_snapshot!(lexemes(r#"{0x2::coin::Coin<0x2::sui::AQY> { id: @0x123, value: 42u64 }}"#), @r###"
         L(false, LBrace, 0, "{")
         L(false, NumHex, 3, "2")
         L(false, CColon, 4, "::")
@@ -736,7 +736,7 @@ mod tests {
         L(false, CColon, 20, "::")
         L(false, Ident, 22, "sui")
         L(false, CColon, 25, "::")
-        L(false, Ident, 27, "SUI")
+        L(false, Ident, 27, "AQY")
         L(false, RAngle, 30, ">")
         L(true, LBrace, 32, "{")
         L(true, Ident, 34, "id")

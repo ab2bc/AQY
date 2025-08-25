@@ -16,7 +16,7 @@ entry fun foo<T>() {}
 
 //# run test::m::foo --type-args test::x::x
 
-//# run test::m::foo --type-args test::m::SUI
+//# run test::m::foo --type-args test::m::AQY
 
 //# run test::m::foo --type-args test::m::S
 

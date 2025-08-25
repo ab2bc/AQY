@@ -84,7 +84,7 @@ impl Processor for TokenTransferHandler {
                     block_height,
                     timestamp_ms,
                     status: TokenTransferStatus::Deposited,
-                    data_source: BridgeDataSource::SUI,
+                    data_source: BridgeDataSource::AQY,
                     is_finalized: true,
                     txn_hash: tx.transaction.digest().inner().to_vec(),
                     txn_sender: tx.transaction.sender_address().to_vec(),

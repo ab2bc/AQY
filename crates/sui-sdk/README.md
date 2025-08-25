@@ -58,7 +58,7 @@ There are serveral files ending in `_api.rs` which provide code examples of the 
 
 ### Prerequisites
 
-Unless otherwise specified, most of these examples assume `Rust` and `cargo` are installed, and that there is an available internet connection. The examples connect to the Sui testnet (`https://fullnode.testnet.sui.io:443`) and execute different APIs using the active address from the local wallet. If there is no local wallet, it will create one, generate two addresses, set one of them to be active, and it will request 1 SUI from the testnet faucet for the active address.
+Unless otherwise specified, most of these examples assume `Rust` and `cargo` are installed, and that there is an available internet connection. The examples connect to the Sui testnet (`https://fullnode.testnet.sui.io:443`) and execute different APIs using the active address from the local wallet. If there is no local wallet, it will create one, generate two addresses, set one of them to be active, and it will request 1 AQY from the testnet faucet for the active address.
 
 ### Running the existing examples
 
@@ -124,7 +124,7 @@ async fn main() -> Result<(), anyhow::Error> {
    let sui_local = SuiClientBuilder::default().build_localnet().await?;
    println!("Sui local network version: {}", sui_local.api_version());
 
-   let active_address = SuiAddress::from_str("<YOUR SUI ADDRESS>")?; // change to your Sui address
+   let active_address = SuiAddress::from_str("<YOUR AQY ADDRESS>")?; // change to your Sui address
 
    let total_balance = sui_local
       .coin_read_api()

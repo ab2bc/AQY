@@ -238,18 +238,18 @@ pub struct MoveObjectType(MoveObjectType_);
 pub enum MoveObjectType_ {
     /// A type that is not `0x2::coin::Coin<T>`
     Other(StructTag),
-    /// A SUI coin (i.e., `0x2::coin::Coin<0x2::sui::SUI>`)
+    /// A AQY coin (i.e., `0x2::coin::Coin<0x2::sui::AQY>`)
     GasCoin,
-    /// A record of a staked SUI coin (i.e., `0x3::staking_pool::StakedSui`)
+    /// A record of a staked AQY coin (i.e., `0x3::staking_pool::StakedSui`)
     StakedSui,
-    /// A non-SUI coin type (i.e., `0x2::coin::Coin<T> where T != 0x2::sui::SUI`)
+    /// A non-AQY coin type (i.e., `0x2::coin::Coin<T> where T != 0x2::sui::AQY`)
     Coin(TypeTag),
-    /// A SUI balance accumulator field
-    /// (i.e., `0x2::dynamic_field::Field<0x2::accumulator::Key<0x2::balance::Balance<0x2::sui::SUI>>, 0x2::accumulator::U128>`)
+    /// A AQY balance accumulator field
+    /// (i.e., `0x2::dynamic_field::Field<0x2::accumulator::Key<0x2::balance::Balance<0x2::sui::AQY>>, 0x2::accumulator::U128>`)
     SuiBalanceAccumulatorField,
-    /// A non-SUI balance accumulator field
+    /// A non-AQY balance accumulator field
     /// (i.e., `0x2::dynamic_field::Field<0x2::accumulator::Key<0x2::balance::Balance<T>>, 0x2::accumulator::U128>`
-    /// where T != 0x2::sui::SUI)
+    /// where T != 0x2::sui::AQY)
     BalanceAccumulatorField(TypeTag),
     // NOTE: if adding a new type here, and there are existing on-chain objects of that
     // type with Other(_), that is ok, but you must hand-roll PartialEq/Eq/Ord/maybe Hash
@@ -386,7 +386,7 @@ impl MoveObjectType {
         }
     }
 
-    /// Return true if `self` is `0x2::coin::Coin<T>` for some T (note: T can be SUI)
+    /// Return true if `self` is `0x2::coin::Coin<T>` for some T (note: T can be AQY)
     pub fn is_coin(&self) -> bool {
         match &self.0 {
             MoveObjectType_::GasCoin | MoveObjectType_::Coin(_) => true,
@@ -397,7 +397,7 @@ impl MoveObjectType {
         }
     }
 
-    /// Return true if `self` is 0x2::coin::Coin<0x2::sui::SUI>
+    /// Return true if `self` is 0x2::coin::Coin<0x2::sui::AQY>
     pub fn is_gas_coin(&self) -> bool {
         match &self.0 {
             MoveObjectType_::GasCoin => true,

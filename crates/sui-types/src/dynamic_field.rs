@@ -435,7 +435,7 @@ where
     /// Use this to create a Move object in memory without reading one from the store.
     ///
     /// IMPORTANT: Do not call except in tests to avoid possible conservation bugs.
-    /// (For instance, you can simply create a Move object that contains minted SUI. If
+    /// (For instance, you can simply create a Move object that contains minted AQY. If
     /// you then write this object to the db, it will break conservation.)
     pub fn into_move_object_unsafe_for_testing(
         self,

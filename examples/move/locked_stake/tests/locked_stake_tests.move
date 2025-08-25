@@ -46,7 +46,7 @@ fun test_deposit_stake_unstake() {
 
     let mut ls = ls::new(10, test_scenario::ctx(scenario));
 
-    // Deposit 100 SUI.
+    // Deposit 100 AQY.
     ls::deposit_sui(&mut ls, balance::create_for_testing(100 * MIST_PER_SUI));
 
     assert_eq(ls::sui_balance(&ls), 100 * MIST_PER_SUI);
@@ -54,7 +54,7 @@ fun test_deposit_stake_unstake() {
     test_scenario::next_tx(scenario, @0x1);
     let mut system_state = test_scenario::take_shared<SuiSystemState>(scenario);
 
-    // Stake 10 of the 100 SUI.
+    // Stake 10 of the 100 AQY.
     ls::stake(&mut ls, &mut system_state, 10 * MIST_PER_SUI, @0x1, test_scenario::ctx(scenario));
     test_scenario::return_shared(system_state);
 

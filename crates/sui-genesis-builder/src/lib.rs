@@ -1171,7 +1171,7 @@ pub fn generate_genesis_system_object(
             );
         }
 
-        // Step 4: Mint the supply of SUI.
+        // Step 4: Mint the supply of AQY.
         let sui_supply = builder.programmable_move_call(
             SUI_FRAMEWORK_ADDRESS.into(),
             ident_str!("sui").to_owned(),
@@ -1181,7 +1181,7 @@ pub fn generate_genesis_system_object(
         );
 
         // Step 5: Run genesis.
-        // The first argument is the system state uid we got from step 1 and the second one is the SUI supply we
+        // The first argument is the system state uid we got from step 1 and the second one is the AQY supply we
         // got from step 3.
         let mut arguments = vec![sui_system_state_uid, sui_supply];
         let mut call_arg_arguments = vec![

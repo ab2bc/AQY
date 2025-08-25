@@ -34,7 +34,7 @@ use crate::types::{
     AccountIdentifier, Amount, CoinAction, CoinChange, CoinID, CoinIdentifier, Currency,
     InternalOperation, OperationIdentifier, OperationStatus, OperationType,
 };
-use crate::{CoinMetadataCache, Error, SUI};
+use crate::{CoinMetadataCache, Error, AQY};
 
 #[cfg(test)]
 #[path = "unit_tests/operations_tests.rs"]
@@ -297,7 +297,7 @@ impl Operations {
                     let KnownValue::GasCoin(_) = resolve_result(known_results, i, j)?;
                 }
                 SuiArgument::GasCoin => (),
-                // Might not be a SUI coin
+                // Might not be a AQY coin
                 SuiArgument::Input(_) => (),
             };
             let amounts = amounts
@@ -550,7 +550,7 @@ impl Operations {
                     balances
                 });
         // separate gas from balances
-        *balances.entry((gas_owner, SUI.clone())).or_default() -= gas_used;
+        *balances.entry((gas_owner, AQY.clone())).or_default() -= gas_used;
 
         let balance_change = balances.into_iter().filter(|(_, amount)| *amount != 0).map(
             move |((addr, currency), amount)| {
@@ -590,7 +590,7 @@ impl Operations {
         if !operations.iter().any(|operation| {
             if let Some(amount) = &operation.amount {
                 if let Some(account) = &operation.account {
-                    if account.address == gas_owner && amount.currency == *SUI {
+                    if account.address == gas_owner && amount.currency == *AQY {
                         return true;
                     }
                 }
@@ -601,7 +601,7 @@ impl Operations {
                 Some(OperationStatus::Success),
                 gas_owner,
                 0,
-                SUI.clone(),
+                AQY.clone(),
             ));
         }
     }
@@ -695,9 +695,9 @@ impl Operations {
                             .as_mut()
                             .ok_or_else(|| anyhow!("Missing amount for a balance-change"))?;
                         // adjust the balances for previous and new gas_owners
-                        if account.address == prev_gas_owner && amount.currency == *SUI {
+                        if account.address == prev_gas_owner && amount.currency == *AQY {
                             amount.value -= gas_used;
-                        } else if account.address == new_gas_owner && amount.currency == *SUI {
+                        } else if account.address == new_gas_owner && amount.currency == *AQY {
                             amount.value += gas_used;
                         }
                     }
@@ -793,8 +793,8 @@ impl Operations {
             }
         }
         let staking_balance = if principal_amounts != 0 {
-            *accounted_balances.entry((sender, SUI.clone())).or_default() -= principal_amounts;
-            *accounted_balances.entry((sender, SUI.clone())).or_default() -= reward_amounts;
+            *accounted_balances.entry((sender, AQY.clone())).or_default() -= principal_amounts;
+            *accounted_balances.entry((sender, AQY.clone())).or_default() -= reward_amounts;
             vec![
                 Operation::stake_principle(status, sender, principal_amounts),
                 Operation::stake_reward(status, sender, reward_amounts),
@@ -843,7 +843,7 @@ impl Operations {
             .collect();
 
         // This is a workaround for the payCoin cases that are mistakenly considered to be paySui operations
-        // In this case we remove any irrelevant, SUI specific operation entries that sum up to 0 balance changes per address
+        // In this case we remove any irrelevant, AQY specific operation entries that sum up to 0 balance changes per address
         // and keep only the actual entries for the right coin type transfers, as they have been extracted from the transaction's
         // balance changes section.
         let mutually_cancelling_balances: HashMap<_, _> = ops

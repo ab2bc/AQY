@@ -104,7 +104,7 @@ to cause an overflow.
 ## Struct `Key`
 
 <code><a href="../sui/accumulator.md#sui_accumulator_Key">Key</a></code> is used only for computing the field id of accumulator objects.
-<code>T</code> is the type of the accumulated value, e.g. <code>Balance&lt;SUI&gt;</code>
+<code>T</code> is the type of the accumulated value, e.g. <code>Balance&lt;AQY&gt;</code>
 
 
 <pre><code><b>public</b> <b>struct</b> <a href="../sui/accumulator.md#sui_accumulator_Key">Key</a>&lt;<b>phantom</b> T&gt; <b>has</b> <b>copy</b>, drop, store

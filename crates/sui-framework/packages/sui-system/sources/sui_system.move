@@ -43,7 +43,7 @@ module sui_system::sui_system;
 use sui::balance::Balance;
 use sui::coin::Coin;
 use sui::dynamic_field;
-use sui::sui::SUI;
+use sui::sui::AQY;
 use sui::table::Table;
 use sui::vec_map::VecMap;
 use sui_system::stake_subsidy::StakeSubsidy;
@@ -79,7 +79,7 @@ const EWrongInnerVersion: u64 = 1;
 public(package) fun create(
     id: UID,
     validators: vector<Validator>,
-    storage_fund: Balance<SUI>,
+    storage_fund: Balance<AQY>,
     protocol_version: u64,
     epoch_start_timestamp_ms: u64,
     parameters: SystemParameters,
@@ -229,7 +229,7 @@ public entry fun set_candidate_validator_commission_rate(
 /// Add stake to a validator's staking pool.
 public entry fun request_add_stake(
     wrapper: &mut SuiSystemState,
-    stake: Coin<SUI>,
+    stake: Coin<AQY>,
     validator_address: address,
     ctx: &mut TxContext,
 ) {
@@ -237,10 +237,10 @@ public entry fun request_add_stake(
     transfer::public_transfer(staked_sui, ctx.sender());
 }
 
-/// The non-entry version of `request_add_stake`, which returns the staked SUI instead of transferring it to the sender.
+/// The non-entry version of `request_add_stake`, which returns the staked AQY instead of transferring it to the sender.
 public fun request_add_stake_non_entry(
     wrapper: &mut SuiSystemState,
-    stake: Coin<SUI>,
+    stake: Coin<AQY>,
     validator_address: address,
     ctx: &mut TxContext,
 ): StakedSui {
@@ -251,7 +251,7 @@ public fun request_add_stake_non_entry(
 /// Add stake to a validator's staking pool using multiple coins.
 public entry fun request_add_stake_mul_coin(
     wrapper: &mut SuiSystemState,
-    stakes: vector<Coin<SUI>>,
+    stakes: vector<Coin<AQY>>,
     stake_amount: option::Option<u64>,
     validator_address: address,
     ctx: &mut TxContext,
@@ -288,16 +288,16 @@ public fun redeem_fungible_staked_sui(
     wrapper: &mut SuiSystemState,
     fungible_staked_sui: FungibleStakedSui,
     ctx: &TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     wrapper.load_system_state_mut().redeem_fungible_staked_sui(fungible_staked_sui, ctx)
 }
 
-/// Non-entry version of `request_withdraw_stake` that returns the withdrawn SUI instead of transferring it to the sender.
+/// Non-entry version of `request_withdraw_stake` that returns the withdrawn AQY instead of transferring it to the sender.
 public fun request_withdraw_stake_non_entry(
     wrapper: &mut SuiSystemState,
     staked_sui: StakedSui,
     ctx: &mut TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     wrapper.load_system_state_mut().request_withdraw_stake(staked_sui, ctx)
 }
 
@@ -558,7 +558,7 @@ public fun active_validator_voting_powers(wrapper: &SuiSystemState): VecMap<addr
     wrapper.load_system_state_ref().active_validator_voting_powers()
 }
 
-/// Calculate the rewards for a given staked SUI object.
+/// Calculate the rewards for a given staked AQY object.
 /// Used in the package, and can be dev-inspected.
 public(package) fun calculate_rewards(
     self: &mut SuiSystemState,
@@ -583,8 +583,8 @@ public(package) fun calculate_rewards(
 /// 3. Distribute computation charge to validator stake.
 /// 4. Update all validators.
 fun advance_epoch(
-    storage_reward: Balance<SUI>,
-    computation_reward: Balance<SUI>,
+    storage_reward: Balance<AQY>,
+    computation_reward: Balance<AQY>,
     wrapper: &mut SuiSystemState,
     new_epoch: u64,
     next_protocol_version: u64,
@@ -595,7 +595,7 @@ fun advance_epoch(
     reward_slashing_rate: u64, // how much rewards are slashed to punish a validator, in bps.
     epoch_start_timestamp_ms: u64, // Timestamp of the epoch start
     ctx: &mut TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     // Validator will make a special system call with sender set as 0x0.
     assert!(ctx.sender() == @0x0, ENotSystemAddress);
     let storage_rebate = wrapper
@@ -837,7 +837,7 @@ public(package) fun advance_epoch_for_testing(
     reward_slashing_rate: u64,
     epoch_start_timestamp_ms: u64,
     ctx: &mut TxContext,
-): Balance<SUI> {
+): Balance<AQY> {
     let storage_reward = balance::create_for_testing(storage_charge);
     let computation_reward = balance::create_for_testing(computation_charge);
     let storage_rebate = advance_epoch(

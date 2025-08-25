@@ -4,7 +4,7 @@ module a::n {
     use sui::sui;
     use sui::tx_context;
 
-    fun init(_otw: sui::SUI, _ctx: &mut tx_context::TxContext) {
+    fun init(_otw: sui::AQY, _ctx: &mut tx_context::TxContext) {
     }
 
 }
@@ -15,5 +15,5 @@ module sui::tx_context {
 }
 
 module sui::sui {
-    struct SUI has drop {}
+    struct AQY has drop {}
 }

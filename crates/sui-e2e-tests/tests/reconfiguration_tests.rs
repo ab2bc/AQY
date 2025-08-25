@@ -595,7 +595,7 @@ async fn test_inactive_validator_pool_read() {
     })
 }
 
-const VALIDATOR_STARTING_STAKE: u64 = 1_000_000_000_000_000; // 1M SUI
+const VALIDATOR_STARTING_STAKE: u64 = 1_000_000_000_000_000; // 1M AQY
 
 #[sim_test]
 async fn test_reconfig_with_committee_change_basic() {

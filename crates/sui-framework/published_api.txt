@@ -2644,7 +2644,7 @@ verify_groth16_proof
 verify_groth16_proof_internal
 	fun
 	0x2::groth16
-SUI
+AQY
 	public struct
 	0x2::sui
 new

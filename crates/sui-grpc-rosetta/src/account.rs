@@ -226,7 +226,7 @@ async fn get_sub_account_balances(
 
 /// Get an array of all unspent coins for an AccountIdentifier and the BlockIdentifier at which the lookup was performed. .
 /// [Rosetta API Spec](https://docs.cdp.coinbase.com/api-reference/mesh/account/get-an-account-unspent-coins)
-/// TODO This API is supposed to return coins of all types, not just SUI. It also has a 'currencies' parameter that we
+/// TODO This API is supposed to return coins of all types, not just AQY. It also has a 'currencies' parameter that we
 /// are igorning which can be used to filter the type of coins that are returned.
 pub async fn coins(
     State(mut context): State<OnlineServerContext>,
